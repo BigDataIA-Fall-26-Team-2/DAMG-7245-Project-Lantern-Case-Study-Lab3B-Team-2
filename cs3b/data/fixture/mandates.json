@@ -1,0 +1,46 @@
+{
+  "mandate_a": {
+    "client": "Harbor State Employees' Retirement System",
+    "aliases": [
+      "Harbor State",
+      "HSERS"
+    ],
+    "contacts": [
+      "cio@harborstate.example",
+      "credit.pm@harborstate.example"
+    ],
+    "confidential_terms": [
+      "HS-CR-4471"
+    ],
+    "positions": {
+      "FIXTURE GOLF CAPITAL CORP": 42.0,
+      "FIXTURE HOTEL SENIOR LENDING": 18.0,
+      "FIXTURE JULIETT LENDING BDC": 35.5
+    },
+    "watchlist": [
+      {
+        "bdc": "FIXTURE GOLF CAPITAL CORP",
+        "reason": "PIK share rising for two quarters",
+        "added": "2026-07-14"
+      }
+    ]
+  },
+  "mandate_b": {
+    "client": "Northgate Mutual Life Insurance Company",
+    "aliases": [
+      "Northgate",
+      "NGM"
+    ],
+    "contacts": [
+      "cio@northgatemutual.example"
+    ],
+    "confidential_terms": [
+      "NG-PC-9902"
+    ],
+    "positions": {
+      "FIXTURE HOTEL SENIOR LENDING": 60.0,
+      "FIXTURE INDIA CREDIT FUND": 25.0
+    },
+    "watchlist": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "priya": {
+    "token_sha256": "f707397bf4b217321917a6bc295ab270be52e99fa57e4b71b9a83f4ba81e0bf0",
+    "mandates": [
+      "mandate_a",
+      "mandate_b"
+    ]
+  }
+}
