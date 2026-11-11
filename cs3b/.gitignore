@@ -6,3 +6,6 @@ __pycache__/
 *.sqlite
 outputs/outbox/
 data/raw/
+
+# Python environments with version suffixes
+.venv*/
