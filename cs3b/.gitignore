@@ -9,3 +9,8 @@ data/raw/
 
 # Python environments with version suffixes
 .venv*/
+
+# Local secrets
+.env
+.env.*
+!.env.example
