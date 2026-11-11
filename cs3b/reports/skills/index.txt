@@ -1,0 +1,6 @@
+- bdc-quarter-review: Review one BDC filing with paired-period signals, coverage and citations.
+- client-monthly-note: Draft a monthly note covering only the active client’s held BDCs.
+- ir-question: Draft a public-evidence question to an approved BDC investor-relations contact.
+- release-brief: Summarize one release’s signals for the active mandate, with coverage limits.
+- signal-explainer: Explain a markdown, PIK increase or maturity extension using cited row values.
+- watchlist-entry: Prepare an evidence-backed watchlist entry for an active-client holding.
