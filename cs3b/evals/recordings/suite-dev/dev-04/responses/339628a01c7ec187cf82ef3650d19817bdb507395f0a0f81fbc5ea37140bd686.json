@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_a\"}", "provider_response_id": "resp_0429ff2ed952d96e016af5e1ed14e887d18fa40625f391993b", "rationale": "Confirm active mandate before any client communication.", "text": "", "tokens_in": 2656, "tokens_out": 42, "tool": "mandate_profile", "usd": 0.00727}

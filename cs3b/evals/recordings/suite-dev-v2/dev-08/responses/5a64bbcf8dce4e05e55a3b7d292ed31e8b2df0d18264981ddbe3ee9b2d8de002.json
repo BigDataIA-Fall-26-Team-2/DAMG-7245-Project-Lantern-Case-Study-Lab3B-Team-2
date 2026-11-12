@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_a\"}", "provider_response_id": "resp_0627543334c4356a016af5e304e25887d19e87ed4b4493b935", "rationale": "Confirm active mandate context before client-facing work.", "text": "Reading the active mandate profile first, as required before drafting the client note.", "tokens_in": 2818, "tokens_out": 58, "tool": "mandate_profile", "usd": 0.007915}

@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_0280e9ad248d51ca016af3f91cbf1887d19038bf2e0b557dc9", "rationale": "Need public BDC signal evidence before drafting the mandate_a client note; mandate profile is already present.", "text": "", "tokens_in": 2140, "tokens_out": 53, "tool": "bdc_signals", "usd": 0.006145}

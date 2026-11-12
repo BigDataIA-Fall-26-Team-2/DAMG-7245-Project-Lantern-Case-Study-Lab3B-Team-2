@@ -1,0 +1,9 @@
+# Standard USD per million tokens; conservative input pricing, no cached discount.
+# Sources: developers.openai.com/api/docs/models/gpt-5.4-mini and /gpt-5.4
+small:
+  model: gpt-5.4-mini-2026-03-17
+  prices: {input: 0.75, output: 4.50}
+main:
+  model: gpt-5.4-2026-03-05
+  prices: {input: 2.50, output: 15.00}
+max_output_tokens: 2048

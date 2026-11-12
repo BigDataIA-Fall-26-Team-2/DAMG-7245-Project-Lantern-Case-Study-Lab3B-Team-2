@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_a\"}", "provider_response_id": "resp_0d5d956a7a8b0d9e016af5d4798b4887d18d963afe1faa4f6c", "rationale": "Confirm active mandate profile and held BDCs before reviewing public signals and drafting the client note.", "text": "", "tokens_in": 5598, "tokens_out": 109, "tool": "mandate_profile", "usd": 0.01563}

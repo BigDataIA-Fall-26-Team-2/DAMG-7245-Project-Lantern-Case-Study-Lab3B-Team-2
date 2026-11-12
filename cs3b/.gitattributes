@@ -1,0 +1,6 @@
+# Pin LF everywhere: skill lockfiles hash file bytes, so a CRLF checkout
+# (Git on Windows) would fail start-up with "skill hash mismatch".
+* text=auto eol=lf
+*.parquet binary
+*.sqlite binary
+*.png binary

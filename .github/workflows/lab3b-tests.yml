@@ -1,0 +1,30 @@
+name: Lab 3B offline tests
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cs3b
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -e . --no-deps
+      - run: python -m pytest -q -rs
+      - name: Lab 31 offline replay and economics
+        run: |
+          lantern eval run --suite dev --mode replay
+          lantern scenario --mode replay
+          lantern economics
+      - name: Run all notebooks with Jupyter semantics
+        run: python tools/run_notebooks.py
+      - name: Live recording status
+        run: |
+          if [ ! -f evals/recordings/dev-01/recorded.json ]; then
+            echo "::warning::Part 2 real-model recording still pending; only synthetic replay tests ran."
+          fi

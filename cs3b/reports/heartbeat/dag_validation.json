@@ -1,0 +1,38 @@
+{
+  "sdk_version": "1.4.0",
+  "validation": "actual SDK import and dag.validate(); scheduler not started",
+  "dags": [
+    {
+      "id": "edgar_watch_dag",
+      "schedule": "*/30 * * * *",
+      "tasks": [
+        "run_workflow"
+      ],
+      "timezone": "America/New_York"
+    },
+    {
+      "id": "hygiene_dag",
+      "schedule": "0 8 * * 1",
+      "tasks": [
+        "run_workflow"
+      ],
+      "timezone": "America/New_York"
+    },
+    {
+      "id": "monthly_brief_dag",
+      "schedule": "30 7 * * 1-5",
+      "tasks": [
+        "run_workflow"
+      ],
+      "timezone": "America/New_York"
+    },
+    {
+      "id": "release_watch_dag",
+      "schedule": "0 6 * * *",
+      "tasks": [
+        "run_workflow"
+      ],
+      "timezone": "America/New_York"
+    }
+  ]
+}

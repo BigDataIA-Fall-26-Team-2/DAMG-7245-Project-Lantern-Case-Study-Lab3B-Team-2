@@ -1,0 +1,2 @@
+{"action_class": "READ", "decision": "executed", "event_id": "ev-00001", "kind": "tool_call", "scope": "mandate_a", "tool": "mandate_profile", "ts": "2026-10-15T06:00:00-04:00"}
+{"action_class": "READ", "decision": "executed", "event_id": "ev-00002", "kind": "tool_call", "scope": "mandate_a", "tool": "bdc_signals", "ts": "2026-10-15T06:00:00-04:00"}

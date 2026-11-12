@@ -1,0 +1,199 @@
+{
+  "actions": [
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "decision": "executed",
+      "tool": "mandate_profile"
+    },
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+      "decision": "executed",
+      "tool": "bdc_signals"
+    },
+    {
+      "action_class": "DRAFT",
+      "actor": "agent",
+      "args_hash": "40111f81f3cbd9fbbb62ddcdf42cabdab32e421894b3b0c7ea53fbf3a4be4f8a",
+      "decision": "executed",
+      "tool": "draft_email"
+    },
+    {
+      "action_class": "CONTROL",
+      "actor": "agent",
+      "args_hash": "2f833ad2550b18e061028277090dbe5a6d678f301e2eca5f9d574ad42820dc90",
+      "decision": "requested",
+      "tool": "request_approval"
+    },
+    {
+      "action_class": "EXTERNAL_SEND",
+      "actor": "agent",
+      "args_hash": "6c1c7e93996cfbe12d97ae95264f3bd76424aef8561423952ba00b517a1da4e1",
+      "decision": "executed",
+      "tool": "send_email"
+    },
+    {
+      "action_class": "CONTROL",
+      "actor": "agent",
+      "args_hash": "35e3f159c59017cd1727cfcb005f968aa078528117271b5db1999e8b8fdd0439",
+      "decision": "requested",
+      "tool": "request_approval"
+    },
+    {
+      "action_class": "INTERNAL_WRITE",
+      "actor": "server_approval_request",
+      "args_hash": "53d0be51962e475fa7c4e5dddb8f9bd19dc96382594db850812c7a24020bb488",
+      "decision": "requested",
+      "tool": "watchlist_write"
+    },
+    {
+      "action_class": "INTERNAL_WRITE",
+      "actor": "agent",
+      "args_hash": "6c45d33b2658bad4ae1cee48812c8598e2d19a28dd1c448bce0113a004a759db",
+      "decision": "executed",
+      "tool": "watchlist_write"
+    }
+  ],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "Completed.\n\nEmail draft created and sent to the mock outbox after fixture-human approval.\n- Draft ID: draft-38e91eb80b394de48ef7ac01591ce263\n- Approval token used: fixture-approval-req-1626526b419e403995404beadeb8d792\n- Outbox message ID: msg-b305414a03c0cdff1ab1dd55d0d6075b427e74145b5754f7c3c18ec185f5fdee\n\nClient note sent:\nHarbor State exposure: $95.5mm across FIXTURE GOLF CAPITAL CORP ($42.0mm), FIXTURE HOTEL SENIOR LENDING ($18.0mm), and FIXTURE JULIETT LENDING BDC ($35.5mm).\n\nThis month’s new release shows 8 cited signals across your held BDCs.\n\nFIXTURE GOLF CAPITAL CORP\n- Two new markdowns. Cedar Ridge Dental Partners LLC moved to 91.5 from 98.0, a 6.5-point decline (accession 0009000011-26-000111, row 102; prior row 502).\n- Granite Peak Manufacturing LLC moved to 92.0 from 98.5, a 6.5-point decline (accession 0009000011-26-000111, row 106; prior row 506).\n\nFIXTURE HOTEL SENIOR LENDING\n- Pinecrest Learning Group Inc. maturity was extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505).\n- Brightwater Fitness Holdings LLC moved to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501).\n- Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504).\n\nFIXTURE JULIETT LENDING BDC\n- Dunmore Insurance Brokers LLC maturity was extended to 2030-03-15 from 2028-03-15 (accession 0009000014-26-000141, row 104; prior row 504).\n- Crestline Roofing Holdings LLC moved to 90.0 from 97.5, a 7.5-point decline (accession 0009000014-26-000141, row 103; prior row 503).\n- Foxglove Specialty Pharma Inc. PIK increased to 2.5 from 0.0 (accession 0009000014-26-000141, row 106; prior row 506).\n\nTakeaway\n- The release adds fresh stress signals in all three held BDCs.\n- Hotel stands out because the same schedule shows a maturity extension, a 5.5-point markdown, and a PIK increase.\n- Golf adds two separate 6.5-point markdowns.\n- Juliett adds one 7.5-point markdown, one maturity extension, and one new PIK balance.\n\nPrepared for Priya approval before any send to the mock outbox.\n\nApproved watchlist entry written.\n- Approval token used: fixture-approval-req-0c5aa542eed8493e9138e8aa25129319\n- Watchlist entry ID: watch-e70eb787da4ea5e7a4ef28b91f3e2c1f476b9979b6b58c99c1a57cdc3cce1941\n\nWritten entry:\n- BDC: FIXTURE HOTEL SENIOR LENDING\n- Citations: 0009000012-26-000121 row 105 prior row 505; 0009000012-26-000121 row 101 prior row 501; 0009000012-26-000121 row 104 prior row 504\n- Note: Hotel added to watchlist on new release evidence. Pinecrest Learning Group Inc. maturity extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505). Brightwater Fitness Holdings LLC marked to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501). Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504).",
+  "mandate": "mandate_a",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_01a834220a86d800016af5e295289c87d190066df9015c6259",
+      "tokens_in": 231,
+      "tokens_out": 116,
+      "usd": 0.00069525
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_00e86a9d7e910505016af5e297412c87d1aeb195230dfb5039",
+      "tokens_in": 2888,
+      "tokens_out": 43,
+      "usd": 0.007865
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_01ed9c5fba8fef43016af5e298d8f087d1a4cf71ddc6b9fb55",
+      "tokens_in": 3002,
+      "tokens_out": 56,
+      "usd": 0.008345
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0629d78822862018016af5e29a9a0487d18274bb2dbd3cbd24",
+      "tokens_in": 3877,
+      "tokens_out": 705,
+      "usd": 0.0202675
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0dcb2965ca5355eb016af5e2a4283887d186d4cd8844d6b842",
+      "tokens_in": 5248,
+      "tokens_out": 86,
+      "usd": 0.01441
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0a0d325544440be9016af5e2a62ab487d1b87aeb9043ea719f",
+      "tokens_in": 5448,
+      "tokens_out": 98,
+      "usd": 0.01509
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_03971c43c0976f52016af5e2a8551887d1a71dccffe6a01c5e",
+      "tokens_in": 5604,
+      "tokens_out": 285,
+      "usd": 0.018285
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0755110bbe6bfff1016af5e2acfa6887d18de27f564085fe3a",
+      "tokens_in": 6022,
+      "tokens_out": 306,
+      "usd": 0.019645
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_08ab67afe580025a016af5e2b1586487d1954560b5a572e062",
+      "tokens_in": 6383,
+      "tokens_out": 1065,
+      "usd": 0.0319325
+    }
+  ],
+  "output_isolation_blocked": false,
+  "provenance": "openai-live",
+  "run_id": "release-morning-recorded",
+  "task_id": "release-morning",
+  "trace": [
+    {
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "step": 1,
+      "tool": "mandate_profile",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.007865
+    },
+    {
+      "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+      "step": 2,
+      "tool": "bdc_signals",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.008345
+    },
+    {
+      "args_hash": "40111f81f3cbd9fbbb62ddcdf42cabdab32e421894b3b0c7ea53fbf3a4be4f8a",
+      "step": 3,
+      "tool": "draft_email",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.0202675
+    },
+    {
+      "args_hash": "2f833ad2550b18e061028277090dbe5a6d678f301e2eca5f9d574ad42820dc90",
+      "step": 4,
+      "tool": "request_approval",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.01441
+    },
+    {
+      "args_hash": "6c1c7e93996cfbe12d97ae95264f3bd76424aef8561423952ba00b517a1da4e1",
+      "step": 5,
+      "tool": "send_email",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.01509
+    },
+    {
+      "args_hash": "35e3f159c59017cd1727cfcb005f968aa078528117271b5db1999e8b8fdd0439",
+      "step": 6,
+      "tool": "request_approval",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.018285
+    },
+    {
+      "args_hash": "6c45d33b2658bad4ae1cee48812c8598e2d19a28dd1c448bce0113a004a759db",
+      "step": 7,
+      "tool": "watchlist_write",
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.019645
+    },
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 8,
+      "tool": null,
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.0319325
+    }
+  ]
+}

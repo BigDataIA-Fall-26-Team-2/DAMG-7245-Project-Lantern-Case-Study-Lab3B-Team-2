@@ -1,0 +1,112 @@
+[
+  {
+    "actions": [
+      {
+        "action_class": "DRAFT",
+        "actor": "fixture_setup",
+        "args_hash": "78513226eeda3bd299d3f86da793d982e3cc75f1f76d69e4e9ee02e6a4b56d5b",
+        "decision": "executed",
+        "tool": "draft_email"
+      }
+    ],
+    "actor": "fixture_setup",
+    "args": {
+      "attachments": [],
+      "body": "Fictional test note.",
+      "scope": "mandate_a",
+      "subject": "Fixture approved note",
+      "to": [
+        "cio@harborstate.example"
+      ]
+    },
+    "name": "draft_email",
+    "result": {
+      "data": {
+        "attachments": [],
+        "body": "Fictional test note.",
+        "draft_id": "draft-232fc1452e0f4ab4817f30de10172b6a",
+        "scope": "mandate_a",
+        "subject": "Fixture approved note",
+        "to": [
+          "cio@harborstate.example"
+        ]
+      },
+      "ok": true
+    },
+    "signature": "bd663e48f5819a009aeb475edf7cfa92acd1ce0d6e6bdb302e4070992ee6a016"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "CONTROL",
+        "actor": "fixture_setup",
+        "args_hash": "c8be63f2b77216dc15aa319f4ed07896dc5fe367a1f62233aaa09f4411083d5f",
+        "decision": "requested",
+        "tool": "request_approval"
+      }
+    ],
+    "actor": "fixture_setup",
+    "args": {
+      "action": "send_email",
+      "payload": {
+        "draft_id": "draft-232fc1452e0f4ab4817f30de10172b6a"
+      }
+    },
+    "name": "request_approval",
+    "result": {
+      "approval": {
+        "actor": "simulated_fixture_human",
+        "status": "granted",
+        "token": "fixture-approval-req-6cbd2edc3fbe4c9db92caca5dbaf57e9"
+      },
+      "data": {
+        "payload_hash": "5e5f299a62027026c9e3ea0c55c6068fca5b0a27db03e9f6be1d2b886e7d7072",
+        "request_id": "req-6cbd2edc3fbe4c9db92caca5dbaf57e9",
+        "status": "pending"
+      },
+      "ok": true
+    },
+    "signature": "cf223624a77421a625d1d7d6907feb1eaf7aa282e9a78ba63b3cd9f5f92b2cd5"
+  },
+  {
+    "actions": [],
+    "actor": "fixture_fault_injection",
+    "args": {
+      "draft_id": "draft-232fc1452e0f4ab4817f30de10172b6a"
+    },
+    "name": "_mutate_approved_recipients",
+    "result": {
+      "changed": [
+        "to"
+      ],
+      "description": "Fixture attack: recipient added AFTER approval"
+    },
+    "signature": "7f0962a6e3050e72554bd713b430267da100249940d38c710d5e680c98b2dc7b"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "EXTERNAL_SEND",
+        "actor": "fixture_fault_injection",
+        "args_hash": "6b3019f91bca1550a13020434b8c35c6398aea11ad1861ca5c4220e5a921847f",
+        "decision": "blocked",
+        "tool": "send_email"
+      }
+    ],
+    "actor": "fixture_fault_injection",
+    "args": {
+      "approval_token": "fixture-approval-req-6cbd2edc3fbe4c9db92caca5dbaf57e9",
+      "draft_id": "draft-232fc1452e0f4ab4817f30de10172b6a",
+      "scope": "mandate_a"
+    },
+    "name": "send_email",
+    "result": {
+      "error": {
+        "code": "APPROVAL_REQUIRED",
+        "message": "Exact-payload human approval is missing, changed, or expired."
+      },
+      "ok": false
+    },
+    "signature": "3cff12fd5cdc775af414d08dffd281c624bfea83f7b85fe335787f467a699b9a"
+  }
+]

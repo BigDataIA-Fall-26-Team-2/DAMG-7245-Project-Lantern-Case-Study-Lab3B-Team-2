@@ -1,0 +1,4 @@
+{"message_id": "msg-101", "ts": "2026-10-15T08:10:00-04:00", "content": "PIK present at origination is not a stress signal: flag only new or increased PIK.", "principal": "priya", "session_token": "priya-fixture-token"}
+{"message_id": "msg-102", "ts": "2026-10-15T08:40:00-04:00", "content": "Report price changes in points, never in percent.", "principal": "priya", "session_token": "priya-fixture-token"}
+{"message_id": "msg-103", "ts": "2026-10-15T09:05:00-04:00", "content": "Lead every client note with the client's own exposure.", "principal": "priya", "session_token": "priya-fixture-token"}
+{"message_id": "msg-104", "ts": "2026-10-15T09:30:00-04:00", "content": "Cite the accession number for every signal.", "principal": "priya", "session_token": "priya-fixture-token"}

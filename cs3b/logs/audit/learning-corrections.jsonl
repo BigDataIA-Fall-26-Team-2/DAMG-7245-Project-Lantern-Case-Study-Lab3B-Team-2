@@ -1,0 +1,4 @@
+{"event_id": "ev-00001", "file": "PRINCIPAL.md", "kind": "memory_write", "message_id": "msg-101", "scope": "mandate_a", "ts": "2026-10-15T06:00:00-04:00"}
+{"event_id": "ev-00002", "file": "PRINCIPAL.md", "kind": "memory_write", "message_id": "msg-102", "scope": "mandate_a", "ts": "2026-10-15T06:00:00-04:00"}
+{"event_id": "ev-00003", "file": "PRINCIPAL.md", "kind": "memory_write", "message_id": "msg-103", "scope": "mandate_a", "ts": "2026-10-15T06:00:00-04:00"}
+{"event_id": "ev-00004", "file": "PRINCIPAL.md", "kind": "memory_write", "message_id": "msg-104", "scope": "mandate_a", "ts": "2026-10-15T06:00:00-04:00"}

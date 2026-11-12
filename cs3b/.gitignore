@@ -1,0 +1,20 @@
+# Never commit: caches, environments, rebuildable stores, raw SEC files, the transient mock outbox.
+# agent/, outputs/ and reports/ ARE committed: Case Study 3B grades them (Section 8).
+.cache/
+__pycache__/
+.venv/
+*.sqlite
+outputs/outbox/
+data/raw/
+
+# Python environments with version suffixes
+.venv*/
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Local editable-install metadata
+*.egg-info/
+build/

@@ -1,0 +1,80 @@
+{
+  "11adaba6a2c3a5d1a4c2add9e78b7ba3249d7e4875fb8063de3ea3b952983bf2": {
+    "data": {
+      "client": "Harbor State Employees' Retirement System",
+      "positions": {
+        "FIXTURE GOLF CAPITAL CORP": 42.0,
+        "FIXTURE HOTEL SENIOR LENDING": 18.0,
+        "FIXTURE JULIETT LENDING BDC": 35.5
+      }
+    },
+    "ok": true
+  },
+  "eaf688d5ae37fb9634a363221088c153efbbd002c5b56e90a7357c912a722401": {
+    "data": {
+      "signals": [
+        {
+          "adsh": "0009000012-26-000121",
+          "after": "2031-09-30",
+          "before": "2029-09-30",
+          "identifier": "Pinecrest Learning Group Inc., First Lien Term Loan",
+          "name": "FIXTURE HOTEL SENIOR LENDING",
+          "prior_row": "505",
+          "row": "105",
+          "rule": "EXTENDED"
+        },
+        {
+          "adsh": "0009000012-26-000121",
+          "after": 93.5,
+          "before": 99.0,
+          "identifier": "Brightwater Fitness Holdings LLC, First Lien Term Loan",
+          "name": "FIXTURE HOTEL SENIOR LENDING",
+          "prior_row": "501",
+          "row": "101",
+          "rule": "MARKDOWN"
+        },
+        {
+          "adsh": "0009000012-26-000121",
+          "after": 3.0,
+          "before": 1.0,
+          "identifier": "Oakmont Home Services LLC, First Lien Term Loan",
+          "name": "FIXTURE HOTEL SENIOR LENDING",
+          "prior_row": "504",
+          "row": "104",
+          "rule": "PIK_UP"
+        },
+        {
+          "adsh": "0009000013-26-000131",
+          "after": 89.5,
+          "before": 96.0,
+          "identifier": "Senior Secured First Lien | Westbrook Orthopedics LLC | S + 5.50%",
+          "name": "FIXTURE INDIA CREDIT FUND",
+          "prior_row": "502",
+          "row": "102",
+          "rule": "MARKDOWN"
+        },
+        {
+          "adsh": "0009000014-26-000141",
+          "after": 90.0,
+          "before": 97.5,
+          "identifier": "First Lien Term Loan | Crestline Roofing Holdings LLC | 06/2031",
+          "name": "FIXTURE JULIETT LENDING BDC",
+          "prior_row": "503",
+          "row": "103",
+          "rule": "MARKDOWN"
+        },
+        {
+          "adsh": "0009000014-26-000141",
+          "after": 2.5,
+          "before": 0.0,
+          "identifier": "First Lien Term Loan | Foxglove Specialty Pharma Inc. | 03/2031",
+          "name": "FIXTURE JULIETT LENDING BDC",
+          "prior_row": "506",
+          "row": "106",
+          "rule": "PIK_UP"
+        }
+      ]
+    },
+    "ok": true
+  }
+}

@@ -1,0 +1,72 @@
+# Lab 3B / Case Study 3B parameters. Every threshold the code uses lives here.
+data:
+  use_fixture: true
+  panel: data/fixture/panel_2p.csv         # real mode: your CS2B two-period panel (see Case Study 3B, Section 4)
+  truth: data/fixture/ground_truth.csv     # fixture only
+  fixture_dir: data/fixture
+  mandates: data/fixture/mandates.json     # real mode: copy and point positions at BDCs in your panel
+  registry: data/fixture/registry.json
+agent:
+  seed: agent_seed                         # copied to agent/ by notebook 00; edit agent/, never the seed
+  workspace: agent
+  principal: priya
+context:
+  budgets: {soul: 300, principal: 400, agents: 300, mandate: 400, watchlist: 200, skills_index: 200, memory: 500}
+budget:
+  max_steps_per_task: 8
+  usd_cap_per_task: 0.50
+  token_cap_per_task: 60000
+heartbeat:
+  materiality: {markdown_points: 5.0, pik_points: 0.5, extension_months: 6}
+  hygiene:
+    stale_days: 30
+    due_business_days: 5
+    # From mandate A's reporting terms; business days mean Mon-Fri in this lab.
+    monthly_business_day: {mandate_a: 10}
+    reporting_dates: {}  # Add explicit dates for quarterly/ad hoc obligations.
+  quiet_hours: {start: 21, end: 7}
+  timezone: America/New_York
+approvals:
+  ttl_minutes: 30
+sec:
+  user_agent: "Sai Lokesh Reddy nandavarapu.s@northeastern.edu"   # SEC requires a real name and email
+  base_url: "https://www.sec.gov/files/datastandardsinnovation/data/business-development-company-bdc-data-sets/"
+  hosts: [www.sec.gov, data.sec.gov]
+prices:                                    # illustrative: replace with your provider's current prices
+  usd_per_mtok_in: 0.40
+  usd_per_mtok_out: 1.60
+economics:                                 # assumptions: state and justify your own
+  monthly_assumptions:                      # illustrative, not measured operating costs
+    notes_per_mandate_month: 1
+    other_tasks_per_mandate_month: 4
+    review_hours_per_note: 0.25
+    shared_hosting_usd_per_month: 20
+    illustrative_incident_cost_usd: 100000
+    illustrative_incident_probability_per_mandate_month: 0.001
+  analyst_hours_per_review: 3.0
+  analyst_rate_usd: 120.0
+
+# Lab 29: the server validates these classes against the closed tool catalog.
+action_policy:
+  tool_classes:
+    list_mandates: READ
+    bdc_holdings: READ
+    bdc_signals: READ
+    get_filing: READ
+    mandate_profile: READ
+    watchlist_read: READ
+    memory_read: READ
+    memory_propose_write: INTERNAL_WRITE
+    watchlist_write: INTERNAL_WRITE
+    draft_email: DRAFT
+    request_approval: CONTROL
+    send_email: EXTERNAL_SEND
+  class_policies:
+    READ: auto
+    DRAFT: auto
+    INTERNAL_WRITE: notify
+    EXTERNAL_SEND: approve
+    CONTROL: principal
+    DESTRUCTIVE: forbidden
+  overrides:
+    watchlist_write: approve

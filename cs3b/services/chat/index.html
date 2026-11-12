@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Credit Watch · Chat</title>
+<style>
+body{font:16px system-ui;background:#eef3f5;color:#172d39;margin:0}main{max-width:760px;margin:7vh auto;padding:28px}h1{font-size:36px;margin-bottom:8px}.card{background:white;border:1px solid #ccd9df;border-radius:14px;padding:24px;margin-top:24px}label{display:block;margin:16px 0 6px}input,select,button{font:inherit;padding:12px;border:1px solid #9bafb9;border-radius:6px;box-sizing:border-box}input,select{width:100%}button{background:#176457;color:white;cursor:pointer;margin-top:16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 system-ui}#status{font-weight:600}#error{color:#a12323}small{color:#465e6a}article{border-bottom:1px solid #dce4e8;padding:12px 0}
+</style>
+<main><small>PROJECT LANTERN / PART 0</small><h1>Credit Watch chat</h1><p>One authenticated session. One client mandate.</p>
+<form id="login" class="card"><h2>Sign in as Priya</h2><label for="token">Session token</label><input id="token" type="password" required autocomplete="off"><label for="mandate">Active mandate</label><select id="mandate"><option value="mandate_a">Mandate A</option><option value="mandate_b">Mandate B</option></select><button>Sign in</button></form>
+<section id="chat" class="card" hidden><p id="status"></p><small>Context inspection mode. Try /context, /session or /help. The model and action tools connect in later labs.</small><div id="messages" role="log" aria-live="polite"></div><form id="send"><label for="message">Message</label><input id="message" required maxlength="8000" autocomplete="off"><button>Send</button></form><button id="logout" type="button">Log out / change mandate</button></section><p id="error" role="alert"></p></main>
+<script>
+const el=id=>document.getElementById(id);
+async function api(path,body){el('error').textContent='';const r=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const data=await r.json();if(!r.ok)throw Error(data.error);return data;}
+function add(who,text){const item=document.createElement('article');const name=document.createElement('strong');name.textContent=who;const content=document.createElement('pre');content.textContent=text;item.append(name,content);el('messages').append(item);}
+el('login').onsubmit=async e=>{e.preventDefault();try{const data=await api('/login',{token:el('token').value,mandate:el('mandate').value});el('token').value='';el('status').textContent=data.reply;el('messages').replaceChildren();el('login').hidden=true;el('chat').hidden=false;el('message').focus();}catch(e){el('token').value='';el('error').textContent=e.message;}};
+el('send').onsubmit=async e=>{e.preventDefault();const message=el('message').value;try{const data=await api('/chat',{message});add('Priya',message);add('Credit Watch',data.reply);el('message').value='';}catch(e){el('error').textContent=e.message;}};
+el('logout').onclick=async()=>{try{await api('/logout',{});el('chat').hidden=true;el('login').hidden=false;el('messages').replaceChildren();el('message').value='';}catch(e){el('error').textContent=e.message;}};
+</script></html>

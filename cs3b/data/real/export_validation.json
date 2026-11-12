@@ -1,0 +1,69 @@
+{
+  "validation": [],
+  "rows": 48618,
+  "filings": 73,
+  "baseline_admitted_filings": 76,
+  "excluded_rows": 322,
+  "exclusion_reasons": {
+    "required_schedule_absent": 279,
+    "outside_selected_two_periods": 43
+  },
+  "classifications": {
+    "DEBT": 34052,
+    "UNKNOWN": 10883,
+    "EQUITY": 3681,
+    "OTHER": 2
+  },
+  "classification_bases": {
+    "identifier_text_inference": 35077,
+    "unclassified": 10883,
+    "source_axis_or_enumeration": 2658
+  },
+  "pairing_eligible_rows": 33660,
+  "source_conflict_rows": 0,
+  "field_columns": {
+    "fair_value": [
+      "Investment Owned, Fair Value",
+      "Initial fair value of Investment"
+    ],
+    "cost": [
+      "Investment Owned, Cost",
+      "Adjusted cost basis"
+    ],
+    "principal": [
+      "Investment Owned, Balance, Principal Amount"
+    ],
+    "interest_rate": [
+      "Investment Interest Rate"
+    ],
+    "spread": [
+      "Investment, Basis Spread, Variable Rate"
+    ],
+    "maturity": [
+      "Investment Maturity Date"
+    ],
+    "pik_rate": [
+      "Investment, Interest Rate, Paid in Kind"
+    ],
+    "pct_net_assets": [
+      "Investment Owned, Net Assets, Percentage"
+    ]
+  },
+  "long_identifier_rows": 402,
+  "source_release": "2026_08",
+  "source_manifest": [
+    {
+      "path": "data/raw/2026_08_bdc.zip",
+      "url": "https://www.sec.gov/files/datastandardsinnovation/data/business-development-company-bdc-data-sets/2026_08_bdc.zip",
+      "bytes": 75864269,
+      "sha256": "417e3f847d18050ac33399676ffc84d8af341144cfed97f551db798fffc0c426",
+      "recorded": "2026-10-23"
+    }
+  ],
+  "source_hashes": {
+    "soi.tsv": "789bf1a9141fcdcb93730659865d79c0ea95621219c97a3abae34fe1cbe7f964",
+    "datasets/sub.tsv": "ed333e6ad2044c8537972b47df935ff1c89431def5b9973fda7cb42defb89a13"
+  },
+  "panel_sha256": "78f1f6d1e1859ceb7bc7460d97ce0101288fa31e1815dd0b05fede6e488fab42",
+  "policy": "Select current and prior fiscal year-end from SUB, exclude unavailable two-period filings with receipts, retain unknown/conflicting holdings but abstain from pairing. Classification inferred from identifier text is explicitly labelled, not asserted as an original source type."
+}

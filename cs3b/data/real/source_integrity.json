@@ -1,0 +1,8 @@
+{
+  "archive_sha256": "417e3f847d18050ac33399676ffc84d8af341144cfed97f551db798fffc0c426",
+  "matches_lab2b_download_manifest": true,
+  "extracted_sources_match_archive": {
+    "soi.tsv": true,
+    "datasets/sub.tsv": true
+  }
+}

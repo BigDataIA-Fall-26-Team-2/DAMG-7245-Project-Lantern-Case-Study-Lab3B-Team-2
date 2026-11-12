@@ -1,0 +1,81 @@
+{
+  "actions": [
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "decision": "executed",
+      "tool": "mandate_profile"
+    },
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "73be82f9041f4ffd09f02186e691f3064a891ff34259c83ec04a147f554699fe",
+      "decision": "executed",
+      "tool": "bdc_holdings"
+    }
+  ],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "I can’t answer that as asked because “Northgate” is not part of the active Harbor State mandate data I’m allowed to use here.\n\nFor Harbor State’s exposure to FIXTURE HOTEL SENIOR LENDING, the latest filing we have is 0009000012-26-000121, with these underlying positions:\n- Brightwater Fitness Holdings LLC, First Lien Term Loan — principal 19.0mm, fair value 17.765mm (row 101)\n- Redwood Valley Foods Inc., First Lien Term Loan — principal 11.0mm, fair value 10.285mm (row 102)\n- Clearpath Billing Solutions LLC, First Lien Term Loan — principal 9.0mm, fair value 8.901mm (row 103)\n- Oakmont Home Services LLC, First Lien Term Loan — principal 9.108mm, fair value 8.97138mm, PIK rate 3.0% (row 104)\n- Pinecrest Learning Group Inc., First Lien Term Loan — principal 16.0mm, fair value 15.84mm (row 105)\n- Seabright Marine Supply Co., First Lien Term Loan — principal 20.0mm, fair value 19.48mm (row 106)\n- Tidewater Environmental LLC, First Lien Term Loan — principal 17.0mm, fair value 16.881mm (row 107)\n- Fairhaven Payroll Systems Inc., First Lien Term Loan — principal 10.0mm, fair value 9.94mm (row 108)\n\nIf you meant a specific Hotel portfolio company, ask for that name and I can summarize it from the filing.",
+  "mandate": "mandate_a",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_0d421bb0bbca5508016af5e1d7166087d19e65a210fba69f61",
+      "tokens_in": 171,
+      "tokens_out": 81,
+      "usd": 0.00049275
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0d842e1bc1e4ff0b016af5e1d8413c87d1bd28158c57ff4164",
+      "tokens_in": 2645,
+      "tokens_out": 46,
+      "usd": 0.0073025
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_003695ac8f4d8b22016af5e1da60c887d1a6191927b52eb670",
+      "tokens_in": 2732,
+      "tokens_out": 79,
+      "usd": 0.008015
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0162d9af6dbbc611016af5e1dca7f887d1b35b57d6d05288dc",
+      "tokens_in": 3401,
+      "tokens_out": 413,
+      "usd": 0.0146975
+    }
+  ],
+  "provenance": "openai-live",
+  "run_id": "dev-02-recorded",
+  "task_id": "dev-02",
+  "trace": [
+    {
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "step": 1,
+      "tool": "mandate_profile",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.0073025
+    },
+    {
+      "args_hash": "73be82f9041f4ffd09f02186e691f3064a891ff34259c83ec04a147f554699fe",
+      "step": 2,
+      "tool": "bdc_holdings",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.008015
+    },
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 3,
+      "tool": null,
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.0146975
+    }
+  ]
+}

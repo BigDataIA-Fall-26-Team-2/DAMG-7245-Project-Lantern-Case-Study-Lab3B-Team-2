@@ -1,0 +1,111 @@
+{
+  "brief_id": "brief-d5f1dece9287894fb2473bee",
+  "mandate": "mandate_b",
+  "recipient": "priya",
+  "ts": "2026-10-15T07:30:00-04:00",
+  "release": "2026_09",
+  "text": "Morning brief: 4 relevant items.",
+  "items": [
+    {
+      "alert_id": "41b40dc22331473a4f67e045",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_b",
+      "bdc": "FIXTURE INDIA CREDIT FUND",
+      "trigger": "0009000013-26-000131#102",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: Senior Secured First Lien | Westbrook Orthopedics LLC | S + 5.50%; before 96.0, after 89.5.",
+      "citations": [
+        "0009000013-26-000131#102",
+        "0009000013-26-000131#502"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000013-26-000131",
+        "name": "FIXTURE INDIA CREDIT FUND",
+        "debt_holdings": 7,
+        "paired": 6,
+        "unpaired": 1
+      }
+    },
+    {
+      "alert_id": "b51b177c988b56fc27a57359",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_b",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#104",
+      "rule": "PIK_UP",
+      "text": "PIK_UP: Oakmont Home Services LLC, First Lien Term Loan; before 1.0, after 3.0.",
+      "citations": [
+        "0009000012-26-000121#104",
+        "0009000012-26-000121#504"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "b77f8be57e79ae9408e9c687",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_b",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#105",
+      "rule": "EXTENDED",
+      "text": "EXTENDED: Pinecrest Learning Group Inc., First Lien Term Loan; before 2029-09-30, after 2031-09-30.",
+      "citations": [
+        "0009000012-26-000121#105",
+        "0009000012-26-000121#505"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "d9982270a7bead337c967c48",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_b",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#101",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: Brightwater Fitness Holdings LLC, First Lien Term Loan; before 99.0, after 93.5.",
+      "citations": [
+        "0009000012-26-000121#101",
+        "0009000012-26-000121#501"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    }
+  ],
+  "delivery_channel": "local_inbox"
+}

@@ -1,0 +1,15 @@
+{
+  "brief_id": "hygiene-cf85fba2b276b952c8b704b1",
+  "mandate": "mandate_a",
+  "recipient": "priya",
+  "ts": "2026-10-19T08:00:00-04:00",
+  "items": [
+    {
+      "kind": "stale_watchlist",
+      "bdc": "FIXTURE GOLF CAPITAL CORP",
+      "last_reviewed": "2026-07-14"
+    }
+  ],
+  "text": "Review reminders; no watchlist changes made.",
+  "delivery_channel": "local_inbox"
+}

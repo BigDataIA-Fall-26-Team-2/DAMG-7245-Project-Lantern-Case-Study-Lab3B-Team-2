@@ -1,0 +1,55 @@
+{
+  "bdc_ir": {
+    "FIXTURE GOLF CAPITAL CORP": "ir@golfcapital.example",
+    "FIXTURE HOTEL SENIOR LENDING": "ir@hotelseniorlending.example",
+    "FIXTURE INDIA CREDIT FUND": "ir@indiacreditfund.example",
+    "FIXTURE JULIETT LENDING BDC": "ir@juliettlending.example"
+  },
+  "bdc_cik": {
+    "FIXTURE GOLF CAPITAL CORP": "9000000011",
+    "FIXTURE HOTEL SENIOR LENDING": "9000000012",
+    "FIXTURE INDIA CREDIT FUND": "9000000013",
+    "FIXTURE JULIETT LENDING BDC": "9000000014"
+  },
+  "borrower_domains": [
+    "ashfordmedical.example",
+    "bayviewlogistics.example",
+    "bluefinpackaging.example",
+    "brightwaterfitness.example",
+    "cedarridge.example",
+    "clearpathbilling.example",
+    "copperleafinsurance.example",
+    "crestlineroofing.example",
+    "dunmoreinsurance.example",
+    "elmwoodsenior.example",
+    "fairhavenpayroll.example",
+    "foxglovespecialty.example",
+    "glenviewwater.example",
+    "granitepeak.example",
+    "hartwelldata.example",
+    "highlandcourier.example",
+    "ironwooddata.example",
+    "ivylane.example",
+    "kingsbridgelabs.example",
+    "kitteringaviation.example",
+    "lakeshorebehavioral.example",
+    "larkspurmedia.example",
+    "marigoldhospitality.example",
+    "meadowbrookpet.example",
+    "northwindlogistics.example",
+    "oakmonthome.example",
+    "pinecrestlearning.example",
+    "redwoodvalley.example",
+    "riverbendcraft.example",
+    "seabrightmarine.example",
+    "silverlineanalytics.example",
+    "stonegatesecurity.example",
+    "summitridge.example",
+    "thornburyanalytics.example",
+    "tidewaterenvironmental.example",
+    "westbrookorthopedics.example"
+  ],
+  "restricted": [
+    "Ironwood Data Systems"
+  ]
+}

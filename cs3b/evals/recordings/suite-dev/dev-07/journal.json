@@ -1,0 +1,118 @@
+[
+  {
+    "actions": [],
+    "actor": "heartbeat_service",
+    "args": {},
+    "name": "_release_workflow",
+    "result": {
+      "active_mandate_events": [
+        {
+          "alert_id": "41b40dc22331473a4f67e045",
+          "bdc": "FIXTURE INDIA CREDIT FUND",
+          "citations": [
+            "0009000013-26-000131#102",
+            "0009000013-26-000131#502"
+          ],
+          "coverage": {
+            "adsh": "0009000013-26-000131",
+            "debt_holdings": 7,
+            "name": "FIXTURE INDIA CREDIT FUND",
+            "paired": 6,
+            "unpaired": 1
+          },
+          "delivered_at": null,
+          "delivery_channel": "local_inbox",
+          "detected_at": "2026-10-15T06:00:00-04:00",
+          "mandate": "mandate_b",
+          "recipient": "priya",
+          "release": "2026_09",
+          "rule": "MARKDOWN",
+          "status": "held",
+          "text": "MARKDOWN: Senior Secured First Lien | Westbrook Orthopedics LLC | S + 5.50%; before 96.0, after 89.5.",
+          "trigger": "0009000013-26-000131#102",
+          "ts": "2026-10-15T06:00:00-04:00"
+        },
+        {
+          "alert_id": "b51b177c988b56fc27a57359",
+          "bdc": "FIXTURE HOTEL SENIOR LENDING",
+          "citations": [
+            "0009000012-26-000121#104",
+            "0009000012-26-000121#504"
+          ],
+          "coverage": {
+            "adsh": "0009000012-26-000121",
+            "debt_holdings": 8,
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "paired": 8,
+            "unpaired": 0
+          },
+          "delivered_at": null,
+          "delivery_channel": "local_inbox",
+          "detected_at": "2026-10-15T06:00:00-04:00",
+          "mandate": "mandate_b",
+          "recipient": "priya",
+          "release": "2026_09",
+          "rule": "PIK_UP",
+          "status": "held",
+          "text": "PIK_UP: Oakmont Home Services LLC, First Lien Term Loan; before 1.0, after 3.0.",
+          "trigger": "0009000012-26-000121#104",
+          "ts": "2026-10-15T06:00:00-04:00"
+        },
+        {
+          "alert_id": "b77f8be57e79ae9408e9c687",
+          "bdc": "FIXTURE HOTEL SENIOR LENDING",
+          "citations": [
+            "0009000012-26-000121#105",
+            "0009000012-26-000121#505"
+          ],
+          "coverage": {
+            "adsh": "0009000012-26-000121",
+            "debt_holdings": 8,
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "paired": 8,
+            "unpaired": 0
+          },
+          "delivered_at": null,
+          "delivery_channel": "local_inbox",
+          "detected_at": "2026-10-15T06:00:00-04:00",
+          "mandate": "mandate_b",
+          "recipient": "priya",
+          "release": "2026_09",
+          "rule": "EXTENDED",
+          "status": "held",
+          "text": "EXTENDED: Pinecrest Learning Group Inc., First Lien Term Loan; before 2029-09-30, after 2031-09-30.",
+          "trigger": "0009000012-26-000121#105",
+          "ts": "2026-10-15T06:00:00-04:00"
+        },
+        {
+          "alert_id": "d9982270a7bead337c967c48",
+          "bdc": "FIXTURE HOTEL SENIOR LENDING",
+          "citations": [
+            "0009000012-26-000121#101",
+            "0009000012-26-000121#501"
+          ],
+          "coverage": {
+            "adsh": "0009000012-26-000121",
+            "debt_holdings": 8,
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "paired": 8,
+            "unpaired": 0
+          },
+          "delivered_at": null,
+          "delivery_channel": "local_inbox",
+          "detected_at": "2026-10-15T06:00:00-04:00",
+          "mandate": "mandate_b",
+          "recipient": "priya",
+          "release": "2026_09",
+          "rule": "MARKDOWN",
+          "status": "held",
+          "text": "MARKDOWN: Brightwater Fitness Holdings LLC, First Lien Term Loan; before 99.0, after 93.5.",
+          "trigger": "0009000012-26-000121#101",
+          "ts": "2026-10-15T06:00:00-04:00"
+        }
+      ],
+      "job": "release"
+    },
+    "signature": "6d064245dd03cb17a7f6203cf25b7f63f8f660a52433e45d50fe939c65c31202"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "total_pairs": 5531,
+  "filings_with_pairs": 60,
+  "current_holdings": 25257,
+  "eligible_current_debt": 17295,
+  "eligible_debt_pairing_rate": 0.31980341139057533,
+  "unknown_current_holdings": 5769,
+  "review_sample_size": 20,
+  "review_sample_filings": 12,
+  "sample_selection": "Seed 31 within strata: 6 source-classified exact, 6 text-classified exact, 6 normalized identifiers, 2 long identifiers; not a population accuracy estimate.",
+  "source_soi_sha256": "789bf1a9141fcdcb93730659865d79c0ea95621219c97a3abae34fe1cbe7f964",
+  "review_status": "20 source-row pairs inspected by assistant; 18 identity-supported (one without values), 2 withheld for truncated identity; no human sign-off claimed",
+  "limits": "Review is of the supplied SEC SOI extract, not rendered filing pages or an independent human adjudication. 20 deliberately stratified cases do not establish population precision/recall. Unknown types, long identifiers and unmatched loans abstain. Undrawn/delayed-draw balances and missing values need separate signal-policy review; pair identity does not prove a credit event.",
+  "candidate_pairs_before_review": 5537,
+  "reviewer": "Codex assistant",
+  "reviewed_on": "2026-11-12",
+  "review_counts": {
+    "ACCEPT_IDENTITY_WITH_NOTED_LIMITS": 17,
+    "WITHHOLD_TRUNCATED_IDENTITY": 2,
+    "IDENTITY_ONLY_MISSING_VALUES": 1
+  },
+  "review_triggered_change": "Potentially truncated identifiers (length >=255) remain in the panel but are excluded from automatic pairing; six former candidate pairs removed.",
+  "panel_sha256": "78f1f6d1e1859ceb7bc7460d97ce0101288fa31e1815dd0b05fede6e488fab42"
+}

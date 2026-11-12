@@ -1,0 +1,321 @@
+[
+  {
+    "actions": [
+      {
+        "action_class": "READ",
+        "actor": "agent",
+        "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+        "decision": "executed",
+        "tool": "mandate_profile"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "scope": "mandate_a"
+    },
+    "name": "mandate_profile",
+    "result": {
+      "data": {
+        "client": "Harbor State Employees' Retirement System",
+        "positions": {
+          "FIXTURE GOLF CAPITAL CORP": 42.0,
+          "FIXTURE HOTEL SENIOR LENDING": 18.0,
+          "FIXTURE JULIETT LENDING BDC": 35.5
+        }
+      },
+      "ok": true
+    },
+    "signature": "cf8438a20f87eb4ff1c4df6dd4e9638b0b0bd0e3a259ceadb3fb000a7c9269d4"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "READ",
+        "actor": "agent",
+        "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+        "decision": "executed",
+        "tool": "bdc_signals"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "scope": "public"
+    },
+    "name": "bdc_signals",
+    "result": {
+      "data": {
+        "signals": [
+          {
+            "adsh": "0009000011-26-000111",
+            "after": 91.5,
+            "before": 98.0,
+            "identifier": "First Lien Senior Secured Loan | Cedar Ridge Dental Partners LLC | S + 5.75% (9.80%) | 09/2030",
+            "name": "FIXTURE GOLF CAPITAL CORP",
+            "prior_row": "502",
+            "row": "102",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000011-26-000111",
+            "after": 92.0,
+            "before": 98.5,
+            "identifier": "First Lien Senior Secured Loan | Granite Peak Manufacturing LLC | S + 5.75% (9.80%) | 09/2030",
+            "name": "FIXTURE GOLF CAPITAL CORP",
+            "prior_row": "506",
+            "row": "106",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": "2031-09-30",
+            "before": "2029-09-30",
+            "identifier": "Pinecrest Learning Group Inc., First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "505",
+            "row": "105",
+            "rule": "EXTENDED"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": 93.5,
+            "before": 99.0,
+            "identifier": "Brightwater Fitness Holdings LLC, First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "501",
+            "row": "101",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": 3.0,
+            "before": 1.0,
+            "identifier": "Oakmont Home Services LLC, First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "504",
+            "row": "104",
+            "rule": "PIK_UP"
+          },
+          {
+            "adsh": "0009000013-26-000131",
+            "after": 89.5,
+            "before": 96.0,
+            "identifier": "Senior Secured First Lien | Westbrook Orthopedics LLC | S + 5.50%",
+            "name": "FIXTURE INDIA CREDIT FUND",
+            "prior_row": "502",
+            "row": "102",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": "2030-03-15",
+            "before": "2028-03-15",
+            "identifier": "First Lien Term Loan | Dunmore Insurance Brokers LLC | 03/2030",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "504",
+            "row": "104",
+            "rule": "EXTENDED"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": 90.0,
+            "before": 97.5,
+            "identifier": "First Lien Term Loan | Crestline Roofing Holdings LLC | 06/2031",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "503",
+            "row": "103",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": 2.5,
+            "before": 0.0,
+            "identifier": "First Lien Term Loan | Foxglove Specialty Pharma Inc. | 03/2031",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "506",
+            "row": "106",
+            "rule": "PIK_UP"
+          }
+        ]
+      },
+      "ok": true
+    },
+    "signature": "dabf50bff55d6475cf14eb900369b0d38b18ad0123753ff661bc6274d45721c6"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "DRAFT",
+        "actor": "agent",
+        "args_hash": "40111f81f3cbd9fbbb62ddcdf42cabdab32e421894b3b0c7ea53fbf3a4be4f8a",
+        "decision": "executed",
+        "tool": "draft_email"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "body": "Harbor State exposure: $95.5mm across FIXTURE GOLF CAPITAL CORP ($42.0mm), FIXTURE HOTEL SENIOR LENDING ($18.0mm), and FIXTURE JULIETT LENDING BDC ($35.5mm).\n\nThis month’s new release shows 8 cited signals across your held BDCs.\n\nFIXTURE GOLF CAPITAL CORP\n- Two new markdowns. Cedar Ridge Dental Partners LLC moved to 91.5 from 98.0, a 6.5-point decline (accession 0009000011-26-000111, row 102; prior row 502).\n- Granite Peak Manufacturing LLC moved to 92.0 from 98.5, a 6.5-point decline (accession 0009000011-26-000111, row 106; prior row 506).\n\nFIXTURE HOTEL SENIOR LENDING\n- Pinecrest Learning Group Inc. maturity was extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505).\n- Brightwater Fitness Holdings LLC moved to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501).\n- Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504).\n\nFIXTURE JULIETT LENDING BDC\n- Dunmore Insurance Brokers LLC maturity was extended to 2030-03-15 from 2028-03-15 (accession 0009000014-26-000141, row 104; prior row 504).\n- Crestline Roofing Holdings LLC moved to 90.0 from 97.5, a 7.5-point decline (accession 0009000014-26-000141, row 103; prior row 503).\n- Foxglove Specialty Pharma Inc. PIK increased to 2.5 from 0.0 (accession 0009000014-26-000141, row 106; prior row 506).\n\nTakeaway\n- The release adds fresh stress signals in all three held BDCs.\n- Hotel stands out because the same schedule shows a maturity extension, a 5.5-point markdown, and a PIK increase.\n- Golf adds two separate 6.5-point markdowns.\n- Juliett adds one 7.5-point markdown, one maturity extension, and one new PIK balance.\n\nPrepared for Priya approval before any send to the mock outbox.",
+      "scope": "mandate_a",
+      "subject": "HSERS monthly credit note – new BDC release",
+      "to": [
+        "cio@harborstate.example"
+      ]
+    },
+    "name": "draft_email",
+    "result": {
+      "data": {
+        "attachments": [],
+        "body": "Harbor State exposure: $95.5mm across FIXTURE GOLF CAPITAL CORP ($42.0mm), FIXTURE HOTEL SENIOR LENDING ($18.0mm), and FIXTURE JULIETT LENDING BDC ($35.5mm).\n\nThis month’s new release shows 8 cited signals across your held BDCs.\n\nFIXTURE GOLF CAPITAL CORP\n- Two new markdowns. Cedar Ridge Dental Partners LLC moved to 91.5 from 98.0, a 6.5-point decline (accession 0009000011-26-000111, row 102; prior row 502).\n- Granite Peak Manufacturing LLC moved to 92.0 from 98.5, a 6.5-point decline (accession 0009000011-26-000111, row 106; prior row 506).\n\nFIXTURE HOTEL SENIOR LENDING\n- Pinecrest Learning Group Inc. maturity was extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505).\n- Brightwater Fitness Holdings LLC moved to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501).\n- Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504).\n\nFIXTURE JULIETT LENDING BDC\n- Dunmore Insurance Brokers LLC maturity was extended to 2030-03-15 from 2028-03-15 (accession 0009000014-26-000141, row 104; prior row 504).\n- Crestline Roofing Holdings LLC moved to 90.0 from 97.5, a 7.5-point decline (accession 0009000014-26-000141, row 103; prior row 503).\n- Foxglove Specialty Pharma Inc. PIK increased to 2.5 from 0.0 (accession 0009000014-26-000141, row 106; prior row 506).\n\nTakeaway\n- The release adds fresh stress signals in all three held BDCs.\n- Hotel stands out because the same schedule shows a maturity extension, a 5.5-point markdown, and a PIK increase.\n- Golf adds two separate 6.5-point markdowns.\n- Juliett adds one 7.5-point markdown, one maturity extension, and one new PIK balance.\n\nPrepared for Priya approval before any send to the mock outbox.",
+        "draft_id": "draft-38e91eb80b394de48ef7ac01591ce263",
+        "scope": "mandate_a",
+        "subject": "HSERS monthly credit note – new BDC release",
+        "to": [
+          "cio@harborstate.example"
+        ]
+      },
+      "ok": true
+    },
+    "signature": "f3b902e9d9edbb113269a748933bee6bf56e43e2d6793125ed3d57422d71ce01"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "CONTROL",
+        "actor": "agent",
+        "args_hash": "2f833ad2550b18e061028277090dbe5a6d678f301e2eca5f9d574ad42820dc90",
+        "decision": "requested",
+        "tool": "request_approval"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "action": "send_email",
+      "payload": {
+        "draft_id": "draft-38e91eb80b394de48ef7ac01591ce263"
+      }
+    },
+    "name": "request_approval",
+    "result": {
+      "approval": {
+        "actor": "simulated_fixture_human",
+        "status": "granted",
+        "token": "fixture-approval-req-1626526b419e403995404beadeb8d792"
+      },
+      "data": {
+        "payload_hash": "b305414a03c0cdff1ab1dd55d0d6075b427e74145b5754f7c3c18ec185f5fdee",
+        "request_id": "req-1626526b419e403995404beadeb8d792",
+        "status": "pending"
+      },
+      "ok": true
+    },
+    "signature": "c1d29650538d9501f16f09ba23340bb23785ef0350f62b6518aaaa939beb61fa"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "EXTERNAL_SEND",
+        "actor": "agent",
+        "args_hash": "6c1c7e93996cfbe12d97ae95264f3bd76424aef8561423952ba00b517a1da4e1",
+        "decision": "executed",
+        "tool": "send_email"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "approval_token": "fixture-approval-req-1626526b419e403995404beadeb8d792",
+      "draft_id": "draft-38e91eb80b394de48ef7ac01591ce263",
+      "scope": "mandate_a"
+    },
+    "name": "send_email",
+    "result": {
+      "data": {
+        "outbox_message_id": "msg-b305414a03c0cdff1ab1dd55d0d6075b427e74145b5754f7c3c18ec185f5fdee",
+        "status": "sent"
+      },
+      "ok": true
+    },
+    "signature": "dcf7a2cb58748eba123c8ef2f377f5e5f48c96c237ab864963a2eed29f79df15"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "CONTROL",
+        "actor": "agent",
+        "args_hash": "35e3f159c59017cd1727cfcb005f968aa078528117271b5db1999e8b8fdd0439",
+        "decision": "requested",
+        "tool": "request_approval"
+      },
+      {
+        "action_class": "INTERNAL_WRITE",
+        "actor": "server_approval_request",
+        "args_hash": "53d0be51962e475fa7c4e5dddb8f9bd19dc96382594db850812c7a24020bb488",
+        "decision": "requested",
+        "tool": "watchlist_write"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "action": "watchlist_write",
+      "payload": {
+        "entry": {
+          "bdc": "FIXTURE HOTEL SENIOR LENDING",
+          "citations": [
+            "0009000012-26-000121 row 105 prior row 505",
+            "0009000012-26-000121 row 101 prior row 501",
+            "0009000012-26-000121 row 104 prior row 504"
+          ],
+          "note": "Hotel added to watchlist on new release evidence. Pinecrest Learning Group Inc. maturity extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505). Brightwater Fitness Holdings LLC marked to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501). Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504)."
+        },
+        "scope": "mandate_a"
+      }
+    },
+    "name": "request_approval",
+    "result": {
+      "approval": {
+        "actor": "simulated_fixture_human",
+        "status": "granted",
+        "token": "fixture-approval-req-0c5aa542eed8493e9138e8aa25129319"
+      },
+      "data": {
+        "payload_hash": "e70eb787da4ea5e7a4ef28b91f3e2c1f476b9979b6b58c99c1a57cdc3cce1941",
+        "request_id": "req-0c5aa542eed8493e9138e8aa25129319",
+        "status": "pending"
+      },
+      "ok": true
+    },
+    "signature": "6d3327ef76e9c08ff4d9173ab1dedbcdd50e65689e785605b287046189951e33"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "INTERNAL_WRITE",
+        "actor": "agent",
+        "args_hash": "6c45d33b2658bad4ae1cee48812c8598e2d19a28dd1c448bce0113a004a759db",
+        "decision": "executed",
+        "tool": "watchlist_write"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "approval_token": "fixture-approval-req-0c5aa542eed8493e9138e8aa25129319",
+      "entry": {
+        "bdc": "FIXTURE HOTEL SENIOR LENDING",
+        "citations": [
+          "0009000012-26-000121 row 105 prior row 505",
+          "0009000012-26-000121 row 101 prior row 501",
+          "0009000012-26-000121 row 104 prior row 504"
+        ],
+        "note": "Hotel added to watchlist on new release evidence. Pinecrest Learning Group Inc. maturity extended to 2031-09-30 from 2029-09-30 (accession 0009000012-26-000121, row 105; prior row 505). Brightwater Fitness Holdings LLC marked to 93.5 from 99.0, a 5.5-point decline (accession 0009000012-26-000121, row 101; prior row 501). Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (accession 0009000012-26-000121, row 104; prior row 504)."
+      },
+      "scope": "mandate_a"
+    },
+    "name": "watchlist_write",
+    "result": {
+      "data": {
+        "status": "written",
+        "watchlist_entry_id": "watch-e70eb787da4ea5e7a4ef28b91f3e2c1f476b9979b6b58c99c1a57cdc3cce1941"
+      },
+      "ok": true
+    },
+    "signature": "5f90a0e79b8626bc4becae5003895c5cdc7f5f5c4e26ffe895c3f05c20a08cde"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "source": "Lab2b/LANTERN_Lab2B_Starter_Kit, baseline exporter; temporary candidate, not the configured panel",
+  "rows": 48940,
+  "filings": 76,
+  "problems": [
+    "36 duplicate holdings: coalesce first",
+    "3 filing(s) lack a prior schedule"
+  ],
+  "duplicate_rows_including_first": 71,
+  "duplicate_key_groups": 35,
+  "single_period_filings": [
+    {
+      "adsh": "0001104659-26-095943",
+      "name": "THIRD POINT PRIVATE CAPITAL PARTNERS",
+      "period_role": "current"
+    },
+    {
+      "adsh": "0002083477-26-000008",
+      "name": "APS BDC, LLC",
+      "period_role": "current"
+    },
+    {
+      "adsh": "0001193125-26-342520",
+      "name": "PENNANTPARK PRIVATE INCOME FUND",
+      "period_role": "current"
+    }
+  ],
+  "investment_type_missing_rows": 48940,
+  "investment_type_total_rows": 48940,
+  "classification_note": "Investment type is part of the implemented pairing identity key. All-null values remove that distinction; classification must be reviewed before claiming real-data reliability.",
+  "exported_candidate": "/tmp/lab3b-real-panel-audit.parquet",
+  "submitted_panel_unchanged": true,
+  "manual_source_pair_review_completed": false
+}
