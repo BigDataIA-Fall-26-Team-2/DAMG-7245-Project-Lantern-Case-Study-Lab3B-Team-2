@@ -38,3 +38,28 @@ prices:                                    # illustrative: replace with your pro
 economics:                                 # assumptions: state and justify your own
   analyst_hours_per_review: 3.0
   analyst_rate_usd: 120.0
+
+# Lab 29: the server validates these classes against the closed tool catalog.
+action_policy:
+  tool_classes:
+    list_mandates: READ
+    bdc_holdings: READ
+    bdc_signals: READ
+    get_filing: READ
+    mandate_profile: READ
+    watchlist_read: READ
+    memory_read: READ
+    memory_propose_write: INTERNAL_WRITE
+    watchlist_write: INTERNAL_WRITE
+    draft_email: DRAFT
+    request_approval: CONTROL
+    send_email: EXTERNAL_SEND
+  class_policies:
+    READ: auto
+    DRAFT: auto
+    INTERNAL_WRITE: notify
+    EXTERNAL_SEND: approve
+    CONTROL: principal
+    DESTRUCTIVE: forbidden
+  overrides:
+    watchlist_write: approve

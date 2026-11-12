@@ -1,0 +1,17 @@
+{
+  "approved_send": {
+    "outbox_message_id": "msg-af619290b13712c7aefca267b04e234b6498c1b1fbd21cb2a8f36a06e9427bf4",
+    "status": "sent"
+  },
+  "audit_log": "logs/audit/lab29-actions-e00173a3af694a16b804538b5f6059c1.jsonl",
+  "blocked_reason": "payload_changed",
+  "mode": "fixture exercise with simulated human approvals; no external email",
+  "outbox_file": "outputs/outbox/msg-af619290b13712c7aefca267b04e234b6498c1b1fbd21cb2a8f36a06e9427bf4.json",
+  "retry_status": "already_sent",
+  "run_id": "lab29-actions-e00173a3af694a16b804538b5f6059c1",
+  "scratch_workspace": ".cache/lab29-actions-e00173a3af694a16b804538b5f6059c1/agent",
+  "watchlist_write": {
+    "status": "written",
+    "watchlist_entry_id": "watch-4cbbc834dbe2881e001c43c32a5613731ac8acfe2a9a7385ab50abc4df43c15b"
+  }
+}

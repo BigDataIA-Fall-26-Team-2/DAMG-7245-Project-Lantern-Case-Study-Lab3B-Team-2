@@ -33,7 +33,7 @@ def verify_token(payload, token, principal, now):
         return "malformed"
     if approver != principal:
         return "wrong_approver"
-    if now > exp:
+    if now >= exp:
         return "expired"
     msg = f"{payload_hash(payload)}|{approver}|{exp}".encode()
     good = hmac.new(secret(), msg, hashlib.sha256).hexdigest()

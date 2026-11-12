@@ -141,3 +141,58 @@ python -m pytest tests/test_governed_memory.py -q
 These deterministic tests verify cross-session recall and isolation, including
 real MCP client calls, without making model API calls. They do not claim to run
 unreleased external grading tasks or an end-to-end conversational model.
+
+
+## Lab 29: action policy and audit review
+
+`params.yaml` now declares `action_policy.tool_classes`, `class_policies`, and
+tool-specific overrides. Startup checks these against the closed catalog and
+rejects configurations that remove required approval or permit destructive actions.
+A tool may be disabled with `forbidden`. Draft/read actions run automatically;
+internal writes produce an audit notification; send and watchlist changes require
+exact-payload approval; the control path is bound to the configured principal.
+Content, recipient and mandate checks remain server-enforced at action time.
+
+An approval request is pending, not permission to send. The human console checks
+identity, displays the exact envelope, and requires its fingerprint as confirmation:
+
+```bash
+python -m services.mcp.approve REQUEST_ID --mandate mandate_a
+```
+
+If the stored draft changed after the request, request approval again. The server
+rechecks content policy at grant and send time. Changes to recipients, subject,
+body or attachments invalidate the old approval. A token is invalid at its expiry
+instant, for the wrong person/action/payload, or without the recorded human grant.
+Successful repeats return `already_sent` or `already_written` in the local lab.
+The starter signing-key fallback is for fixture/replay exercises only; the key is
+never exposed as an MCP tool or written to the audit log.
+
+Authenticated MCP sessions save logs under `logs/audit/mcp-*.jsonl`. Blocked calls
+now include a `policy_block` event with tool, scope, decision, rule ID, reason and
+argument fingerprint. Approval checks also record attempted/approved payload
+fingerprints. Reasons include `payload_changed`, `expired`, `missing_token`,
+`wrong_approver`, and `missing_human_grant`. No bodies, recipient lists or tokens
+are copied into these audit events. Each server session has its own log file;
+event IDs are unique within that file. Notifications here are saved audit events,
+not external messages.
+
+```bash
+python -m pytest tests/test_action_controls.py -q
+python -m services.mcp.demo_actions
+```
+
+The second command is explicitly a fictional **test with simulated human grants**.
+It edits an approved recipient list, proves the send is blocked, obtains a new
+test grant and proves local outbox delivery. It also verifies a retry and an
+approved watchlist write in an isolated `.cache` workspace. It does not obtain
+real human consent or send external email. The report under `reports/actions/`
+links its persistent audit log and mock-outbox file. Outbox files and scratch state
+are ignored by Git; rerun the exercise to recreate them on another checkout.
+
+Notebook 29 preserves its original examples and now includes saved-log review and
+an executed implementation-verification section. Notebook-only example logs use
+`lab29-demo-*`; server-backed exercises use `lab29-actions-*`, so simulated evidence
+is distinguishable from interactive MCP sessions. All available notebook blocked
+cases and additional token/configuration cases are tested; a separate Part 6
+specification was not present in this checkout.

@@ -40,6 +40,7 @@ def create_runtime(*, session, ledger, mandates, root=ROOT, panel=None,
         canaries=canaries if canaries is not None else json.loads((fx / "canaries.json").read_text()),
         filings=filings if filings is not None else json.loads((fx / "edgar_recent.json").read_text()),
         now=now, ttl_minutes=ttl_minutes if ttl_minutes is not None else settings["approvals"]["ttl_minutes"],
+        action_policy=settings["action_policy"], principal=settings["agent"]["principal"],
     )
 
 

@@ -1,0 +1,4 @@
+{"decision": "executed", "event_id": "ev-00001", "kind": "tool_call", "payload_hash": "f178d50564ccfc75f4578e195ebdb6ad322c466cfbf0f708ce680eb82f477b09", "scope": "mandate_a", "tool": "draft_email", "ts": "2026-10-15T06:00:00-04:00"}
+{"event_id": "ev-00002", "kind": "approval_requested", "payload_hash": "f178d50564ccfc75f4578e195ebdb6ad322c466cfbf0f708ce680eb82f477b09", "tool": "send_email", "ts": "2026-10-15T06:00:00-04:00"}
+{"approver": "priya", "event_id": "ev-00003", "kind": "approval_granted", "payload_hash": "f178d50564ccfc75f4578e195ebdb6ad322c466cfbf0f708ce680eb82f477b09", "ts": "2026-10-15T06:00:00-04:00"}
+{"decision": "blocked", "event_id": "ev-00004", "kind": "policy_block", "payload_hash": "30812c6b30e1ed97a051d0519a27ecfc6edeb9fac8d839d2d1e7d45f6316ab54", "reason": "payload_changed", "rule_id": "R-TOKEN", "tool": "send_email", "ts": "2026-10-15T06:00:00-04:00"}

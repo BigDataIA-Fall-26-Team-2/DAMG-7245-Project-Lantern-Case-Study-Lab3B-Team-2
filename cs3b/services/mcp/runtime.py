@@ -11,6 +11,7 @@ from services.mcp.errors import (ToolError, ScopeDeniedError, ApprovalRequiredEr
     NotFoundError, InvalidInputError, PolicyDeniedError)
 from services.mcp.schemas import INPUTS, OUTPUTS, DraftInput, WatchlistEntry
 from services.signals.pairing import pair
+from services.mcp.action_policy import ActionPolicy
 
 
 def save(path, value):
@@ -27,11 +28,17 @@ def read(path, default=None):
 class ToolRuntime:
     def __init__(self, *, session, ledger, mandates, panel, materiality,
                  workspace, outbox, registry, canaries=None, filings=None,
-                 now=clock.clock, ttl_minutes=30):
+                 now=clock.clock, ttl_minutes=30, action_policy=None, principal="priya"):
         # Copy identity so caller mutation cannot switch the running server's scope.
         self.session = channel.Session(session.principal, session.mandate)
         if session.mandate not in mandates or not re.fullmatch(r"[A-Za-z0-9_-]+", session.mandate):
             raise ScopeDeniedError("Invalid active mandate.")
+        if action_policy is None:
+            raise ValueError("action_policy configuration is required")
+        self.action_policy = ActionPolicy(action_policy)
+        self.principal = principal
+        if ttl_minutes <= 0:
+            raise ValueError("Approval TTL must be positive")
         self.ledger, self.mandates = ledger, mandates
         self.panel, self.materiality = panel, materiality
         self.workspace, self.outbox = Path(workspace).resolve(), Path(outbox).resolve()
@@ -47,7 +54,7 @@ class ToolRuntime:
         return path
 
     def file(self, category, identifier):
-        return self.confined(self.state / category / (identifier + ".json"))
+        return self.confined(self.state / category / (identifier + ".json"), self.directory)
 
     def scope(self, scope, kind="mandate"):
         try:
@@ -66,11 +73,11 @@ class ToolRuntime:
         self.private_check(draft)
         for recipient in draft["to"]:
             if recipient.count("@") != 1 or not recipient.rsplit("@", 1)[1].lower().endswith(".example"):
-                raise PolicyDeniedError("Only fictional .example recipients are permitted.")
+                raise PolicyDeniedError("Only fictional .example recipients are permitted.", reason="nonfictional_recipient", rule_id="R-FIXTURE-EMAIL")
         others = policy.confidential_terms(self.mandates, self.session.mandate)
         rule = policy.policy_check(draft, self.mandates[self.session.mandate], self.registry, others)
         if rule:
-            raise PolicyDeniedError(rule)
+            raise PolicyDeniedError(rule, reason=rule, rule_id=rule)
 
     def watch_check(self, entry):
         entry = WatchlistEntry.model_validate(entry).model_dump()
@@ -94,14 +101,34 @@ class ToolRuntime:
                 "mandate": self.session.mandate, "payload": payload}
 
     def approved(self, envelope, token):
-        verdict = approvals.verify_token(envelope, token, self.session.principal, self.now().timestamp())
-        # A valid signature alone is insufficient: a human grant must be stored.
-        key = hashlib.sha256(token.encode()).hexdigest()
-        grant = read(self.file("grants", key))
-        if verdict != "ok" or not grant or grant["payload_hash"] != approvals.payload_hash(envelope):
-            raise ApprovalRequiredError("Exact-payload human approval is missing, changed, or expired.")
+        verdict = approvals.verify_token(envelope, token, self.session.principal, self.now().timestamp()) if token else "missing_token"
+        token_key = hashlib.sha256(token.encode()).hexdigest()
+        grant = read(self.file("grants", token_key))
+        digest = approvals.payload_hash(envelope)
+        if verdict == "ok" and not grant:
+            verdict = "missing_human_grant"
+        elif verdict == "ok" and grant["payload_hash"] != digest:
+            verdict = "payload_changed"
+        if verdict != "ok":
+            # Fingerprints only; never record the token or message body.
+            self.ledger.record("approval_check", tool=envelope["action"], scope=self.session.mandate,
+                               decision="blocked", reason=verdict, payload_hash=digest,
+                               approved_payload_hash=grant["payload_hash"] if grant else None)
+            raise ApprovalRequiredError("Exact-payload human approval is missing, changed, or expired.",
+                                        reason=verdict, rule_id="R-TOKEN")
+
+    def enforce_action_policy(self, name):
+        mode = self.action_policy.mode(name)
+        if mode == "forbidden":
+            raise PolicyDeniedError("Action forbidden by configuration.", reason="action_forbidden", rule_id="R-ACTION-CLASS")
+        if mode == "principal" and self.session.principal != self.principal:
+            raise ScopeDeniedError("Only the configured principal may request approval.", reason="wrong_principal", rule_id="R-PRINCIPAL")
+        return mode
 
     def call(self, name, payload):
+        # Hash arguments without credentials. No raw arguments enter the audit log.
+        safe = {k: v for k, v in payload.items() if k not in {"approval_token", "session_token"}} if isinstance(payload, dict) else {}
+        args_hash = hashlib.sha256(json.dumps(safe, sort_keys=True, default=str).encode()).hexdigest()
         try:
             if name not in INPUTS:
                 raise NotFoundError("Unknown tool.")
@@ -109,21 +136,29 @@ class ToolRuntime:
                 request = INPUTS[name].model_validate(payload)
             except ValidationError as exc:
                 raise InvalidInputError("Arguments do not match this tool's schema.") from exc
+            mode = self.enforce_action_policy(name)
             result = getattr(self, name)(request)
             result = OUTPUTS[name].model_validate(result).model_dump(mode="json")
             # Public filings/holdings can mention shared BDCs; private outputs must not leak clients.
             if name not in {"bdc_holdings", "bdc_signals", "get_filing"}:
                 self.private_check(result)
-            self.ledger.record("tool_call", tool=name, action_class=catalog.CATALOG[name][0],
-                               scope=self.session.mandate, decision="executed")
+            self.ledger.record("tool_call", tool=name, action_class=self.action_policy.classes[name],
+                               scope=self.session.mandate, decision="executed", args_hash=args_hash)
+            if mode == "notify":
+                self.ledger.record("internal_write_notice", tool=name, scope=self.session.mandate,
+                                   decision="notified", args_hash=args_hash)
             return {"ok": True, "data": result}
         except ToolError as exc:
+            rule = exc.rule_id or ("R-OTHER-MANDATE" if str(exc).startswith("R-OTHER-MANDATE") else
+                                   "R-SCOPE" if exc.code == "SCOPE_DENIED" else exc.code)
+            self.ledger.record("policy_block", tool=name, scope=self.session.mandate, decision="blocked",
+                               rule_id=rule, reason=exc.reason or rule, args_hash=args_hash)
             self.ledger.record("tool_call", tool=name, scope=self.session.mandate,
-                               decision="refused", error_code=exc.code)
+                               decision="refused", error_code=exc.code, args_hash=args_hash, reason=exc.reason or rule)
             return {"ok": False, "error": exc.as_dict()}
         except (OSError, ValueError, KeyError, TypeError):
             self.ledger.record("tool_call", tool=name, scope=self.session.mandate,
-                               decision="failed", error_code="INTERNAL_ERROR")
+                               decision="failed", error_code="INTERNAL_ERROR", args_hash=args_hash)
             return {"ok": False, "error": {"code": "INTERNAL_ERROR", "message": "Tool could not complete; inspect local configuration."}}
 
     def list_mandates(self, r):
@@ -165,7 +200,7 @@ class ToolRuntime:
 
     def watchlist_read(self, r):
         self.scope(r.scope)
-        path = self.confined(self.directory / "WATCHLIST.md")
+        path = self.confined(self.directory / "WATCHLIST.md", self.directory)
         entries = read(self.file("watchlist", "entries"), [])
         return {"text": path.read_text() if path.exists() else "", "entries": entries}
 
@@ -216,6 +251,7 @@ class ToolRuntime:
         return draft
 
     def request_approval(self, r):
+        self.enforce_action_policy(r.action)
         try:
             if r.action == "send_email":
                 if set(r.payload) != {"draft_id"}:
@@ -231,7 +267,8 @@ class ToolRuntime:
         envelope = self.envelope(r.action, payload)
         rid = "req-" + uuid4().hex
         save(self.file("requests", rid), {"request_id": rid, "envelope": envelope, "status": "pending"})
-        self.ledger.record("approval_requested", request_id=rid, payload_hash=approvals.payload_hash(envelope))
+        self.ledger.record("approval_requested", tool=r.action, scope=self.session.mandate,
+                           decision="requested", request_id=rid, payload_hash=approvals.payload_hash(envelope))
         return {"request_id": rid, "payload_hash": approvals.payload_hash(envelope), "status": "pending"}
 
     def grant(self, request_id, confirmation):
@@ -245,9 +282,23 @@ class ToolRuntime:
         digest = approvals.payload_hash(envelope)
         if confirmation != digest or envelope["principal"] != self.session.principal or envelope["mandate"] != self.session.mandate:
             raise ScopeDeniedError("Approval must confirm the exact payload in this session.")
+        if self.session.principal != self.principal:
+            raise ScopeDeniedError("Only the configured principal can grant approval.")
+        self.enforce_action_policy(envelope["action"])
+        # Recheck the stored draft and current policy at the human grant boundary.
+        if envelope["action"] == "send_email":
+            current = self.envelope("send_email", self.draft(envelope["payload"]["draft_id"]))
+            if approvals.payload_hash(current) != digest:
+                self.ledger.record("policy_block", tool="grant_approval", scope=self.session.mandate,
+                                   decision="blocked", rule_id="R-TOKEN", reason="payload_changed")
+                raise ApprovalRequiredError("Draft changed; request approval again.", reason="payload_changed", rule_id="R-TOKEN")
+        else:
+            self.scope(envelope["payload"]["scope"])
+            self.watch_check(envelope["payload"]["entry"])
         token = approvals.issue_token(envelope, self.session.principal, self.now().timestamp(), self.ttl_minutes)
         save(self.file("grants", hashlib.sha256(token.encode()).hexdigest()), {"payload_hash": digest, "request_id": request_id})
-        self.ledger.record("approval_granted", request_id=request_id, payload_hash=digest)
+        self.ledger.record("approval_granted", tool=envelope["action"], scope=self.session.mandate,
+                           decision="granted", approver=self.session.principal, request_id=request_id, payload_hash=digest)
         return token
 
     def send_email(self, r):
@@ -278,7 +329,7 @@ class ToolRuntime:
             entries.append({"watchlist_entry_id": eid, **entry})
             save(path, entries)
         # Rebuild only our managed section; preserve the student's original notes.
-        md = self.confined(self.directory / "WATCHLIST.md")
+        md = self.confined(self.directory / "WATCHLIST.md", self.directory)
         marker = "\n<!-- MCP-managed entries -->\n"
         original = md.read_text() if md.exists() else "# Watchlist\n"
         base = original.split(marker)[0]
