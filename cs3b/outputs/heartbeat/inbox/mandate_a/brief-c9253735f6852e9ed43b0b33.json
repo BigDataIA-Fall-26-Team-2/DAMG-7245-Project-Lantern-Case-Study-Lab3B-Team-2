@@ -1,0 +1,211 @@
+{
+  "brief_id": "brief-c9253735f6852e9ed43b0b33",
+  "mandate": "mandate_a",
+  "recipient": "priya",
+  "ts": "2026-10-15T07:30:00-04:00",
+  "release": "2026_09",
+  "text": "Morning brief: 8 relevant items.",
+  "items": [
+    {
+      "alert_id": "1e9266e4f8a81a977b2159be",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE JULIETT LENDING BDC",
+      "trigger": "0009000014-26-000141#104",
+      "rule": "EXTENDED",
+      "text": "EXTENDED: First Lien Term Loan | Dunmore Insurance Brokers LLC | 03/2030; before 2028-03-15, after 2030-03-15.",
+      "citations": [
+        "0009000014-26-000141#104",
+        "0009000014-26-000141#504"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000014-26-000141",
+        "name": "FIXTURE JULIETT LENDING BDC",
+        "debt_holdings": 10,
+        "paired": 10,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "26b885de8d1a53f4a0d58c29",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#105",
+      "rule": "EXTENDED",
+      "text": "EXTENDED: Pinecrest Learning Group Inc., First Lien Term Loan; before 2029-09-30, after 2031-09-30.",
+      "citations": [
+        "0009000012-26-000121#105",
+        "0009000012-26-000121#505"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "93ff97f806e5023d4b07950e",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE JULIETT LENDING BDC",
+      "trigger": "0009000014-26-000141#106",
+      "rule": "PIK_UP",
+      "text": "PIK_UP: First Lien Term Loan | Foxglove Specialty Pharma Inc. | 03/2031; before 0.0, after 2.5.",
+      "citations": [
+        "0009000014-26-000141#106",
+        "0009000014-26-000141#506"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000014-26-000141",
+        "name": "FIXTURE JULIETT LENDING BDC",
+        "debt_holdings": 10,
+        "paired": 10,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "9b35101ca9af83c688ccebc2",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE GOLF CAPITAL CORP",
+      "trigger": "0009000011-26-000111#106",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: First Lien Senior Secured Loan | Granite Peak Manufacturing LLC | S + 5.75% (9.80%) | 09/2030; before 98.5, after 92.0.",
+      "citations": [
+        "0009000011-26-000111#106",
+        "0009000011-26-000111#506"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000011-26-000111",
+        "name": "FIXTURE GOLF CAPITAL CORP",
+        "debt_holdings": 10,
+        "paired": 10,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "9ba71d8d9f746522100e272b",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#101",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: Brightwater Fitness Holdings LLC, First Lien Term Loan; before 99.0, after 93.5.",
+      "citations": [
+        "0009000012-26-000121#101",
+        "0009000012-26-000121#501"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "db56cc76792f157b86f57ca3",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE JULIETT LENDING BDC",
+      "trigger": "0009000014-26-000141#103",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: First Lien Term Loan | Crestline Roofing Holdings LLC | 06/2031; before 97.5, after 90.0.",
+      "citations": [
+        "0009000014-26-000141#103",
+        "0009000014-26-000141#503"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000014-26-000141",
+        "name": "FIXTURE JULIETT LENDING BDC",
+        "debt_holdings": 10,
+        "paired": 10,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "e0cdca6e5f20b4890e8b8e26",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE GOLF CAPITAL CORP",
+      "trigger": "0009000011-26-000111#102",
+      "rule": "MARKDOWN",
+      "text": "MARKDOWN: First Lien Senior Secured Loan | Cedar Ridge Dental Partners LLC | S + 5.75% (9.80%) | 09/2030; before 98.0, after 91.5.",
+      "citations": [
+        "0009000011-26-000111#102",
+        "0009000011-26-000111#502"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000011-26-000111",
+        "name": "FIXTURE GOLF CAPITAL CORP",
+        "debt_holdings": 10,
+        "paired": 10,
+        "unpaired": 0
+      }
+    },
+    {
+      "alert_id": "fe23ad0a8c8c5e55145e5e41",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "mandate": "mandate_a",
+      "bdc": "FIXTURE HOTEL SENIOR LENDING",
+      "trigger": "0009000012-26-000121#104",
+      "rule": "PIK_UP",
+      "text": "PIK_UP: Oakmont Home Services LLC, First Lien Term Loan; before 1.0, after 3.0.",
+      "citations": [
+        "0009000012-26-000121#104",
+        "0009000012-26-000121#504"
+      ],
+      "detected_at": "2026-10-15T06:00:00-04:00",
+      "delivered_at": null,
+      "recipient": "priya",
+      "delivery_channel": "local_inbox",
+      "release": "2026_09",
+      "coverage": {
+        "adsh": "0009000012-26-000121",
+        "name": "FIXTURE HOTEL SENIOR LENDING",
+        "debt_holdings": 8,
+        "paired": 8,
+        "unpaired": 0
+      }
+    }
+  ],
+  "delivery_channel": "local_inbox"
+}

@@ -10,6 +10,7 @@ from creditwatch import approvals, catalog, channel, clock, memory, policy, sign
 from services.mcp.errors import (ToolError, ScopeDeniedError, ApprovalRequiredError,
     NotFoundError, InvalidInputError, PolicyDeniedError)
 from services.mcp.schemas import INPUTS, OUTPUTS, DraftInput, WatchlistEntry
+from services.signals.pairing import pair
 
 
 def save(path, value):
@@ -147,7 +148,7 @@ class ToolRuntime:
 
     def bdc_signals(self, r):
         self.scope(r.scope, "public")
-        result = signals.find_signals(self.panel, self.materiality)
+        result = signals.find_signals(self.panel, self.materiality, pair=pair)
         return {"signals": json.loads(result.to_json(orient="records"))}
 
     def get_filing(self, r):

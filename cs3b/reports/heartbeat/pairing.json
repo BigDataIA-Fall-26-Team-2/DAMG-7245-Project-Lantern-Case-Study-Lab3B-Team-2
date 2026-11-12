@@ -1,0 +1,129 @@
+{
+  "fixture": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "by_rule": {
+      "EXTENDED": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      },
+      "MARKDOWN": {
+        "found": 5,
+        "true": 5,
+        "hit": 5
+      },
+      "PIK_UP": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      }
+    }
+  },
+  "variant_1": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "by_rule": {
+      "EXTENDED": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      },
+      "MARKDOWN": {
+        "found": 5,
+        "true": 5,
+        "hit": 5
+      },
+      "PIK_UP": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      }
+    }
+  },
+  "variant_2": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "by_rule": {
+      "EXTENDED": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      },
+      "MARKDOWN": {
+        "found": 5,
+        "true": 5,
+        "hit": 5
+      },
+      "PIK_UP": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      }
+    }
+  },
+  "variant_3": {
+    "tp": 9,
+    "fp": 0,
+    "fn": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "by_rule": {
+      "EXTENDED": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      },
+      "MARKDOWN": {
+        "found": 5,
+        "true": 5,
+        "hit": 5
+      },
+      "PIK_UP": {
+        "found": 2,
+        "true": 2,
+        "hit": 2
+      }
+    }
+  },
+  "coverage": [
+    {
+      "adsh": "0009000011-26-000111",
+      "name": "FIXTURE GOLF CAPITAL CORP",
+      "debt_holdings": 10,
+      "paired": 10,
+      "unpaired": 0
+    },
+    {
+      "adsh": "0009000012-26-000121",
+      "name": "FIXTURE HOTEL SENIOR LENDING",
+      "debt_holdings": 8,
+      "paired": 8,
+      "unpaired": 0
+    },
+    {
+      "adsh": "0009000013-26-000131",
+      "name": "FIXTURE INDIA CREDIT FUND",
+      "debt_holdings": 7,
+      "paired": 6,
+      "unpaired": 1
+    },
+    {
+      "adsh": "0009000014-26-000141",
+      "name": "FIXTURE JULIETT LENDING BDC",
+      "debt_holdings": 10,
+      "paired": 10,
+      "unpaired": 0
+    }
+  ],
+  "real_panel_review": "pending: no real panel supplied"
+}

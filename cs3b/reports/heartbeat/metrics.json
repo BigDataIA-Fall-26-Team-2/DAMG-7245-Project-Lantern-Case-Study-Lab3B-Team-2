@@ -1,0 +1,25 @@
+{
+  "observation_start": "2026-10-15T00:00:00-04:00",
+  "observation_end": "2026-10-22T00:00:00-04:00",
+  "observation_weeks": 1.0,
+  "mode": "seven-day simulation with recorded fixture feeds; not live delivery or an infrastructure cost estimate",
+  "delivered_alerts": 16,
+  "held_remaining": 0,
+  "alerts_per_mandate_week": {
+    "mandate_a": 10.0,
+    "mandate_b": 6.0
+  },
+  "detection_to_delivery_seconds": {
+    "max": 27000.0,
+    "mean": 10800.0
+  },
+  "publication_to_detection_seconds": null,
+  "publication_latency_note": "Release publication timestamp unavailable; recorded EDGAR notices are historical backfill, not live latency.",
+  "job_runs": 351,
+  "idle_runs": 347,
+  "measured_idle_job_seconds": 0.21853754442417994,
+  "timing_note": "Python workflow duration through transaction preparation; excludes export, scheduler and network overhead.",
+  "model_calls": 0,
+  "model_api_cost_usd": 0,
+  "infrastructure_cost_usd": null
+}

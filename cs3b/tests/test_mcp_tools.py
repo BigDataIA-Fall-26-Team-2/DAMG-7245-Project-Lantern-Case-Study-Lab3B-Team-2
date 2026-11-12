@@ -87,7 +87,11 @@ def test_each_tool_contract_through_mcp(runtime, name):
             schemas.OUTPUTS[name].model_validate(response["data"])
             return response["data"]
     data = asyncio.run(run())
-    if name == "bdc_signals": assert len(data["signals"]) == 6
+    if name == "bdc_signals":
+        import csv
+        with (ROOT / "data/fixture/ground_truth.csv").open() as f:
+            expected = {(r["adsh"], r["row"], r["rule"]) for r in csv.DictReader(f)}
+        assert {(r["adsh"], r["row"], r["rule"]) for r in data["signals"]} == expected
     if name == "bdc_holdings": assert data["holdings"]
     if name == "get_filing": assert data["rows"]
     if name == "list_mandates": assert [x["mandate"] for x in data["mandates"]] == ["mandate_a"]

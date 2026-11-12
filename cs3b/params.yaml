@@ -18,6 +18,12 @@ budget:
   token_cap_per_task: 60000
 heartbeat:
   materiality: {markdown_points: 5.0, pik_points: 0.5, extension_months: 6}
+  hygiene:
+    stale_days: 30
+    due_business_days: 5
+    # From mandate A's reporting terms; business days mean Mon-Fri in this lab.
+    monthly_business_day: {mandate_a: 10}
+    reporting_dates: {}  # Add explicit dates for quarterly/ad hoc obligations.
   quiet_hours: {start: 21, end: 7}
   timezone: America/New_York
 approvals:
