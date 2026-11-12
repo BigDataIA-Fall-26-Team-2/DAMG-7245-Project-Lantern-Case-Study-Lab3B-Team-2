@@ -1,0 +1,36 @@
+{
+  "actions": [],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "I’m waiting on the mandate_profile and bdc_signals tool results for mandate_b before I can triage the held release alerts. Per mandate rules, I have to read those first and can’t classify delivery/alerting from the setup payload alone.",
+  "mandate": "mandate_b",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_0b096ccde3348caa016af5e1fbcc9887d19aa36f3f3566b893",
+      "tokens_in": 1236,
+      "tokens_out": 107,
+      "usd": 0.0014085
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_05de77de277a7815016af5e1fd9e2c87d1abcd5e1e1dd6a728",
+      "tokens_in": 3692,
+      "tokens_out": 222,
+      "usd": 0.01256
+    }
+  ],
+  "provenance": "openai-live",
+  "run_id": "dev-07-recorded",
+  "task_id": "dev-07",
+  "trace": [
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 1,
+      "tool": null,
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.01256
+    }
+  ]
+}

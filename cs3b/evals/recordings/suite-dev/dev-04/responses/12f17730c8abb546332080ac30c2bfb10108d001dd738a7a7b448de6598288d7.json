@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_a\"}", "provider_response_id": "resp_0353454320fd5896016af5e1eeb5dc87d1abf22c95a541464b", "rationale": "Read required release signals for the active mandate before any client note or related communication.", "text": "", "tokens_in": 2743, "tokens_out": 51, "tool": "bdc_signals", "usd": 0.0076225}

@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_b\"}", "provider_response_id": "resp_06b237a3af5243b7016af5e2ed99c087d191cbb635b758d460", "rationale": "Need active mandate profile first before any client watchlist work.", "text": "", "tokens_in": 2770, "tokens_out": 46, "tool": "mandate_profile", "usd": 0.007615}

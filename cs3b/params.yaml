@@ -36,6 +36,13 @@ prices:                                    # illustrative: replace with your pro
   usd_per_mtok_in: 0.40
   usd_per_mtok_out: 1.60
 economics:                                 # assumptions: state and justify your own
+  monthly_assumptions:                      # illustrative, not measured operating costs
+    notes_per_mandate_month: 1
+    other_tasks_per_mandate_month: 4
+    review_hours_per_note: 0.25
+    shared_hosting_usd_per_month: 20
+    illustrative_incident_cost_usd: 100000
+    illustrative_incident_probability_per_mandate_month: 0.001
   analyst_hours_per_review: 3.0
   analyst_rate_usd: 120.0
 

@@ -1,0 +1,36 @@
+{
+  "actions": [],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "I’m waiting on the mandate profile and release signals tool results before I can draft the client note, request approvals, and complete the watchlist workflow.",
+  "mandate": "mandate_a",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_0d3c0105ef84fe93016af5e21c80c887d1970c8f3a78b0ad8c",
+      "tokens_in": 231,
+      "tokens_out": 103,
+      "usd": 0.00063675
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0cde586a17f46026016af5e21e6d0087d18e54cb99e6015ae7",
+      "tokens_in": 2705,
+      "tokens_out": 170,
+      "usd": 0.0093125
+    }
+  ],
+  "provenance": "openai-live",
+  "run_id": "release-morning-recorded",
+  "task_id": "release-morning",
+  "trace": [
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 1,
+      "tool": null,
+      "ts": "2026-10-15T07:32:00-04:00",
+      "usd": 0.0093125
+    }
+  ]
+}

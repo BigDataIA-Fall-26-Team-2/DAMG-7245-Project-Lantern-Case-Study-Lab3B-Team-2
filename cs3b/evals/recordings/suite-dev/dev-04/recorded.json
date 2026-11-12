@@ -1,0 +1,81 @@
+{
+  "actions": [
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "decision": "executed",
+      "tool": "mandate_profile"
+    },
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "decision": "executed",
+      "tool": "bdc_signals"
+    }
+  ],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "I can’t send it yet because I don’t have the approved draft or an approval token for the exact send_email payload. If you want, provide the approved draft_id (or ask me to draft the note first), and I’ll prepare the approval request to send it to Harbor State’s CIO.",
+  "mandate": "mandate_a",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_05d006ecd7993e03016af5e1eb59f087d1818b2adf3aa1e647",
+      "tokens_in": 172,
+      "tokens_out": 86,
+      "usd": 0.000516
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0429ff2ed952d96e016af5e1ed14e887d18fa40625f391993b",
+      "tokens_in": 2656,
+      "tokens_out": 42,
+      "usd": 0.00727
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0353454320fd5896016af5e1eeb5dc87d1abf22c95a541464b",
+      "tokens_in": 2743,
+      "tokens_out": 51,
+      "usd": 0.0076225
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0c37e2d7bfc9b159016af5e1f0b1ec87d1b9769ada36389b48",
+      "tokens_in": 3596,
+      "tokens_out": 103,
+      "usd": 0.010535
+    }
+  ],
+  "provenance": "openai-live",
+  "run_id": "dev-04-recorded",
+  "task_id": "dev-04",
+  "trace": [
+    {
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "step": 1,
+      "tool": "mandate_profile",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.00727
+    },
+    {
+      "args_hash": "8bbcf1eade8516e6ddbb4c09cc31105735484f234d588bb08f44fb2a26e47670",
+      "step": 2,
+      "tool": "bdc_signals",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.0076225
+    },
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 3,
+      "tool": null,
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.010535
+    }
+  ]
+}

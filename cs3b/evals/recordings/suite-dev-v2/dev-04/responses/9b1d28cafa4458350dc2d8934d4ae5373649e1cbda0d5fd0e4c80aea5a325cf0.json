@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_08fe6029aa40dae0016af5e2d5910487d180d128746bd03623", "rationale": "Read release signals before any client communication per mandate rules.", "text": "", "tokens_in": 2905, "tokens_out": 91, "tool": "bdc_signals", "usd": 0.0086275}

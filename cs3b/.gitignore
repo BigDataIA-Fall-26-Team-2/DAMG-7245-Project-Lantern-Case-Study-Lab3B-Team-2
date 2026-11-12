@@ -14,3 +14,7 @@ data/raw/
 .env
 .env.*
 !.env.example
+
+# Local editable-install metadata
+*.egg-info/
+build/

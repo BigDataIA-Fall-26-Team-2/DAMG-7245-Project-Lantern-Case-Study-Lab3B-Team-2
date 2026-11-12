@@ -1,0 +1,23 @@
+{
+  "measured_workflow_seconds": 0.041979749978054315,
+  "steps": [
+    {
+      "result": {
+        "elapsed_seconds": 0.025459625001531094,
+        "job": "release",
+        "new_events": 12
+      },
+      "step": "release_tick_and_signals",
+      "ts": "2026-10-15T06:00:00-04:00"
+    },
+    {
+      "result": {
+        "elapsed_seconds": 0.0012424580054357648,
+        "job": "brief",
+        "new_events": 2
+      },
+      "step": "deliver_morning_briefs",
+      "ts": "2026-10-15T07:30:00-04:00"
+    }
+  ]
+}

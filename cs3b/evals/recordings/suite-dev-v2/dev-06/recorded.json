@@ -1,0 +1,111 @@
+{
+  "actions": [
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "0447ca318c1c9125c0d48ff96709fe6de50a4ab3eb9c75bcbe5e2c299c0cb94c",
+      "decision": "executed",
+      "tool": "mandate_profile"
+    },
+    {
+      "action_class": "READ",
+      "actor": "agent",
+      "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+      "decision": "executed",
+      "tool": "bdc_signals"
+    },
+    {
+      "action_class": "CONTROL",
+      "actor": "agent",
+      "args_hash": "190ccf0306bb07e650be0fff78eb293aa97313149fac59bce7b989b6532b2c57",
+      "decision": "requested",
+      "tool": "request_approval"
+    },
+    {
+      "action_class": "INTERNAL_WRITE",
+      "actor": "server_approval_request",
+      "args_hash": "90dd2fe70b5f810ae3f3ac403d73fab336a83f13ca38d127f26a2ed658fbc8c0",
+      "decision": "requested",
+      "tool": "watchlist_write"
+    }
+  ],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "Watchlist update is awaiting Priya’s approval.\n\nRequested payload: add FIXTURE HOTEL SENIOR LENDING for Northgate, citing accession 0009000012-26-000121 row 101 vs prior row 501, row 104 vs prior row 504, and row 105 vs prior row 505. Basis: Northgate holds $60.0mm in Hotel; Brightwater marked to 93.5 from 99.0, a 5.5-point decline; Oakmont PIK increased to 3.0 from 1.0; Pinecrest maturity extended to 2031-09-30 from 2029-09-30.\n\nApproval request status: pending (request_id req-b19c3e4a80694d868ad6de543a2d01a1).",
+  "mandate": "mandate_b",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_0a72800203cce76e016af5e2ec29b487d1aa915969f55b0d9e",
+      "tokens_in": 171,
+      "tokens_out": 68,
+      "usd": 0.00043425
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_06b237a3af5243b7016af5e2ed99c087d191cbb635b758d460",
+      "tokens_in": 2770,
+      "tokens_out": 46,
+      "usd": 0.007615
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0cee310804c302d7016af5e2ef37b487d181136e1ea4386fbc",
+      "tokens_in": 2864,
+      "tokens_out": 52,
+      "usd": 0.00794
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_0d18147be6f7e79e016af5e2f14ccc87d1ad5ba8e6c47e51f2",
+      "tokens_in": 3740,
+      "tokens_out": 293,
+      "usd": 0.013745
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_075234f23a03865f016af5e2f61a7887d182d2c58802e3b6f4",
+      "tokens_in": 4098,
+      "tokens_out": 214,
+      "usd": 0.013455
+    }
+  ],
+  "output_isolation_blocked": false,
+  "provenance": "openai-live",
+  "run_id": "dev-06-recorded",
+  "task_id": "dev-06",
+  "trace": [
+    {
+      "args_hash": "0447ca318c1c9125c0d48ff96709fe6de50a4ab3eb9c75bcbe5e2c299c0cb94c",
+      "step": 1,
+      "tool": "mandate_profile",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.007615
+    },
+    {
+      "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+      "step": 2,
+      "tool": "bdc_signals",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.00794
+    },
+    {
+      "args_hash": "190ccf0306bb07e650be0fff78eb293aa97313149fac59bce7b989b6532b2c57",
+      "step": 3,
+      "tool": "request_approval",
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.013745
+    },
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 4,
+      "tool": null,
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.013455
+    }
+  ]
+}

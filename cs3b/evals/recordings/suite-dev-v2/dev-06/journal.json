@@ -1,0 +1,187 @@
+[
+  {
+    "actions": [
+      {
+        "action_class": "READ",
+        "actor": "agent",
+        "args_hash": "0447ca318c1c9125c0d48ff96709fe6de50a4ab3eb9c75bcbe5e2c299c0cb94c",
+        "decision": "executed",
+        "tool": "mandate_profile"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "scope": "mandate_b"
+    },
+    "name": "mandate_profile",
+    "result": {
+      "data": {
+        "client": "Northgate Mutual Life Insurance Company",
+        "positions": {
+          "FIXTURE HOTEL SENIOR LENDING": 60.0,
+          "FIXTURE INDIA CREDIT FUND": 25.0
+        }
+      },
+      "ok": true
+    },
+    "signature": "51dea0301ef6d1ca9d0e083a24f80a7d57b777fdffc08fe2f6a98635a598aa1c"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "READ",
+        "actor": "agent",
+        "args_hash": "d5f4771547ac4108def3e781c956bf1c709e9c602515cceb4e9e937f2f58bbf0",
+        "decision": "executed",
+        "tool": "bdc_signals"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "scope": "public"
+    },
+    "name": "bdc_signals",
+    "result": {
+      "data": {
+        "signals": [
+          {
+            "adsh": "0009000011-26-000111",
+            "after": 91.5,
+            "before": 98.0,
+            "identifier": "First Lien Senior Secured Loan | Cedar Ridge Dental Partners LLC | S + 5.75% (9.80%) | 09/2030",
+            "name": "FIXTURE GOLF CAPITAL CORP",
+            "prior_row": "502",
+            "row": "102",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000011-26-000111",
+            "after": 92.0,
+            "before": 98.5,
+            "identifier": "First Lien Senior Secured Loan | Granite Peak Manufacturing LLC | S + 5.75% (9.80%) | 09/2030",
+            "name": "FIXTURE GOLF CAPITAL CORP",
+            "prior_row": "506",
+            "row": "106",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": "2031-09-30",
+            "before": "2029-09-30",
+            "identifier": "Pinecrest Learning Group Inc., First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "505",
+            "row": "105",
+            "rule": "EXTENDED"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": 93.5,
+            "before": 99.0,
+            "identifier": "Brightwater Fitness Holdings LLC, First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "501",
+            "row": "101",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000012-26-000121",
+            "after": 3.0,
+            "before": 1.0,
+            "identifier": "Oakmont Home Services LLC, First Lien Term Loan",
+            "name": "FIXTURE HOTEL SENIOR LENDING",
+            "prior_row": "504",
+            "row": "104",
+            "rule": "PIK_UP"
+          },
+          {
+            "adsh": "0009000013-26-000131",
+            "after": 89.5,
+            "before": 96.0,
+            "identifier": "Senior Secured First Lien | Westbrook Orthopedics LLC | S + 5.50%",
+            "name": "FIXTURE INDIA CREDIT FUND",
+            "prior_row": "502",
+            "row": "102",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": "2030-03-15",
+            "before": "2028-03-15",
+            "identifier": "First Lien Term Loan | Dunmore Insurance Brokers LLC | 03/2030",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "504",
+            "row": "104",
+            "rule": "EXTENDED"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": 90.0,
+            "before": 97.5,
+            "identifier": "First Lien Term Loan | Crestline Roofing Holdings LLC | 06/2031",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "503",
+            "row": "103",
+            "rule": "MARKDOWN"
+          },
+          {
+            "adsh": "0009000014-26-000141",
+            "after": 2.5,
+            "before": 0.0,
+            "identifier": "First Lien Term Loan | Foxglove Specialty Pharma Inc. | 03/2031",
+            "name": "FIXTURE JULIETT LENDING BDC",
+            "prior_row": "506",
+            "row": "106",
+            "rule": "PIK_UP"
+          }
+        ]
+      },
+      "ok": true
+    },
+    "signature": "dabf50bff55d6475cf14eb900369b0d38b18ad0123753ff661bc6274d45721c6"
+  },
+  {
+    "actions": [
+      {
+        "action_class": "CONTROL",
+        "actor": "agent",
+        "args_hash": "190ccf0306bb07e650be0fff78eb293aa97313149fac59bce7b989b6532b2c57",
+        "decision": "requested",
+        "tool": "request_approval"
+      },
+      {
+        "action_class": "INTERNAL_WRITE",
+        "actor": "server_approval_request",
+        "args_hash": "90dd2fe70b5f810ae3f3ac403d73fab336a83f13ca38d127f26a2ed658fbc8c0",
+        "decision": "requested",
+        "tool": "watchlist_write"
+      }
+    ],
+    "actor": "agent",
+    "args": {
+      "action": "watchlist_write",
+      "payload": {
+        "entry": {
+          "bdc": "FIXTURE HOTEL SENIOR LENDING",
+          "citations": [
+            "0009000012-26-000121 row 101 vs prior row 501",
+            "0009000012-26-000121 row 104 vs prior row 504",
+            "0009000012-26-000121 row 105 vs prior row 505"
+          ],
+          "note": "Northgate holds $60.0mm in FIXTURE HOTEL SENIOR LENDING. Add to watchlist after three paired-period stress signals in accession 0009000012-26-000121: Brightwater Fitness Holdings LLC marked to 93.5 from 99.0, a 5.5-point decline (row 101 vs prior row 501); Oakmont Home Services LLC PIK increased to 3.0 from 1.0 (row 104 vs prior row 504); Pinecrest Learning Group Inc. maturity extended to 2031-09-30 from 2029-09-30 (row 105 vs prior row 505)."
+        },
+        "scope": "mandate_b"
+      }
+    },
+    "name": "request_approval",
+    "result": {
+      "data": {
+        "payload_hash": "3b2c169ec29b8ddba3fd47ae27cbcbe53d5f40df7487a7141c3782d11dfe4530",
+        "request_id": "req-b19c3e4a80694d868ad6de543a2d01a1",
+        "status": "pending"
+      },
+      "ok": true
+    },
+    "signature": "4bc8afeffed4856814fdfcdac2838513a98cb010ab8f78dbc880ee55a5a812c8"
+  }
+]

@@ -1,0 +1,62 @@
+{
+  "analyst_sensitivity": [
+    {
+      "analyst_hours": 6.0,
+      "gross_time_value_usd": 720.0,
+      "time_saved_multiplier": 0.5
+    },
+    {
+      "analyst_hours": 12.0,
+      "gross_time_value_usd": 1440.0,
+      "time_saved_multiplier": 1
+    },
+    {
+      "analyst_hours": 24.0,
+      "gross_time_value_usd": 2880.0,
+      "time_saved_multiplier": 2
+    }
+  ],
+  "current_suite_model_usd": 0.3253317500000001,
+  "illustrative_failure_expected_loss_per_mandate_month_usd": 100.0,
+  "limitations": [
+    "Prices are the recorded model configuration, not a billing statement.",
+    "Development cost includes retained failed attempts; monthly costs therefore use a conservative development-run proxy.",
+    "Successful-task denominator means passed automated dev checks, not independently measured business success.",
+    "Scenario A cost is a proxy for either mandate, not a measured B scenario.",
+    "Hosting, review time, monthly activity and incident probability/severity are assumptions, not observations.",
+    "No measured probability reduction is attributed to approval or isolation controls.",
+    "Analyst time value is gross potential value, not verified savings or profit."
+  ],
+  "model_cost_per_passed_task_including_failed_attempts_usd": 0.06786703124999997,
+  "monthly_assumptions": {
+    "illustrative_incident_cost_usd": 100000,
+    "illustrative_incident_probability_per_mandate_month": 0.001,
+    "notes_per_mandate_month": 1,
+    "other_tasks_per_mandate_month": 4,
+    "review_hours_per_note": 0.25,
+    "shared_hosting_usd_per_month": 20
+  },
+  "monthly_costs": [
+    {
+      "allocated_hosting_usd": 10.0,
+      "human_review_usd": 30.0,
+      "mandate": "mandate_a",
+      "model_usd": 0.4080033749999999,
+      "total_usd_per_mandate_month": 40.408003375
+    },
+    {
+      "allocated_hosting_usd": 10.0,
+      "human_review_usd": 30.0,
+      "mandate": "mandate_b",
+      "model_usd": 0.4080033749999999,
+      "total_usd_per_mandate_month": 40.408003375
+    }
+  ],
+  "recorded_suite_model_usd": 0.5429362499999998,
+  "replay_model_api_cost_usd": 0,
+  "scenario_all_attempts_model_usd": 0.33776375000000003,
+  "scenario_model_usd": 0.13653525,
+  "scenario_process_seconds": 39.985535666986834,
+  "suite_passed": 8,
+  "suite_total": 8
+}

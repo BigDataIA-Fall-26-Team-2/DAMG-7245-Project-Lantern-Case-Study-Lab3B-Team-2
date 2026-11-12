@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_0cee310804c302d7016af5e2ef37b487d181136e1ea4386fbc", "rationale": "Need current public filing signals and evidence before preparing a watchlist entry for the active client holding.", "text": "", "tokens_in": 2864, "tokens_out": 52, "tool": "bdc_signals", "usd": 0.00794}

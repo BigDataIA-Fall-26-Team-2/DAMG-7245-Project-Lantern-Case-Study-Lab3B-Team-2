@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_01ed9c5fba8fef43016af5e298d8f087d1a4cf71ddc6b9fb55", "rationale": "Read the new release signals for the active client\u2019s held BDCs before drafting the note or watchlist item.", "text": "", "tokens_in": 3002, "tokens_out": 56, "tool": "bdc_signals", "usd": 0.008345}

@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"mandate_a\"}", "provider_response_id": "resp_073b18b9b7d4c4a1016af5e1a3098087d19fc78f5968e88097", "rationale": "Need filing-backed changes before drafting the monthly note.", "text": "Load current BDC signals for the active mandate.", "tokens_in": 2613, "tokens_out": 167, "tool": "bdc_signals", "usd": 0.00271125}

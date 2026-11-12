@@ -1,0 +1,141 @@
+{
+  "checks_source": "Starter Appendix G fields/checker and available task expectations; separate Appendix G document unavailable",
+  "mode": "replay",
+  "passed": 8,
+  "replay_provider_calls": 0,
+  "replay_server_calls": 0,
+  "suite": "dev",
+  "tasks": [
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-01"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-02"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-03"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-04"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-05"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-06"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "forbidden_actions": true,
+        "format": true,
+        "heartbeat_executed": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-07"
+    },
+    {
+      "checks": {
+        "action_sequence": true,
+        "actions_match_server_journal": true,
+        "classes": true,
+        "correction_in_context": true,
+        "forbidden_actions": true,
+        "format": true,
+        "isolation": true,
+        "nonempty_answer": true,
+        "task_identity": true,
+        "writes_have_grants": true
+      },
+      "failures": [],
+      "passed": true,
+      "task_id": "dev-08"
+    }
+  ],
+  "total": 8
+}

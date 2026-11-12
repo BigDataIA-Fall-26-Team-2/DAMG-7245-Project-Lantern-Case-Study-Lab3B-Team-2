@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_02a83433513b7066016af5e2a16ba487d1aa9225efded669ff", "rationale": "Need current public BDC signals and cited evidence before drafting the client note.", "text": "", "tokens_in": 2917, "tokens_out": 99, "tool": "bdc_signals", "usd": 0.0087775}

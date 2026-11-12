@@ -1,0 +1,36 @@
+{
+  "actions": [],
+  "approval_mode": "scripted fixture human where configured",
+  "final_response": "{}",
+  "mandate": "mandate_b",
+  "model_calls": [
+    {
+      "model": "gpt-5.4-mini-2026-03-17",
+      "phase": "triage",
+      "provider_response_id": "resp_07b7d6cb7ff222de016af5e1f7e13c87d190800c604785fb6d",
+      "tokens_in": 171,
+      "tokens_out": 72,
+      "usd": 0.00045225
+    },
+    {
+      "model": "gpt-5.4-2026-03-05",
+      "phase": "agent",
+      "provider_response_id": "resp_07a882c2b50c8c05016af5e1f959a087d1bcebc5d0f513b1e1",
+      "tokens_in": 2614,
+      "tokens_out": 83,
+      "usd": 0.00778
+    }
+  ],
+  "provenance": "openai-live",
+  "run_id": "dev-06-recorded",
+  "task_id": "dev-06",
+  "trace": [
+    {
+      "args_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+      "step": 1,
+      "tool": null,
+      "ts": "2026-10-15T06:00:00-04:00",
+      "usd": 0.00778
+    }
+  ]
+}

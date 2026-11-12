@@ -1,0 +1,1 @@
+{"args_json": "{\"action\":\"send_email\",\"payload\":{\"draft_id\":\"draft-10726edbda854905ab466cc5b2204148\"}}", "provider_response_id": "resp_0fa13686cc69b8f2016af5e25618e887d1b2618b24bb4adc49", "rationale": "Request exact approval to send the drafted client note.", "text": "", "tokens_in": 4662, "tokens_out": 66, "tool": "request_approval", "usd": 0.012645}

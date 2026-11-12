@@ -1,0 +1,5 @@
+{
+  "mode": "record",
+  "note": "Actual process time; resumed/cached runs are not fresh end-to-end latency.",
+  "wall_seconds": 3.848271833965555
+}

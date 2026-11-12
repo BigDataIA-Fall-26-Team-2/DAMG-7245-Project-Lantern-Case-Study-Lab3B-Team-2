@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_08c66abfdaf7a2a5016af5e246b8d487d18b97b2b7f69c9cbc", "rationale": "Need current public release signals and citations for the active mandate\u2019s held BDCs before drafting the note and watchlist item.", "text": "", "tokens_in": 2907, "tokens_out": 58, "tool": "bdc_signals", "usd": 0.0081375}
