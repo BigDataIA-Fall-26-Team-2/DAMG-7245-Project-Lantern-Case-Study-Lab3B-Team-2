@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from . import channel, skills, workspace
+from . import channel, policy, skills, workspace
 
 
 @dataclass(frozen=True)
@@ -46,6 +46,13 @@ class Harness:
             workspace.load_parts(ws, session.mandate, skills_index=index),
             self.params["context"]["budgets"],
         )
+        fixture = self.root / self.params["data"]["fixture_dir"]
+        mandates = json.loads((self.root / self.params["data"]["mandates"]).read_text())
+        canaries = json.loads((fixture / "canaries.json").read_text())
+        forbidden = policy.confidential_terms(mandates, session.mandate)
+        terms = forbidden["terms"] + [c for m, cs in canaries.items() if m != session.mandate for c in cs]
+        if policy.mentions(context, forbidden["names"]) or policy.leaks(context, terms):
+            raise PermissionError("Context contains another mandate's confidential information")
         return ChatSession(session.principal, session.mandate, context)
 
 

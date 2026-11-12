@@ -47,12 +47,16 @@ def assemble(parts, budgets):
     return "\n\n".join(ctx), report
 
 
-def load_parts(ws, mandate, skills_index="", memory=""):
+def load_parts(ws, mandate, skills_index="", memory=None):
     """Only the ACTIVE mandate's files enter the context."""
     ws = Path(ws)
-    m = ws / "mandates" / mandate
+    from . import memory as memory_module
+    m = memory_module.mandate_directory(ws / "mandates", mandate)
+    if memory is None:
+        memory = memory_module.context_memory(ws / "mandates", mandate)
 
     def read(p):
+        memory_module.confined_file(m if p.parent == m else ws, p)
         return p.read_text() if p.exists() else ""
     return {"soul": read(ws / "SOUL.md"),
             "principal": read(ws / "PRINCIPAL.md"),

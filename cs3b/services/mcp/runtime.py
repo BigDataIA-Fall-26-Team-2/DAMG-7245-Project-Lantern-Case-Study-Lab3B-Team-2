@@ -6,7 +6,7 @@ import re
 from uuid import uuid4
 
 from pydantic import ValidationError
-from creditwatch import approvals, catalog, channel, clock, policy, signals
+from creditwatch import approvals, catalog, channel, clock, memory, policy, signals
 from services.mcp.errors import (ToolError, ScopeDeniedError, ApprovalRequiredError,
     NotFoundError, InvalidInputError, PolicyDeniedError)
 from services.mcp.schemas import INPUTS, OUTPUTS, DraftInput, WatchlistEntry
@@ -57,7 +57,7 @@ class ToolRuntime:
     def private_check(self, value):
         other = policy.confidential_terms(self.mandates, self.session.mandate)
         other["terms"] += [c for m, cs in self.canaries.items() if m != self.session.mandate for c in cs]
-        text = json.dumps(value)
+        text = json.dumps(value, ensure_ascii=False)
         if policy.mentions(text, other["names"]) or policy.leaks(text, other["terms"]):
             raise PolicyDeniedError("R-OTHER-MANDATE: another client's confidential information.")
 
@@ -170,24 +170,38 @@ class ToolRuntime:
 
     def memory_read(self, r):
         self.scope(r.scope)
-        paths = [self.directory / "MEMORY.md", *sorted((self.directory / "log").glob("*.md"))]
-        terms = r.query.casefold().split()
-        hits = []
-        for path in paths:
-            self.confined(path)
-            if not path.exists():
-                continue
-            for number, line in enumerate(path.read_text().splitlines(), 1):
-                if line.strip() and (not terms or any(t in line.casefold() for t in terms)):
-                    hits.append({"text": line, "source": f"{path.relative_to(self.directory)}#{number}"})
-        return {"matches": hits[:r.limit]}
+        try:
+            matches = memory.read_entries(self.workspace / "mandates", r.scope, r.query, r.limit)
+        except PermissionError as exc:
+            raise PolicyDeniedError("Memory path escapes the active mandate.") from exc
+        return {"matches": matches}
+
+    def compact_memory(self, scope, before_day, review_hash=None):
+        """Human control plane only; not an extra tool in the closed catalog."""
+        self.scope(scope)
+        try:
+            if review_hash is None:
+                result = memory.preview_compaction(self.workspace / "mandates", scope, before_day)
+                self.private_check(result)
+            else:
+                result = memory.apply_compaction(self.workspace / "mandates", scope, before_day,
+                                                 review_hash, validate=self.private_check)
+                self.ledger.record("memory_compaction", scope=scope, review_hash=review_hash)
+            return result
+        except PermissionError as exc:
+            raise PolicyDeniedError("Memory path escapes the active mandate.") from exc
 
     def memory_propose_write(self, r):
         self.scope(r.scope)
         self.private_check(r.content)
         pid = "prop-" + uuid4().hex
         # Tool-origin text is always a proposal, never a principal-authenticated correction.
-        save(self.confined(self.directory / "proposals" / (pid + ".json")),
+        try:
+            directory = memory.mandate_directory(self.workspace / "mandates", r.scope)
+            path = memory.confined_file(directory, directory / "proposals" / (pid + ".json"))
+        except PermissionError as exc:
+            raise PolicyDeniedError("Proposal path escapes the active mandate.") from exc
+        save(path,
              {"scope": r.scope, "content": r.content, "origin": "agent", "status": "pending"})
         self.ledger.record("proposal", proposal_id=pid, scope=r.scope, origin="agent")
         return {"proposal_id": pid, "status": "proposed"}

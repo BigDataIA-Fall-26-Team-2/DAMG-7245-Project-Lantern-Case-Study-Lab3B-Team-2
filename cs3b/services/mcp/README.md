@@ -104,3 +104,40 @@ through MCP, the actual wire catalog, invalid inputs, cross-client scope, human
 approval, tampering, expiry, duplicate sends, restricted recipients, proposal origin,
 and stdio startup. This completes the local Part 1 implementation against the shipped
 catalog; remaining case-study self-check failures belong to later work.
+
+
+## Lab 27: memory and reviewed compaction
+
+Memory reads search the active mandate's `MEMORY.md` and original daily logs.
+These durable Markdown files are the working server's store; the notebook's
+SQLite demonstration is not required by the server. New chat sessions include
+active-mandate memory within the configured context budget. Use `memory_read`
+for targeted recall when all notes do not fit. Pending proposals are excluded.
+
+Run from `cs3b/` with the environment activated. Preview an exclusive date cutoff:
+
+```bash
+python -m services.mcp.compact --mandate mandate_a --before 2026-10-15
+```
+
+Enter Priya's session token at the hidden prompt. Review the printed diff, then
+apply that exact version using its printed hash:
+
+```bash
+python -m services.mcp.compact --mandate mandate_a --before 2026-10-15 --apply REVIEW_HASH
+```
+
+Replace `REVIEW_HASH` with the preview's value. Changed source logs or memory
+invalidate it. Compaction retains full source text and links, existing curated
+memory, and original logs; it consolidates notes rather than using an AI summary.
+Applied compactions record metadata in the mandate's `audit/memory.jsonl`.
+The command is a human control, not a thirteenth MCP tool. It assumes the local
+single-writer lab workflow; concurrent compaction/writes need transactional locking.
+
+```bash
+python -m pytest tests/test_governed_memory.py -q
+```
+
+These deterministic tests verify cross-session recall and isolation, including
+real MCP client calls, without making model API calls. They do not claim to run
+unreleased external grading tasks or an end-to-end conversational model.
