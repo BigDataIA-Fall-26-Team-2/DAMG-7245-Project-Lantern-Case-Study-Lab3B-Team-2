@@ -22,6 +22,9 @@ def pair(panel):
     """Output follows pair_exact's suffix contract, retaining both identifiers."""
     keys = ['adsh', 'cik', 'investment_type', '_identity']
     p = panel.copy()
+    if 'pairing_eligible' in p:
+        # Real exports retain unknown/conflicting rows for accounting, not pairing.
+        p = p[p['pairing_eligible'].eq(True)].copy()
     p['_identity'] = p.identifier.map(stable_identifier)
     cur = p[p.period_role == 'current'].copy()
     prior = p[p.period_role == 'prior'].copy()

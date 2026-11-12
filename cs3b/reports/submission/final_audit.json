@@ -1,0 +1,123 @@
+{
+  "audited_on": "2026-11-12",
+  "timezone": "America/New_York",
+  "branch": "feat/lab23-harness",
+  "audited_commit": "38601385e8ee2a19ab0507e9dfff32d0c0e7934a",
+  "verdict": "Fixture software verified; real-panel export and assistant pair review now completed with exclusions. Official variants, repository visibility and full-rubric/real-mode requirements remain unresolved.",
+  "verification_method": "Clean git-archive checkout excludes ignored .env, caches, SQLite stores and outbox. Used the existing Python 3.11 environment with API/session environment variables removed. Final checkout additionally includes the two local notebook-runner fix files. This is not a fresh dependency installation.",
+  "checks": [
+    {
+      "name": "Python regression tests",
+      "status": "pass",
+      "result": "214 passed; zero skipped in final clean checkout"
+    },
+    {
+      "name": "Notebooks",
+      "status": "pass_after_fix",
+      "result": "10/10 end-to-end with IPython; original plain-Python checker failed top-level await and display in Labs 24/25"
+    },
+    {
+      "name": "Self-check",
+      "status": "pass_with_skip",
+      "result": "Prints 16/16; missing official variant tasks treated as pass. Interpret as 15 checked entries and one skipped entry."
+    },
+    {
+      "name": "Dev evaluation",
+      "status": "pass",
+      "result": "8/8; double replay matches recorded results"
+    },
+    {
+      "name": "Release scenario",
+      "status": "pass",
+      "result": "Offline replay verifies actual mock-send and watchlist receipts; fixture approvals explicitly labelled"
+    },
+    {
+      "name": "Economics",
+      "status": "pass",
+      "result": "Rebuilt from recordings and stated assumptions; monthly estimate is not measured production cost"
+    },
+    {
+      "name": "Dependency consistency",
+      "status": "pass",
+      "result": "pip check: No broken requirements found"
+    },
+    {
+      "name": "GitHub CI for audited commit",
+      "status": "pass",
+      "url": "https://github.com/BigDataIA-Fall-26-Team-2/DAMG-7245-Project-Lantern-Case-Study-Lab3B-Team-2/actions/runs/43255023049"
+    },
+    {
+      "name": "Tracked local state",
+      "status": "pass",
+      "result": "No tracked .env, virtualenv, SQLite store, approval-handle file, private-key file or mock outbox found by path inventory"
+    },
+    {
+      "name": "Stored notebook errors",
+      "status": "pass",
+      "result": "No saved error outputs in any of the ten notebooks"
+    },
+    {
+      "name": "Real panel export",
+      "status": "fail",
+      "result": "48,940 rows / 76 admitted filings; 36 excess duplicate holding keys; 3 filings lack prior schedule; all investment_type values missing"
+    },
+    {
+      "name": "Official variant task suite",
+      "status": "unavailable",
+      "result": "evals/tasks/variant.jsonl absent; replay exits 2 instead of claiming success"
+    },
+    {
+      "name": "Repository visibility",
+      "status": "action_required_by_user",
+      "result": "GitHub reports public; README requires private until grades returned. User requested visibility remain unchanged and will handle it."
+    }
+  ],
+  "requirements_review": [
+    {
+      "labs": "00,23-27,29",
+      "status": "implemented_and_tested",
+      "evidence": "Workspace, authenticated mandate isolation, 12-tool schemas/contracts, live-model replay, six locked skills/two scripts, persistent governed memory, exact-payload approval tests"
+    },
+    {
+      "lab": 28,
+      "status": "partial_for_full_assignment",
+      "evidence": "Fixture and variants 1-3 precision/recall 1.00; four DAG definitions and measured fixture deliveries. Real-panel validation and hand-checked pair sample remain incomplete; live adapters/scheduler not deployed."
+    },
+    {
+      "lab": 30,
+      "status": "experiment_completed_with_failures_disclosed",
+      "evidence": "7/10 completed model notes; three planning-only answers and earlier-rule regressions. Findings preserved in reports/learning, not scored as perfect model behavior."
+    },
+    {
+      "lab": 31,
+      "status": "dev_and_scenario_complete_variants_pending",
+      "evidence": "8/8 available dev checks, real model/server mock scenario, cost-per-mandate-month report; official variants unavailable."
+    }
+  ],
+  "remaining_actions": [
+    "Obtain and run the official variant task suite.",
+    "User to resolve public repository visibility according to assignment requirements.",
+    "Review the source-row sample and provide student sign-off if the rubric requires a human hand-check.",
+    "Confirm full assignment requirements; real-panel client mapping and real alert signal-policy validation remain separate from the completed fixture demonstrations."
+  ],
+  "local_changes_from_audit": [
+    "tools/run_notebooks.py: use fresh IPython processes for notebook semantics",
+    "tests/test_notebook_runner.py: two regression tests",
+    "CI: add full notebook run",
+    "reports/submission: final findings and logs"
+  ],
+  "changes_committed_or_pushed": false,
+  "limitations": [
+    "No new paid model calls were made. Replay proves reproducibility, not semantic correctness of every note.",
+    "Public pairing variants 1-3 are distinct from the missing official agent task variants.",
+    "Earlier failed model recordings remain in the repository for honest provenance and cost accounting."
+  ],
+  "real_panel_followup": {
+    "date": "2026-11-12",
+    "status": "export and assistant sample review completed with documented exclusions and uncertainty",
+    "panel": "data/real/panel_2p.parquet",
+    "validation": "data/real/export_validation.json",
+    "review": "reports/heartbeat/real/pair_review_completed.csv",
+    "limits": "10,883 UNKNOWN rows retained; long identifiers abstain; 31.98% eligible debt pairing coverage; no human sign-off claimed; fixture config remains active."
+  }
+}

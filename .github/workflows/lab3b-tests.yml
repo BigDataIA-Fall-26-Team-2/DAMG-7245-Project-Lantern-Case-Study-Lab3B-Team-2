@@ -21,6 +21,8 @@ jobs:
           lantern eval run --suite dev --mode replay
           lantern scenario --mode replay
           lantern economics
+      - name: Run all notebooks with Jupyter semantics
+        run: python tools/run_notebooks.py
       - name: Live recording status
         run: |
           if [ ! -f evals/recordings/dev-01/recorded.json ]; then

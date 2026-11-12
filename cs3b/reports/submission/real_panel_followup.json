@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-11-12",
+  "real_panel_validation": [],
+  "rows": 48618,
+  "filings": 73,
+  "excluded_rows": 322,
+  "unknown_classifications_retained": 10883,
+  "matched_pairs": 5531,
+  "sample_reviewed": 20,
+  "identity_supported": 18,
+  "withheld": 2,
+  "reviewer": "Codex assistant; no human sign-off claimed",
+  "tests_passed": 222,
+  "notebooks_passed": 10,
+  "self_check": "16/16 reported, including missing-variant skip",
+  "fixture_signal_precision": 1.0,
+  "fixture_signal_recall": 1.0,
+  "active_configuration": "fixture unchanged; real panel and source-row review loaded explicitly in Lab 28",
+  "still_required": "Official variants, repository visibility resolution, rubric confirmation and any required real-mode mandate mapping/student sign-off",
+  "committed_or_pushed": false
+}

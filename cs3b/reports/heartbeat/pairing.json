@@ -125,5 +125,6 @@
       "unpaired": 0
     }
   ],
-  "real_panel_review": "pending: no real panel supplied"
+  "real_panel_review": "completed assistant source-row review: reports/heartbeat/real/pair_review_completed.csv; 18 identity-supported, 2 withheld; no human sign-off claimed",
+  "real_panel_metrics": "reports/heartbeat/real/real_pair_metrics.json"
 }

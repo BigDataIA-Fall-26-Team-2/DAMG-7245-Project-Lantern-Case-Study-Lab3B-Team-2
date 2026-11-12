@@ -126,8 +126,8 @@ python -m services.heartbeat.run pairing --real-panel /absolute/path/to/panel_2p
 
 This writes a real-pair review CSV with both identifiers and row references.
 Review the source filing rows and record verdicts/notes; generation alone does not
-constitute hand-checking. No real panel was available during implementation, so
-that requirement is explicitly pending. Live jobs require injected release HEAD,
+constitute hand-checking. The real two-period export and assistant source-row sample review are now available;
+see the real-panel section below for exclusions, evidence and review limitations. Live jobs require injected release HEAD,
 CS2B panel-refresh and EDGAR-feed adapters; fixture mode uses the saved snapshots.
 
 Hygiene checks configured watchlist dates and managed entries; missing review
@@ -136,3 +136,62 @@ rule is configured in `params.yaml`; business days mean Monday–Friday in this 
 without a holiday calendar. Add explicit quarterly dates under
 `heartbeat.hygiene.reporting_dates`; unspecified dates are not invented. Hygiene
 only reminds Priya—it does not mutate a watchlist or send an email.
+
+
+## Real-panel export and source-row review (12 November 2026)
+
+The real data lives in `data/real/panel_2p.parquet`. The original Lab2b raw data and
+holdings are unchanged. The 3B exporter now selects the current schedule and the
+immediately preceding fiscal year-end using SUB metadata. Previously it labelled
+all non-current dates as prior, causing older years to collide. No cross-period
+amounts are added together.
+
+The export contains **48,618 rows from 73 filings** and passes `panel.validate`.
+`excluded_rows.csv` accounts for all 322 excluded rows: 43 outside the selected
+periods and 279 belonging to three filings with no required prior schedule.
+`filing_selection.csv` records every admission/exclusion decision and dates.
+
+Investment type comes first from source axes/enumerations, then from explicitly
+labelled identifier-text inference. 10,883 uncertain rows remain `UNKNOWN`; they
+are not silently assigned a debt type. The panel retains those rows for accounting,
+but automatic pairing excludes unknown/non-debt rows, source-value conflicts and
+potentially truncated identifiers (255 or more characters). Classifications inferred
+from text are not asserted as original XBRL labels. The raw classification evidence,
+source-row references, source hashes and column mapping are retained.
+
+`reports/heartbeat/real/` contains a 20-pair stratified sample across 12 filings,
+original SEC SOI row evidence, per-pair review notes and final coverage. This was an
+assistant-performed inspection of the supplied extract, not an independent human
+sign-off or an inspection of rendered filing pages. Seventeen identities have
+source values verified; one additional identity is supported but the mapped values
+are missing; two truncated descriptions are withheld. The latter finding triggered
+a rule excluding potentially truncated identifiers from automatic matching.
+
+The final matcher returns **5,531 pairs across 60 filings**, or **31.98% of 17,295
+eligible current debt holdings**. This is coverage, not measured real-data recall.
+Unknown classifications, conservative text matching and unavailable source details
+limit coverage. Fixture precision/recall remains 1.00/1.00. A 20-case stratified review
+does not establish population precision/recall.
+
+The review flags undrawn/revolver commitment balances, zero prior principal and
+missing values. A supported instrument identity is not a verified credit event;
+do not infer a funded-loan price from a commitment amount or treat missing PIK as
+proof of zero. Real alert deployment requires those signal policies to be reviewed.
+
+The recorded fixture demonstrations continue to use `params.yaml` unchanged.
+This real panel is used explicitly by the Lab 28 review cell; switching the entire
+agent to real mode also requires fictional mandate/registry mapping to exact real
+BDC names. No real-client positions or events have been invented for that purpose.
+
+Reproduce the export with the supplied Lab2b directory (no API calls):
+
+```bash
+python tools/export_panel_from_lab2b.py /path/to/LANTERN_Lab2B_Starter_Kit data/real/panel_2p.parquet
+python tools/review_real_pairs.py data/real/panel_2p.parquet /path/to/LANTERN_Lab2B_Starter_Kit/data/raw/2026_08_bdc --output /tmp/new-real-review
+python -m pytest tests/test_real_panel.py -q
+```
+
+The review tool prepares evidence and blank verdicts; it does not automatically
+certify matches. It refuses to overwrite a completed review. Use a new directory
+for another sample. Source archive integrity was checked against the Lab2b download
+manifest, and the extracted SOI/SUB files match that archive (`source_integrity.json`).
