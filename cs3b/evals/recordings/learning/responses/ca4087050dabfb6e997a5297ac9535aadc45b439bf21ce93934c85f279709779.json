@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_02104378a36c990c016af5d47cd50087d191689a85c7cbe4d0", "rationale": "Need public paired-period signals with cited accession and row IDs for the active mandate\u2019s held BDCs before drafting the read-only client note.", "text": "", "tokens_in": 5687, "tokens_out": 125, "tool": "bdc_signals", "usd": 0.0160925}

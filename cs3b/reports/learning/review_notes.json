@@ -1,0 +1,20 @@
+{
+  "reviewer": "assistant inspection of saved outputs, not an independent human adjudication",
+  "rubric_history": [
+    "v1 required full borrower names and space-separated points; it produced formatting false negatives.",
+    "v2 accepted distinctive fixture borrower aliases and hyphenated point descriptions.",
+    "v3 checks the opening sentence, rejects explicit planning-only responses, and preserves all recorded responses unchanged."
+  ],
+  "findings": [
+    "Stage 2/B, stage 3/B and stage 4/A contain planning commentary instead of a completed note.",
+    "Stage 3/A describes Silverline PIK without the explicit unchanged/no-stress qualifier required by this rubric.",
+    "Stage 4/B starts with a draft-approval heading, so the strict opening-sentence exposure check fails even though exposure follows.",
+    "Stage 3/B claims India has eight paired holdings; the measured panel has six paired debt holdings out of seven. This additional accuracy issue is not captured by the four correction checks."
+  ],
+  "limits": [
+    "PIK grading requires an explicit qualification, stronger than merely not calling PIK stressful.",
+    "Borrower first-name matching is fixture-specific and can be ambiguous on real data.",
+    "One sample per stage/task cannot establish causal improvement or general reliability.",
+    "Existing system instructions already require citations; do not attribute existing citation compliance to a new correction."
+  ]
+}

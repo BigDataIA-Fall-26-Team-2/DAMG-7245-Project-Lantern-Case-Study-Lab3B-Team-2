@@ -93,3 +93,60 @@ Official references:
 - https://developers.openai.com/api/docs/guides/structured-outputs
 - https://developers.openai.com/api/docs/models/gpt-5.4-mini
 - https://developers.openai.com/api/docs/models/gpt-5.4
+
+
+## Lab 30: authenticated corrections and before/after evaluation
+
+```bash
+python -m services.learning.run record
+python -m services.learning.run verify
+python -m services.learning.run report
+python -m pytest tests/test_learning.py -q
+```
+
+`record` uses the existing OpenAI provider, RoutedModel and read-only agent loop.
+It loads the local `.env` without logging credentials. The fixture-only evaluation
+freezes the original workspace context, model configuration, prompt and tool
+observations. Five stages (baseline plus four corrections), each with A and B tasks,
+produce ten notes. Each correction's paired comparison uses the identical task and
+evidence on either side; consecutive after/before states reuse the same cached
+answer. Frozen factual briefings are supplied directly for this experiment; it does
+not add new small-model triage calls. Per-task step, token and dollar limits remain
+those in `params.yaml`. Agent responses may already satisfy a rule before correction.
+
+The correction path derives authority from the message's session token and checks
+mandate authorization. Unauthenticated text remains a proposal. It rejects changed
+content under an existing message ID and is idempotent for an identical message.
+Preparatory rule application uses a scratch workspace. Only after the real recording
+and double replay complete are the four authenticated messages applied to working
+`agent/PRINCIPAL.md`, with `memory_write` events in
+`logs/audit/learning-corrections.jsonl`. These four corrections are general operating
+rules; client-specific confidential facts should not be put into global PRINCIPAL.md.
+The injected lab clock is frozen for comparability, not a real elapsed-time record.
+
+`verify` is offline, makes no provider calls, and checks that answers, contexts,
+traces and usage match the saved recording twice. `report` recomputes current grades
+from the same recordings and republishes result artifacts offline. It also checks
+that already-written rules have provenance; it will not legitimize pre-written rules.
+A fresh baseline must start from the seed principal file; existing learning is never
+silently reset. Keep the existing manifest/cache to replay this completed experiment.
+
+Artifacts:
+- `evals/recordings/learning/`: frozen inputs, provider responses, original run outputs,
+  and replay verification. No API/session token is saved in this recording.
+- `outputs/learning/msg-101.jsonl` through `msg-104.jsonl`: A/B before-and-after text,
+  traces, adherence checks and earlier-rule regressions.
+- `reports/learning/adherence.json`: current scores, cost estimate and task-completion flags.
+- `reports/learning/review_notes.json`: rubric changes and assistant review observations.
+
+The current grader is a transparent, non-vacuous fixture heuristic, not a semantic
+oracle. It requires coverage of expected signals, explicit qualification of background
+PIK, point changes for markdowns, exposure in the opening sentence and accession
+citations on matching observations. Explicit planning-only outputs fail the task.
+Shortened borrower names and hyphenated points are accepted. The original raw answers
+and original grades remain under `runs/`; updated grades live in published reports.
+Do not edit model outputs to improve scores, or confuse passing software tests with
+perfect agent adherence. The recorded experiment includes actual regressions and
+incomplete answers. The price estimate uses the recorded model configuration and is
+not a billing statement. Follow [OpenAI's evaluation guidance](https://developers.openai.com/api/docs/guides/evaluation-best-practices)
+when expanding the dataset and reviewing automated grading against human judgments.

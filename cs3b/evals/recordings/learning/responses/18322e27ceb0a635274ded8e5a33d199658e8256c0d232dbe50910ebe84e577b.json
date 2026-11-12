@@ -1,0 +1,1 @@
+{"args_json": "{\"scope\":\"public\"}", "provider_response_id": "resp_0d0b6b0108cbd276016af5d44d6c1087d19c802f4c78dd784d", "rationale": "Confirm public release signals for the active mandate\u2019s held BDCs before drafting any client note; active mandate is mandate_b/Northgate.", "text": "", "tokens_in": 5581, "tokens_out": 61, "tool": "bdc_signals", "usd": 0.0148675}

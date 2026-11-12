@@ -1,0 +1,57 @@
+{
+  "all_outputs_isolated": true,
+  "completed_notes": 7,
+  "corrections": [
+    {
+      "after_pass": 2,
+      "before_pass": 0,
+      "correction": "msg-101",
+      "regressions": 0,
+      "tasks": 2
+    },
+    {
+      "after_pass": 1,
+      "before_pass": 1,
+      "correction": "msg-102",
+      "regressions": 1,
+      "tasks": 2
+    },
+    {
+      "after_pass": 1,
+      "before_pass": 0,
+      "correction": "msg-103",
+      "regressions": 1,
+      "tasks": 2
+    },
+    {
+      "after_pass": 1,
+      "before_pass": 1,
+      "correction": "msg-104",
+      "regressions": 2,
+      "tasks": 2
+    }
+  ],
+  "estimated_usd": 0.57418,
+  "limitations": "Two mandate tasks per correction, one sampled answer per stage/task. Adjacent after/before states reuse identical cached answers. Heuristic checks require prose review; no causal/generalization guarantee. Existing system instructions may already enforce rules.",
+  "provenance": "openai-live",
+  "recorded_model_calls": 30,
+  "review_flags": [
+    {
+      "mandate": "mandate_b",
+      "reason": "planning instead of final note",
+      "stage": 2
+    },
+    {
+      "mandate": "mandate_b",
+      "reason": "planning instead of final note",
+      "stage": 3
+    },
+    {
+      "mandate": "mandate_a",
+      "reason": "planning instead of final note",
+      "stage": 4
+    }
+  ],
+  "rubric": "v3: fixture alias/points checks; opening sentence exposure; explicit planning-only responses fail; human semantic review required",
+  "total_stage_tasks": 10
+}
