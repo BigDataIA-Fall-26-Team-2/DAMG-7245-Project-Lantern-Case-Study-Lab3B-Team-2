@@ -28,3 +28,20 @@ jobs:
           if [ ! -f evals/recordings/dev-01/recorded.json ]; then
             echo "::warning::Part 2 real-model recording still pending; only synthetic replay tests ran."
           fi
+
+  windows-core:
+    runs-on: windows-latest
+    env:
+      PYTHONUTF8: '1'
+    defaults:
+      run:
+        working-directory: cs3b
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pip install -e . --no-deps
+      - run: python -m pytest tests/test_creditwatch.py tests/test_working_skills.py tests/test_portability.py -q
+      - run: python -m creditwatch.check

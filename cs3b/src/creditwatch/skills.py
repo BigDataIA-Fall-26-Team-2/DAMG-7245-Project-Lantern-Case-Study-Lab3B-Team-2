@@ -28,10 +28,11 @@ def skill_index(skills):                  # name -> SKILL.md
 
 
 def folder_hash(d):
-    """Every file in the skill: scripts run, so pin them too."""
+    """Pin file bytes in case-sensitive POSIX-name order on every OS."""
     h = hashlib.sha256()
-    for f in sorted(p for p in Path(d).rglob("*") if p.is_file()
-                    and "__pycache__" not in p.parts):
+    for f in sorted((p for p in Path(d).rglob("*") if p.is_file()
+                    and "__pycache__" not in p.parts),
+                    key=lambda p: p.relative_to(d).as_posix()):
         h.update(f.relative_to(d).as_posix().encode() + b"\0")
         h.update(f.read_bytes() + b"\0")
     return h.hexdigest()
