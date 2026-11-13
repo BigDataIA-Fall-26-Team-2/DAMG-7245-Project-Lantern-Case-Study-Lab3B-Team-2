@@ -248,8 +248,9 @@ def test_memory_writes_are_governed_by_origin():
 
 
 def test_mandate_stores_are_isolated_and_compaction_keeps_provenance():
-    with tempfile.TemporaryDirectory() as t:
-        a, b = memory.MandateStore(t, "mandate_a"), memory.MandateStore(t, "mandate_b")
+    with tempfile.TemporaryDirectory() as t, \
+            memory.MandateStore(t, "mandate_a") as a, \
+            memory.MandateStore(t, "mandate_b") as b:
         a.add("Harbor State asked about Golf PIK", "log/2026-10-01.md#1")
         b.add("Client code NGM-Quillwort-8830 stays internal", "log/2026-10-01.md#1")
         assert a.search("Golf PIK") and not a.search("Quillwort") and b.search("Quillwort")

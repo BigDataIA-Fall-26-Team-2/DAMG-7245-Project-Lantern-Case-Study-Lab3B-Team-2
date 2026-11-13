@@ -36,6 +36,16 @@ class MandateStore:
         self.db.execute("CREATE VIRTUAL TABLE IF NOT EXISTS mem "
                         "USING fts5(text, source)")
 
+    def close(self):
+        """Release the SQLite file before directory cleanup (required on Windows)."""
+        self.db.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.close()
+
     def add(self, text, source):
         self.db.execute("INSERT INTO mem VALUES (?, ?)",
                         (text, source))
