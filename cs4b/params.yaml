@@ -1,0 +1,26 @@
+# Lab 4B parameters. Every setting the code reads lives here.
+data:
+  panel: data/fixture/panel_2p.csv     # the Lab 3B fixture: four fictional BDCs, two schedules each
+  real_panel: data/real/panel_2p.parquet   # copy your Lab 3B real panel here (Parquet or CSV) and commit it
+  use_real: false                      # false: build from the fixture; true: from real_panel (record and demo on it)
+  db: data/panel.sqlite                # built by tools/build_db.py from the panel above (gitignored)
+  view_sql: sql/holdings_v.sql         # you write this (Lab 32B)
+server:
+  tables: [holdings_v, filings, holdings]
+  max_rows: 200
+  timeout_s: 5.0
+model:
+  provider: gemini
+  name: your-model-id                  # REPLACE with a Gemini model id from Google AI Studio; it is part of every cache key
+  mode: replay                         # record (calls the API, needs GEMINI_API_KEY) or replay (cache only)
+  cache_dir: outputs/cache             # committed: graders replay from it, free and offline
+agent:
+  max_attempts: 3                      # generate calls per question, including repairs
+  usd_cap_per_question: 0.10
+  token_cap_per_question: 30000
+prices:                                # illustrative: replace with your provider's current prices
+  usd_per_mtok_in: 0.40
+  usd_per_mtok_out: 1.60
+economics:                             # assumptions: state and justify your own
+  analyst_minutes_per_question: 20
+  analyst_rate_usd: 120.0

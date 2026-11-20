@@ -1,0 +1,5 @@
+# Pin LF everywhere so files and notebooks diff cleanly across operating systems.
+* text=auto eol=lf
+*.parquet binary
+*.sqlite binary
+*.png binary

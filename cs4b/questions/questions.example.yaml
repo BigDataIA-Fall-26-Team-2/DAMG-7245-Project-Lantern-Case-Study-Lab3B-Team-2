@@ -1,0 +1,13 @@
+# The format, with three examples written for the fixture. Copy to questions.yaml and write
+# your own ten, for your real panel. Categories and minimums:
+# lookup 2, aggregation 2, cross_bdc 2, over_time 2, follow_up 1, decline 1.
+- id: q01
+  category: lookup
+  question: "What is the largest single holding in Golf Capital's current schedule?"
+- id: q02
+  category: follow_up
+  follows: q01
+  question: "And what was that holding's price in the prior schedule?"
+- id: q03
+  category: decline
+  question: "Which of these borrowers will default next year?"

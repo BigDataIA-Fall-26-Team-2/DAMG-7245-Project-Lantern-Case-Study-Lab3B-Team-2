@@ -1,0 +1,13 @@
+-c constraints.txt      # the full tested set, so every dependency matches what was tested
+pandas==3.1.0
+pyarrow==26.0.0         # Parquet panels from Lab 3B
+pyyaml==6.0.3
+jupyterlab==4.6.5       # the notebooks
+pytest==9.2.0
+pydantic==2.14.2        # Part 1: the contract
+mcp[cli]==2.3.0         # Part 2: MCP Python SDK v2 (MCPServer), as in Lab 3B
+langgraph==1.2.19       # Part 3: the agent graph
+google-genai==2.34.0    # record mode only: the Gemini SDK
+streamlit==1.66.1       # Part 4: the interface
+# Exact versions the kit was tested with (Python 3.11 or later).
+# Pin your own full set (pip freeze > requirements.lock) once your code works.
