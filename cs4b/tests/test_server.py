@@ -144,3 +144,16 @@ def test_ledger_records_calls_and_refusals(fresh_server):
     block = fresh_server.events[-1]
     assert block["code"] == "not_select" and "sql_hash" in block
     assert "DROP" not in str(block)                          # hashes, never the client's text
+
+
+def test_configure_restores_default_database(monkeypatch, tmp_path):
+    """Fixture DB selection must not leak into a subsequent API/application run."""
+    default = tmp_path / "default.sqlite"
+    monkeypatch.setenv("ASKPANEL_DB", str(default))
+    try:
+        server.configure(db_path=tmp_path / "fixture.sqlite")
+        server.configure()
+        assert server._State.db_path == default
+    finally:
+        monkeypatch.delenv("ASKPANEL_DB")
+        server.configure()

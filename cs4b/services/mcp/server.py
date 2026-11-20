@@ -103,13 +103,14 @@ def _ledger_file():
 
 def configure(db_path=None, ledger_path=None):
     """Point the server at a database (tests use a scratch copy) and an
-    optional JSONL ledger file. Closes any open connection."""
+    optional JSONL ledger file. With no database argument, restore the configured
+    default (including ASKPANEL_DB). Closes any open connection."""
     with _State.lock:
         if _State.con is not None:
             _State.con.close()
             _State.con = None
-        if db_path is not None:
-            _State.db_path = Path(db_path)
+        _State.db_path = Path(db_path if db_path is not None else
+                              os.environ.get("ASKPANEL_DB") or ROOT / P["data"]["db"])
         _State.ledger = audit.Ledger(path=ledger_path, clock=clock.clock)
     return _State.ledger
 

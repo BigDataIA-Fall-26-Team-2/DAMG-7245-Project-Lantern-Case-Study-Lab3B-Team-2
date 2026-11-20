@@ -10,7 +10,7 @@ data cannot answer.
 - Model: `gemini-3.5-flash-lite`, behind record/replay. Replay (the default) needs no key.
 
 ## Setup
-Run every command from `cs4b/`. Python 3.11 or later (we use 3.12 in conda).
+Run every command from `cs4b/`. Python 3.12 or later (the pinned NumPy 2.5.4 requires 3.12+; release checks also run on 3.13).
 ```
 pip install -r requirements.txt          # exact pins; requirements.lock is our full frozen set
 python tests/run_tests.py                # the kit's 26 tests

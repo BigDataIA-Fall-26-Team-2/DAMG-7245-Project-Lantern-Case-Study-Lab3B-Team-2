@@ -1,0 +1,12 @@
+# Ubuntu 24.04 / Python 3.12+. API runtime only; no notebook/UI build tools.
+-c ../constraints.txt
+pandas==3.1.0
+pyarrow==26.0.0
+pyyaml==6.0.3
+pydantic==2.14.2
+mcp==2.3.0
+langgraph==1.2.19
+google-genai==2.34.0
+python-dotenv==1.2.4
+fastapi==0.165.0
+uvicorn==0.54.0

@@ -1,0 +1,23 @@
+[Unit]
+Description=Ask the Panel API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=askpanel
+Group=askpanel
+WorkingDirectory=/opt/askpanel/cs4b
+EnvironmentFile=/etc/askpanel.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/askpanel/venv/bin/uvicorn api.main:app --host 127.0.0.1 --port 8000 --workers 1 --root-path /api
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/askpanel/cs4b/outputs/cache /opt/askpanel/cs4b/logs
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
