@@ -1,0 +1,103 @@
+{
+  "answer": "5 row(s)\nidentifier | fair_value | price\nSnoopy Bidco, Inc. | Non-Affiliated Issuer | 342,763,000.00 | 94\nGuidehouse, Inc. | Non-Affiliated Issuer | 302,612,000.00 | 96.75\nJSS Holdings, Inc. 1 | Non-Affiliated Issuer | 294,589,000.00 | 100.00\nAuctane, Inc. | Non-Affiliated Issuer | 277,347,000.00 | 98.5\nCambium Learning Group, Inc. | Non-Affiliated Issuer | 262,026,000.00 | 93",
+  "attempts": 0,
+  "category": "lookup",
+  "decline": null,
+  "error": null,
+  "explanation": "Retrieves the top 5 largest current holdings by fair value for Blackstone Secured Lending Fund from the holdings_v table, showing their identifier, fair value, and price.",
+  "follows": null,
+  "history": [
+    {
+      "question": "What are the five largest current holdings by fair value at Blackstone Secured Lending Fund, with their prices?",
+      "sql": "SELECT identifier, fair_value, price FROM holdings_v WHERE bdc = 'BLACKSTONE SECURED LENDING FUND' ORDER BY fair_value DESC LIMIT 5"
+    }
+  ],
+  "id": "q01",
+  "model_calls": 1,
+  "question": "What are the five largest current holdings by fair value at Blackstone Secured Lending Fund, with their prices?",
+  "result": {
+    "columns": [
+      "identifier",
+      "fair_value",
+      "price"
+    ],
+    "row_count": 5,
+    "rows": [
+      [
+        "Snoopy Bidco, Inc. | Non-Affiliated Issuer",
+        342763000.0,
+        93.9999
+      ],
+      [
+        "Guidehouse, Inc. | Non-Affiliated Issuer",
+        302612000.0,
+        96.7501
+      ],
+      [
+        "JSS Holdings, Inc. 1 | Non-Affiliated Issuer",
+        294589000.0,
+        100.0
+      ],
+      [
+        "Auctane, Inc. | Non-Affiliated Issuer",
+        277347000.0,
+        98.5002
+      ],
+      [
+        "Cambium Learning Group, Inc. | Non-Affiliated Issuer",
+        262026000.0,
+        93.0001
+      ]
+    ],
+    "sql": "SELECT identifier, fair_value, price FROM holdings_v WHERE bdc = 'BLACKSTONE SECURED LENDING FUND' ORDER BY fair_value DESC LIMIT 5",
+    "truncated": false
+  },
+  "sql": "SELECT identifier, fair_value, price FROM holdings_v WHERE bdc = 'BLACKSTONE SECURED LENDING FUND' ORDER BY fair_value DESC LIMIT 5",
+  "stop": null,
+  "tokens": 2006,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q01",
+      "schema_hash": "016528308472",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "b72a2d7517ce802adffd7df38ac2cb4d6a33adebecace2a4cb314c4a20cc89ff",
+      "run_id": "q01",
+      "sql_hash": "79cdad032281",
+      "step": 2,
+      "tokens_in": 1921,
+      "tokens_out": 85,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0007888
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q01",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "6d6e99197d4b",
+      "rows": 5,
+      "run_id": "q01",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q01",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0007888
+}

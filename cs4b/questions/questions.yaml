@@ -1,0 +1,34 @@
+# Our ten questions on the real Lab 3B panel (73 BDC 10-Qs for 2026-06-30, current and
+# prior schedules). Coverage: lookup 2, aggregation 2, cross_bdc 2, over_time 2,
+# follow_up 1, decline 1.
+- id: q01
+  category: lookup
+  question: "What are the five largest current holdings by fair value at Blackstone Secured Lending Fund, with their prices?"
+- id: q02
+  category: lookup
+  question: "Which debt holdings at Golub Capital Private Credit Fund carry a PIK rate above 5%?"
+- id: q03
+  category: follow_up
+  follows: q02
+  question: "What is the combined fair value of those holdings?"
+- id: q04
+  category: aggregation
+  question: "For Antares Strategic Credit Fund, how many current holdings and how much fair value fall under each investment type?"
+- id: q05
+  category: aggregation
+  question: "Across the whole panel, what share of current fair value is debt and what share is not?"
+- id: q06
+  category: cross_bdc
+  question: "Which ten BDCs have the largest total current fair value?"
+- id: q07
+  category: cross_bdc
+  question: "Among BDCs with at least 50 debt holdings, which five have the highest share of debt holdings carrying a PIK rate?"
+- id: q08
+  category: over_time
+  question: "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?"
+- id: q09
+  category: over_time
+  question: "Which five BDCs added the most holdings between the prior schedule and the current one?"
+- id: q10
+  category: decline
+  question: "Which of these BDCs will cut its dividend next quarter?"

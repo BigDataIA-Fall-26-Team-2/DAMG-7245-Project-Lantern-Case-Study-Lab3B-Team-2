@@ -1,0 +1,185 @@
+{
+  "answer": "15 row(s)\nidentifier | investment_type | fair_value | pik_rate | maturity\nInhance Parent, Inc. | One stop 3 | UNKNOWN | 2,643,000.00 | 0.2 | \nStriim, Inc. | One stop | UNKNOWN | 500,000.00 | 0.14 | \nAny Hour, LLC | One stop 2 | UNKNOWN | 4,497,000.00 | 0.13 | \nDenali Midco 2, LLC | Second lien | DEBT | 28,205,000.00 | 0.13 | \nDenali Bidco Limited | Subordinated debt 2 | DEBT | 18,739,000.00 | 0.112 | \n... 10 more row(s)",
+  "attempts": 0,
+  "category": "lookup",
+  "decline": null,
+  "error": null,
+  "explanation": "List debt holdings at Golub Capital Private Credit Fund with a PIK rate greater than 5% (0.05), ordered by highest PIK rate first.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Which debt holdings at Golub Capital Private Credit Fund carry a PIK rate above 5%?",
+      "sql": "SELECT identifier, investment_type, fair_value, pik_rate, maturity FROM holdings_v WHERE UPPER(bdc) LIKE '%GOLUB CAPITAL PRIVATE CREDIT FUND%' AND pik_rate > 0.05 AND is_debt = 1 ORDER BY pik_rate DESC LIMIT 50"
+    }
+  ],
+  "id": "q02",
+  "model_calls": 1,
+  "question": "Which debt holdings at Golub Capital Private Credit Fund carry a PIK rate above 5%?",
+  "result": {
+    "columns": [
+      "identifier",
+      "investment_type",
+      "fair_value",
+      "pik_rate",
+      "maturity"
+    ],
+    "row_count": 15,
+    "rows": [
+      [
+        "Inhance Parent, Inc. | One stop 3",
+        "UNKNOWN",
+        2643000.0,
+        0.2,
+        null
+      ],
+      [
+        "Striim, Inc. | One stop",
+        "UNKNOWN",
+        500000.0,
+        0.14,
+        null
+      ],
+      [
+        "Any Hour, LLC | One stop 2",
+        "UNKNOWN",
+        4497000.0,
+        0.13,
+        null
+      ],
+      [
+        "Denali Midco 2, LLC | Second lien",
+        "DEBT",
+        28205000.0,
+        0.13,
+        null
+      ],
+      [
+        "Denali Bidco Limited | Subordinated debt 2",
+        "DEBT",
+        18739000.0,
+        0.112,
+        null
+      ],
+      [
+        "Consilio Midco Limited | Subordinated debt 3",
+        "DEBT",
+        -48000.0,
+        0.1118,
+        null
+      ],
+      [
+        "Pluralsight, LLC | One stop 1",
+        "UNKNOWN",
+        512000.0,
+        0.1114,
+        null
+      ],
+      [
+        "Consilio Midco Limited | Subordinated debt 2",
+        "DEBT",
+        5800000.0,
+        0.1094,
+        null
+      ],
+      [
+        "Transform Bidco Limited | One stop 2",
+        "UNKNOWN",
+        7767000.0,
+        0.1018,
+        null
+      ],
+      [
+        "Ceres Groupe SAS & Ceres PikCo | Subordinated debt",
+        "DEBT",
+        4246000.0,
+        0.1015,
+        null
+      ],
+      [
+        "Denali Bidco Limited | Subordinated debt 1",
+        "DEBT",
+        27584000.0,
+        0.098,
+        null
+      ],
+      [
+        "Consilio Midco Limited | Subordinated debt 1",
+        "DEBT",
+        4440000.0,
+        0.0972,
+        null
+      ],
+      [
+        "RW AM Holdco, LLC | One stop 1",
+        "UNKNOWN",
+        582000.0,
+        0.0891,
+        null
+      ],
+      [
+        "RW AM Holdco, LLC | One stop 2",
+        "UNKNOWN",
+        620000.0,
+        0.0891,
+        null
+      ],
+      [
+        "Panzura, LLC | One stop",
+        "UNKNOWN",
+        63000.0,
+        0.08,
+        null
+      ]
+    ],
+    "sql": "SELECT identifier, investment_type, fair_value, pik_rate, maturity FROM holdings_v WHERE UPPER(bdc) LIKE '%GOLUB CAPITAL PRIVATE CREDIT FUND%' AND pik_rate > 0.05 AND is_debt = 1 ORDER BY pik_rate DESC LIMIT 50",
+    "truncated": false
+  },
+  "sql": "SELECT identifier, investment_type, fair_value, pik_rate, maturity FROM holdings_v WHERE UPPER(bdc) LIKE '%GOLUB CAPITAL PRIVATE CREDIT FUND%' AND pik_rate > 0.05 AND is_debt = 1 ORDER BY pik_rate DESC LIMIT 50",
+  "stop": null,
+  "tokens": 1034,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q02",
+      "schema_hash": "73b90a7a2750",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "7ac1ad53049e904deb982a7532404836f274a092ea54eb99f0a1feaa4ac74e10",
+      "run_id": "q02",
+      "sql_hash": "2aecb9095e38",
+      "step": 2,
+      "tokens_in": 922,
+      "tokens_out": 112,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0005566
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q02",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "5ea206b71aac",
+      "rows": 15,
+      "run_id": "q02",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q02",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0005566
+}

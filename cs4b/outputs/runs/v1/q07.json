@@ -1,0 +1,109 @@
+{
+  "answer": "5 row(s)\nbdc | total_debt_holdings | pik_debt_holdings | share_pik\nFIDUS INVESTMENT CORP | 102 | 31 | 0.3039\nTRIPLEPOINT PRIVATE VENTURE CREDIT INC. | 131 | 36 | 0.2748\nGOLDMAN SACHS PRIVATE MIDDLE MARKET CREDIT II LLC | 128 | 28 | 0.2188\nBLACKROCK DIRECT LENDING CORP. | 177 | 37 | 0.209\nGOLUB CAPITAL DIRECT LENDING CORP | 775 | 147 | 0.1897",
+  "attempts": 0,
+  "category": "cross_bdc",
+  "decline": null,
+  "error": null,
+  "explanation": "Finds the top five BDCs with at least 50 debt holdings that have the highest proportion of debt holdings carrying a PIK rate, using holdings_v.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Among BDCs with at least 50 debt holdings, which five have the highest share of debt holdings carrying a PIK rate?",
+      "sql": "SELECT bdc, COUNT(*) AS total_debt_holdings, SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS pik_debt_holdings, CAST(SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS REAL) / COUNT(*) AS share_pik FROM holdings_v WHERE is_debt = 1 GROUP BY bdc HAVING COUNT(*) >= 50 ORDER BY share_pik DESC LIMIT 5"
+    }
+  ],
+  "id": "q07",
+  "model_calls": 1,
+  "question": "Among BDCs with at least 50 debt holdings, which five have the highest share of debt holdings carrying a PIK rate?",
+  "result": {
+    "columns": [
+      "bdc",
+      "total_debt_holdings",
+      "pik_debt_holdings",
+      "share_pik"
+    ],
+    "row_count": 5,
+    "rows": [
+      [
+        "FIDUS INVESTMENT CORP",
+        102,
+        31,
+        0.30392156862745096
+      ],
+      [
+        "TRIPLEPOINT PRIVATE VENTURE CREDIT INC.",
+        131,
+        36,
+        0.2748091603053435
+      ],
+      [
+        "GOLDMAN SACHS PRIVATE MIDDLE MARKET CREDIT II LLC",
+        128,
+        28,
+        0.21875
+      ],
+      [
+        "BLACKROCK DIRECT LENDING CORP.",
+        177,
+        37,
+        0.20903954802259886
+      ],
+      [
+        "GOLUB CAPITAL DIRECT LENDING CORP",
+        775,
+        147,
+        0.1896774193548387
+      ]
+    ],
+    "sql": "SELECT bdc, COUNT(*) AS total_debt_holdings, SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS pik_debt_holdings, CAST(SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS REAL) / COUNT(*) AS share_pik FROM holdings_v WHERE is_debt = 1 GROUP BY bdc HAVING COUNT(*) >= 50 ORDER BY share_pik DESC LIMIT 5",
+    "truncated": false
+  },
+  "sql": "SELECT bdc, COUNT(*) AS total_debt_holdings, SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS pik_debt_holdings, CAST(SUM(CASE WHEN pik_rate IS NOT NULL AND pik_rate > 0 THEN 1 ELSE 0 END) AS REAL) / COUNT(*) AS share_pik FROM holdings_v WHERE is_debt = 1 GROUP BY bdc HAVING COUNT(*) >= 50 ORDER BY share_pik DESC LIMIT 5",
+  "stop": null,
+  "tokens": 1089,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q07",
+      "schema_hash": "73b90a7a2750",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "78e32f8733781fdfb1d351707b6c173def24fd64437d466aa29b70f1e2559878",
+      "run_id": "q07",
+      "sql_hash": "1e927204a438",
+      "step": 2,
+      "tokens_in": 930,
+      "tokens_out": 159,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0006765
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q07",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "1b0cfe7fbd2c",
+      "rows": 5,
+      "run_id": "q07",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q07",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0006765
+}

@@ -1,0 +1,97 @@
+{
+  "answer": "5 row(s)\nbdc_name | holding_increase\nAUDAX CREDIT BDC INC. | 217\nGOLUB CAPITAL PRIVATE CREDIT FUND | 159\nGOLUB CAPITAL BDC 4, INC. | 157\nNUVEEN CHURCHILL PRIVATE CAPITAL INCOME FUND | 109\nGOLUB CAPITAL DIRECT LENDING CORP | 84",
+  "attempts": 0,
+  "category": "over_time",
+  "decline": null,
+  "error": null,
+  "explanation": "Count the number of current versus prior holdings per BDC using the holdings and filings tables, and find the top 5 BDCs with the largest net increase.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Which five BDCs added the most holdings between the prior schedule and the current one?",
+      "sql": "SELECT f.name AS bdc_name, SUM(CASE WHEN h.period_role = 'current' THEN 1 ELSE 0 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 ELSE 0 END) AS holding_increase FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holding_increase DESC LIMIT 5"
+    }
+  ],
+  "id": "q09",
+  "model_calls": 1,
+  "question": "Which five BDCs added the most holdings between the prior schedule and the current one?",
+  "result": {
+    "columns": [
+      "bdc_name",
+      "holding_increase"
+    ],
+    "row_count": 5,
+    "rows": [
+      [
+        "AUDAX CREDIT BDC INC.",
+        217
+      ],
+      [
+        "GOLUB CAPITAL PRIVATE CREDIT FUND",
+        159
+      ],
+      [
+        "GOLUB CAPITAL BDC 4, INC.",
+        157
+      ],
+      [
+        "NUVEEN CHURCHILL PRIVATE CAPITAL INCOME FUND",
+        109
+      ],
+      [
+        "GOLUB CAPITAL DIRECT LENDING CORP",
+        84
+      ]
+    ],
+    "sql": "SELECT f.name AS bdc_name, SUM(CASE WHEN h.period_role = 'current' THEN 1 ELSE 0 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 ELSE 0 END) AS holding_increase FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holding_increase DESC LIMIT 5",
+    "truncated": false
+  },
+  "sql": "SELECT f.name AS bdc_name, SUM(CASE WHEN h.period_role = 'current' THEN 1 ELSE 0 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 ELSE 0 END) AS holding_increase FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holding_increase DESC LIMIT 5",
+  "stop": null,
+  "tokens": 1049,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q09",
+      "schema_hash": "73b90a7a2750",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "83f6af4262b5373479a512ab6f7a4384beb2fcdb500d466a861c61acb4b37f57",
+      "run_id": "q09",
+      "sql_hash": "ce3baf9c5bec",
+      "step": 2,
+      "tokens_in": 920,
+      "tokens_out": 129,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0005985
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q09",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "572baeb77b66",
+      "rows": 5,
+      "run_id": "q09",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q09",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0005985
+}

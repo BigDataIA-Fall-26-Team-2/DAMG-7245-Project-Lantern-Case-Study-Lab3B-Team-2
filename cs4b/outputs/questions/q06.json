@@ -1,0 +1,117 @@
+{
+  "answer": "10 row(s)\nbdc | total_fair_value\nAPOLLO DEBT SOLUTIONS BDC | 25,367,235,000.00\nGOLDMAN SACHS PRIVATE CREDIT CORP. | 18,187,575,000.00\nBLACKSTONE SECURED LENDING FUND | 13,364,297,000.00\nGOLUB CAPITAL PRIVATE CREDIT FUND | 9,546,398,000.00\nSIXTH STREET LENDING PARTNERS | 8,670,997,000.00\n... 5 more row(s)",
+  "attempts": 0,
+  "category": "cross_bdc",
+  "decline": null,
+  "error": null,
+  "explanation": "Calculates the total current fair value of holdings for each BDC from the holdings_v table, orders the results in descending order, and limits to the top ten BDCs.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Which ten BDCs have the largest total current fair value?",
+      "sql": "SELECT bdc, SUM(fair_value) AS total_fair_value FROM holdings_v GROUP BY bdc ORDER BY total_fair_value DESC LIMIT 10"
+    }
+  ],
+  "id": "q06",
+  "model_calls": 1,
+  "question": "Which ten BDCs have the largest total current fair value?",
+  "result": {
+    "columns": [
+      "bdc",
+      "total_fair_value"
+    ],
+    "row_count": 10,
+    "rows": [
+      [
+        "APOLLO DEBT SOLUTIONS BDC",
+        25367235000.0
+      ],
+      [
+        "GOLDMAN SACHS PRIVATE CREDIT CORP.",
+        18187575000.0
+      ],
+      [
+        "BLACKSTONE SECURED LENDING FUND",
+        13364297000.0
+      ],
+      [
+        "GOLUB CAPITAL PRIVATE CREDIT FUND",
+        9546398000.0
+      ],
+      [
+        "SIXTH STREET LENDING PARTNERS",
+        8670997000.0
+      ],
+      [
+        "MSD INVESTMENT CORP.",
+        6857807000.0
+      ],
+      [
+        "ANTARES STRATEGIC CREDIT FUND",
+        4607027000.0
+      ],
+      [
+        "NUVEEN CHURCHILL PRIVATE CAPITAL INCOME FUND",
+        3255885000.0
+      ],
+      [
+        "T. ROWE PRICE OHA SELECT PRIVATE CREDIT FUND",
+        3100822000.0
+      ],
+      [
+        "STONE POINT CREDIT CORP",
+        2962816000.0
+      ]
+    ],
+    "sql": "SELECT bdc, SUM(fair_value) AS total_fair_value FROM holdings_v GROUP BY bdc ORDER BY total_fair_value DESC LIMIT 10",
+    "truncated": false
+  },
+  "sql": "SELECT bdc, SUM(fair_value) AS total_fair_value FROM holdings_v GROUP BY bdc ORDER BY total_fair_value DESC LIMIT 10",
+  "stop": null,
+  "tokens": 2001,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q06",
+      "schema_hash": "016528308472",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "f956586aa465ed6725b090cf98705680e1553666a4556715cd30bb7771266d26",
+      "run_id": "q06",
+      "sql_hash": "ec0cad3f1b1f",
+      "step": 2,
+      "tokens_in": 1913,
+      "tokens_out": 88,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0007939
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q06",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "f08ddbe8e209",
+      "rows": 10,
+      "run_id": "q06",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q06",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0007939
+}

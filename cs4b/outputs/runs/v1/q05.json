@@ -1,0 +1,81 @@
+{
+  "answer": "1 row(s)\ndebt_fair_value_percentage | non_debt_fair_value_percentage\n92.3 | 7.696",
+  "attempts": 0,
+  "category": "aggregation",
+  "decline": null,
+  "error": null,
+  "explanation": "Calculates the percentage of total fair value represented by debt (is_debt = 1) versus non-debt (is_debt = 0) across all holdings in holdings_v.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Across the whole panel, what share of current fair value is debt and what share is not?",
+      "sql": "SELECT SUM(CASE WHEN is_debt = 1 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS debt_fair_value_percentage, SUM(CASE WHEN is_debt = 0 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS non_debt_fair_value_percentage FROM holdings_v"
+    }
+  ],
+  "id": "q05",
+  "model_calls": 1,
+  "question": "Across the whole panel, what share of current fair value is debt and what share is not?",
+  "result": {
+    "columns": [
+      "debt_fair_value_percentage",
+      "non_debt_fair_value_percentage"
+    ],
+    "row_count": 1,
+    "rows": [
+      [
+        92.30380811652779,
+        7.696191883472208
+      ]
+    ],
+    "sql": "SELECT SUM(CASE WHEN is_debt = 1 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS debt_fair_value_percentage, SUM(CASE WHEN is_debt = 0 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS non_debt_fair_value_percentage FROM holdings_v",
+    "truncated": false
+  },
+  "sql": "SELECT SUM(CASE WHEN is_debt = 1 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS debt_fair_value_percentage, SUM(CASE WHEN is_debt = 0 THEN fair_value ELSE 0.0 END) * 100.0 / SUM(fair_value) AS non_debt_fair_value_percentage FROM holdings_v",
+  "stop": null,
+  "tokens": 1071,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q05",
+      "schema_hash": "73b90a7a2750",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "021cb05d4c0d2b4fcb78fa886b5e010298d03bd549f0ab618a61e4742e6af731",
+      "run_id": "q05",
+      "sql_hash": "7064d22a18ae",
+      "step": 2,
+      "tokens_in": 922,
+      "tokens_out": 149,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0006491
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q05",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "1950ebc756a8",
+      "rows": 1,
+      "run_id": "q05",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q05",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0006491
+}

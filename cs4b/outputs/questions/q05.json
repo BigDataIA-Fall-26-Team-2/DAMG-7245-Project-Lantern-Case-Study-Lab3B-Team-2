@@ -1,0 +1,98 @@
+{
+  "answer": "4 row(s)\ninvestment_type | total_fair_value | percentage\nDEBT | 115,336,087,060.00 | 76.68\nUNKNOWN | 32,782,206,127.00 | 21.8\nEQUITY | 2,282,113,290.00 | 1.517\nOTHER | 9,169,522.00 | 0.006096",
+  "attempts": 0,
+  "category": "aggregation",
+  "decline": null,
+  "error": null,
+  "explanation": "Calculates the total fair value and percentage share of current fair value for each investment type across the entire panel using holdings_v.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Across the whole panel, what share of current fair value is debt and what share is not?",
+      "sql": "SELECT investment_type, SUM(fair_value) AS total_fair_value, SUM(fair_value) * 100.0 / (SELECT SUM(fair_value) FROM holdings_v) AS percentage FROM holdings_v GROUP BY investment_type ORDER BY total_fair_value DESC"
+    }
+  ],
+  "id": "q05",
+  "model_calls": 1,
+  "question": "Across the whole panel, what share of current fair value is debt and what share is not?",
+  "result": {
+    "columns": [
+      "investment_type",
+      "total_fair_value",
+      "percentage"
+    ],
+    "row_count": 4,
+    "rows": [
+      [
+        "DEBT",
+        115336087060.0,
+        76.68134578131303
+      ],
+      [
+        "UNKNOWN",
+        32782206127.0,
+        21.79529189499075
+      ],
+      [
+        "EQUITY",
+        2282113290.0,
+        1.5172659552043233
+      ],
+      [
+        "OTHER",
+        9169522.0,
+        0.006096368491897726
+      ]
+    ],
+    "sql": "SELECT investment_type, SUM(fair_value) AS total_fair_value, SUM(fair_value) * 100.0 / (SELECT SUM(fair_value) FROM holdings_v) AS percentage FROM holdings_v GROUP BY investment_type ORDER BY total_fair_value DESC",
+    "truncated": false
+  },
+  "sql": "SELECT investment_type, SUM(fair_value) AS total_fair_value, SUM(fair_value) * 100.0 / (SELECT SUM(fair_value) FROM holdings_v) AS percentage FROM holdings_v GROUP BY investment_type ORDER BY total_fair_value DESC",
+  "stop": null,
+  "tokens": 2026,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q05",
+      "schema_hash": "016528308472",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "1daf1bfdd267b065a0e874879654db500644fb937309d06df9259b1f6b0df90d",
+      "run_id": "q05",
+      "sql_hash": "49bdba705586",
+      "step": 2,
+      "tokens_in": 1920,
+      "tokens_out": 106,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.000841
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q05",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "3896fef788dc",
+      "rows": 4,
+      "run_id": "q05",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q05",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.000841
+}
