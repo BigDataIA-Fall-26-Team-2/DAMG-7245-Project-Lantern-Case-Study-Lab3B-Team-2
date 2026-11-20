@@ -9,6 +9,11 @@ data cannot answer.
   25,257 in the current schedule, 23,361 in the prior fiscal year-end schedule.
 - Model: `gemini-3.5-flash-lite`, behind record/replay. Replay (the default) needs no key.
 
+## Links
+- Demo video: [Ask the Panel demo](https://northeastern-my.sharepoint.com/:v:/g/personal/nandavarapu_s_northeastern_edu/IQBmeGr0P0zwTrON_uoQXC0RAd6MS1JNJ1FltLuLq-fW0Wc?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=Cb3S5N)
+- Codelab (step-by-step walkthrough of the whole lab): [Ask the Panel codelab](https://docs.google.com/document/d/111hPoG8N6cyZXT0KX6vPRCj9vuzDkOGp/edit?usp=sharing)
+- Codelab source in this repo (Google Codelabs format): [docs/codelab/ask-the-panel.md](docs/codelab/ask-the-panel.md)
+
 ## Setup
 Run every command from `cs4b/`. Python 3.11 or later (we use 3.12 in conda).
 ```
