@@ -1,0 +1,109 @@
+{
+  "answer": "5 row(s)\nbdc | holdings_added | current_holdings | prior_holdings\nAUDAX CREDIT BDC INC. | 217 | 659 | 442\nGOLUB CAPITAL PRIVATE CREDIT FUND | 159 | 1051 | 892\nGOLUB CAPITAL BDC 4, INC. | 157 | 922 | 765\nNUVEEN CHURCHILL PRIVATE CAPITAL INCOME FUND | 109 | 720 | 611\nGOLUB CAPITAL DIRECT LENDING CORP | 84 | 1123 | 1039",
+  "attempts": 0,
+  "category": "over_time",
+  "decline": null,
+  "error": null,
+  "explanation": "We count the number of holdings in the current schedule versus the prior schedule for each BDC by joining holdings and filings. We calculate the difference as current minus prior, order by the added holdings in descending order, and limit to the top 5 BDCs.",
+  "follows": null,
+  "history": [
+    {
+      "question": "Which five BDCs added the most holdings between the prior schedule and the current one?",
+      "sql": "SELECT f.name AS bdc, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) - COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS holdings_added, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_holdings, COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_holdings FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holdings_added DESC LIMIT 5"
+    }
+  ],
+  "id": "q09",
+  "model_calls": 1,
+  "question": "Which five BDCs added the most holdings between the prior schedule and the current one?",
+  "result": {
+    "columns": [
+      "bdc",
+      "holdings_added",
+      "current_holdings",
+      "prior_holdings"
+    ],
+    "row_count": 5,
+    "rows": [
+      [
+        "AUDAX CREDIT BDC INC.",
+        217,
+        659,
+        442
+      ],
+      [
+        "GOLUB CAPITAL PRIVATE CREDIT FUND",
+        159,
+        1051,
+        892
+      ],
+      [
+        "GOLUB CAPITAL BDC 4, INC.",
+        157,
+        922,
+        765
+      ],
+      [
+        "NUVEEN CHURCHILL PRIVATE CAPITAL INCOME FUND",
+        109,
+        720,
+        611
+      ],
+      [
+        "GOLUB CAPITAL DIRECT LENDING CORP",
+        84,
+        1123,
+        1039
+      ]
+    ],
+    "sql": "SELECT f.name AS bdc, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) - COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS holdings_added, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_holdings, COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_holdings FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holdings_added DESC LIMIT 5",
+    "truncated": false
+  },
+  "sql": "SELECT f.name AS bdc, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) - COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS holdings_added, COUNT(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_holdings, COUNT(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_holdings FROM holdings h JOIN filings f ON h.adsh = f.adsh GROUP BY f.name ORDER BY holdings_added DESC LIMIT 5",
+  "stop": null,
+  "tokens": 1988,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q09",
+      "schema_hash": "5692c5a2415b",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "260b835f9575da0ebfc26785e05560b207a850ec8752772e8c7067bc6c34bbc6",
+      "run_id": "q09",
+      "sql_hash": "5e24589f8199",
+      "step": 2,
+      "tokens_in": 1799,
+      "tokens_out": 189,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0010122
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q09",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "81ac2e0c803d",
+      "rows": 5,
+      "run_id": "q09",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q09",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0010122
+}

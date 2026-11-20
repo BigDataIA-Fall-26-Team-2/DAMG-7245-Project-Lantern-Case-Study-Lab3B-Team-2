@@ -1,79 +1,127 @@
-# Lab 4B starter kit: Ask the Panel
+# Ask the Panel (Lab 4B, Project LANTERN Part 4B)
 
-Building blocks and notebooks for **Project LANTERN, Tool Tutorial Part 4B**: a natural-language
-query interface over the BDC panel. An analyst types a question; a LangGraph agent writes one SQL
-query as a Pydantic object, runs it through your MCP query server, and answers with the rows and
-the SQL behind them.
+A natural-language query interface over our Lab 3B BDC holdings panel. An analyst types a
+question; a LangGraph agent writes ONE SQL query as a Pydantic object; a read-only MCP server
+runs it; the answer comes back with the SQL and the rows behind it, or a plain decline when the
+data cannot answer.
 
-The kit gives you tested building blocks, not a solution. Your view, contract, server, agent, app,
-ten questions and demo are the lab. **Due Friday 20 November 2026, 3:59 p.m. ET.**
+- Panel: 73 BDC 10-Q filings for period 2026-06-30 (public SEC data), 48,618 holding rows:
+  25,257 in the current schedule, 23,361 in the prior fiscal year-end schedule.
+- Model: `gemini-3.5-flash-lite`, behind record/replay. Replay (the default) needs no key.
 
-## Setup (10 minutes)
-Copy this folder into your team repository as `cs4b/` (next to `cs3b/`), and run every command from
-inside it.
+## Setup
+Run every command from `cs4b/`. Python 3.11 or later (we use 3.12 in conda).
 ```
-cd cs4b
-python -m venv .venv && source .venv/bin/activate      # Python 3.11 or later
-pip install -r requirements.txt
-python tests/run_tests.py                               # 26/26 kit tests
-python tools/run_notebooks.py                           # 6/6 notebooks, offline
-jupyter lab                                             # start with notebooks/00_setup.ipynb
+pip install -r requirements.txt          # exact pins; requirements.lock is our full frozen set
+python tests/run_tests.py                # the kit's 26 tests
+python tools/build_db.py                 # data/panel.sqlite from the panel params.yaml selects + our view
+pytest -q tests/                         # 64: the kit's 26 + ours (12 contract, 16 server, 10 agent)
+python agent/run.py --mode replay        # answer questions/questions.yaml from outputs/cache
+PYTHONPATH=src python -m askpanel.check  # Windows: set PYTHONPATH=src && python -m askpanel.check
+streamlit run app/streamlit_app.py       # the interface (replay mode by default)
 ```
-Record mode needs a Gemini API key (free, from Google AI Studio): `export GEMINI_API_KEY=...`.
-Replay, the tests and grading need no key. Never commit it.
+Record mode only (never needed to grade): put `GEMINI_API_KEY=...` in `cs4b/.env` (gitignored),
+then `python agent/run.py --mode record`. Two replays are byte-identical:
+`python agent/run.py --mode replay --verify`.
 
-## What is here
-- `notebooks/`: 00 (setup) and 32 to 36, one per lab of Tool Tutorial Part 4B. They run offline on the
-  fixture with a stand-in model.
-- `src/askpanel/`: `db` (panel to SQLite, the view contract and its check), `gate` (read-only connection,
-  authorizer, static check, row cap, timeout), `catalog` (the four-tool catalog), `tools` (plain versions
-  of the four tools, and the column descriptions the model reads), `nodes` (the agent's five nodes and two
-  routers, plus `run_plain`, which runs the same graph without LangGraph), `llm` (record/replay, as in
-  Lab 3B), `audit`, `clock`, `standin` (a deterministic stand-in model), `questions` (coverage rules),
-  `econ`, and `check` (the self-check).
-- `data/fixture/panel_2p.csv`: the Lab 3B fixture panel, four fictional BDCs with two schedules each.
-- `data/real/`: put your Lab 3B real panel here as `panel_2p.parquet` (or `.csv`) and commit it.
-- `questions/questions.example.yaml`, `outputs/economics.example.md`, `outputs/failures.example.md`:
-  the formats. Copy each without `.example` and write your own.
-- `agent/`, `services/mcp/`, `app/`, `sql/`: empty folders (with `__init__.py` where Python needs one)
-  for your code.
-- `tools/build_db.py`: builds the query database from a panel and your view. `tools/run_notebooks.py`.
+The MCP Inspector: `mcp dev services/mcp/server.py` (needs Node.js), then call each tool once.
 
-## What you build
-| File | Part | Lab |
+## Architecture
+```
+ Streamlit app (app/streamlit_app.py)             agent/run.py (batch, the ten questions)
+          |                                                |
+          +----------------------+-------------------------+
+                                 v
+   LangGraph agent (agent/graph.py): StateGraph, InMemorySaver checkpointer (one thread per conversation)
+      load_schema -> generate -> check --ok--> execute --ok--> summarize
+                        ^          |   \--decline--------------^
+                        +--repair--+------repair---+        (capped at 3 model calls)
+          |                  |                 |
+          |     Gemini behind ReplayClient     Pydantic contract (agent/contract.py):
+          |     (agent/model.py; outputs/cache)  SQLQuery = exactly one of sql | decline,
+          |                                      sql through gate.static_check + cross_join rule
+          v
+   MCP client (agent/mcp_client.py): synchronous calls over one SDK v2 Client session
+          |  MCP protocol (in memory)
+          v
+   MCP server (services/mcp/server.py): exactly 4 READ tools
+      list_tables | describe_table | sample_values | run_query      -> ledger event per call/refusal
+          |
+          v
+   gate (src/askpanel/gate.py): one statement, SELECT/WITH only, authorizer, row cap 200, 5 s timeout
+          |
+          v
+   SQLite, read-only (gate.connect_ro: mode=ro + authorizer): filings, holdings, holdings_v
+```
+Rules that hold by construction:
+- Nothing in `agent/` or `app/` imports `sqlite3` or opens the database; the self-check verifies it.
+- The server opens the database with `gate.connect_ro` and runs every query through `gate.run_query`.
+  The catalog is closed (`REGISTRY` literal, all READ); every tool has a Pydantic output model
+  and the MCP read-only annotation.
+- Every tool call and every refusal is a ledger event (`logs/server_ledger.jsonl`, gitignored),
+  holding hashes of the SQL rather than its text.
+
+## What is where
+| File | Part | What it does |
 |---|---|---|
-| `sql/holdings_v.sql` | 0: the view | 32B |
-| `agent/contract.py` | 1: `SchemaCatalog`, `QueryRequest`, `SQLQuery`, `QueryResult`, `validate_query` | 33B |
-| `services/mcp/server.py`, `tests/test_server.py` | 2: the MCP query server and its tests | 34B |
-| `agent/mcp_client.py` | 2: the synchronous client the agent and app use | 34B |
-| `agent/model.py`, `agent/graph.py`, `agent/run.py` | 3: the model behind record/replay, the LangGraph agent, the runner | 35B |
-| `app/streamlit_app.py` | 4: the interface | 36B |
-| `questions/questions.yaml`, `outputs/questions/`, `outputs/cache/` | 5: ten questions, answered and replayable | 36B |
-| `outputs/economics.md`, `outputs/failures.md` | 6: unit economics and the failure log | 36B |
-| `README.md` (yours, at the top of `cs4b/`) | setup, architecture, an Inspector screenshot, the demo link | 36B |
+| `sql/holdings_v.sql` | 0 | One row per current holding, BDC name joined on adsh, the 16 contract columns, `price`, `is_debt` |
+| `tools/prepare_real_panel.py` | 0 | Copies our cs3b panel; clears principal on the 46 current rows with principal but no fair value (see failures.md, data note) |
+| `agent/contract.py` | 1 | `SchemaCatalog`, `QueryRequest`, `SQLQuery`, `QueryResult`, `validate_query` |
+| `services/mcp/server.py` | 2 | The four READ tools, panel-specific column descriptions, ledger |
+| `agent/mcp_client.py` | 2 | `PanelClient`: blocking tool calls for the agent and app |
+| `agent/model.py` | 3 | Gemini behind `askpanel.llm.ReplayClient`; prompt rules; token, cost and latency per call |
+| `agent/graph.py` | 3 | The StateGraph; `load_schema` adds exact BDC names and investment types via `sample_values`; `check` uses `validate_query` |
+| `agent/run.py` | 3 | `--mode record/replay`, `--verify`; follow-ups continue the thread they follow |
+| `app/streamlit_app.py` | 4 | Answer, SQL, rows, cost, model calls, trace, conversation, "New conversation" |
+| `questions/questions.yaml` | 5 | Our ten questions |
+| `outputs/questions/`, `outputs/cache/` | 5 | Saved answers and the replay cache (committed) |
+| `outputs/runs/v1/`, `outputs/runs/v2/` | 6 | Earlier recordings kept as evidence for failures.md |
+| `outputs/economics.md`, `outputs/failures.md` | 6 | Unit economics; the failure log |
+| `tests/test_contract.py`, `tests/test_server.py`, `tests/test_agent.py` | 1-3 | Refusals, closed catalog, repair, budget, follow-ups, identical replays |
 
-Replace this README with your own when you submit; keep the setup commands.
+## Results
+Final recording (v3, `outputs/questions/`), replayable from `outputs/cache/` with no key; two
+replays are byte-identical. Every answer was checked against an independent query of ours.
 
-## Building on the fixture, then on your real panel
-1. Build everything on the fixture first (`data.use_real: false` in `params.yaml`).
-2. Copy your Lab 3B real panel to `data/real/panel_2p.parquet` (or `.csv`; set `data.real_panel` if you
-   use another name) and commit it.
-3. Set `data.use_real: true` and run `python tools/build_db.py`: it rebuilds `data/panel.sqlite` from
-   your real panel and checks the view on it.
-4. Record your ten questions on the real panel (`python agent/run.py --mode record`), then replay them.
+| id | category | answer (from the trace) |
+|---|---|---|
+| q01 | lookup | Blackstone Secured Lending Fund's top 5: Snoopy Bidco $342.8M (price 94.00), Guidehouse $302.6M (96.75), JSS Holdings $294.6M (100.00), Auctane $277.3M (98.50), Cambium Learning $262.0M (93.00) |
+| q02 | lookup | 15 Golub Capital Private Credit Fund debt holdings with PIK above 5% (top: Inhance Parent One stop 3, 20%) |
+| q03 | follow_up (q02) | their combined fair value: $106,150,000 |
+| q04 | aggregation | Antares Strategic Credit Fund: DEBT 1,326 ($4.40B), EQUITY 92 ($171.4M), UNKNOWN 70 ($38.8M) |
+| q05 | aggregation | panel fair value by type: DEBT 76.68%, UNKNOWN 21.80%, EQUITY 1.52%, OTHER 0.006% |
+| q06 | cross_bdc | largest BDCs: Apollo Debt Solutions $25.37B, Goldman Sachs Private Credit $18.19B, Blackstone Secured Lending $13.36B, ... |
+| q07 | cross_bdc | highest PIK share of debt holdings: Fidus 28.7% (33 of 115), TriplePoint Private Venture 27.3%, GS Private Middle Market II 21.7%, ... |
+| q08 | over_time | Apollo Debt Solutions: 815 to 834 holdings (+19), $24.52B to $25.37B (+$851.6M) |
+| q09 | over_time | most holdings added: Audax Credit BDC +217, Golub Capital Private Credit Fund +159, Golub Capital BDC 4 +157, ... |
+| q10 | decline | declined: a dividend forecast is not in the panel |
 
-## Commands
-```
-python tests/run_tests.py                       # the kit's tests
-python tools/run_notebooks.py                   # every notebook, offline
-python tools/build_db.py                        # data/panel.sqlite from the panel params.yaml selects, plus your view
-PYTHONPATH=src python -m askpanel.check         # the Lab 4B self-check (12 checks)
-```
+- Cost: $0.000907 per question at list price ($0.009072 for ten), $0 actual (free tier);
+  1.0 model call per question. Full table and assumptions: `outputs/economics.md`.
+- Failures: five real failures across our v1 and v2 recordings (a LIKE that merged two
+  funds, a misleading `is_debt` description, a change never computed, and two failures our
+  own fixes caused), each fixed in the system and confirmed in v3: `outputs/failures.md`.
 
-## Rules that never bend
-- The agent and the app reach the data **only** through your MCP server. No `sqlite3` in `agent/` or `app/`.
-- The server opens the database read-only, with the authorizer (`gate.connect_ro`).
-- Commit `outputs/questions/` and `outputs/cache/`: graders replay your ten questions from them, free and
-  offline. Never commit an API key.
-- Public SEC data only; every client and person is fictional. Repositories stay private until grades are
-  returned.
+Self-check (`PYTHONPATH=src python -m askpanel.check`): 12/12.
+
+## MCP Inspector
+`mcp dev services/mcp/server.py`, connected to `askpanel-query` with its four tools.
+
+A SELECT through `run_query`: five BDCs by holding count, as structured output
+(`row_count` 5, `truncated` false).
+
+![MCP Inspector: run_query with a SELECT returning 5 rows](docs/inspector.jpeg)
+
+A write refused by the server: `DELETE` through `run_query` returns a tool error with the
+gate's code, `not_select: only SELECT (or WITH ... SELECT) is allowed`, and the server records
+a `policy_block` ledger event.
+
+![MCP Inspector: a DELETE refused with not_select](docs/inspector_refusal.jpeg)
+
+## Notes
+- Fixture first: every Part was built and tested on the kit fixture (`data.use_real: false`)
+  before we switched to the real panel. The tests still build their own fixture database.
+- Repair edge: Gemini needed no repairs on our final ten questions (each took one call).
+  The repair edge is shown in `tests/test_agent.py::test_repair_on_the_real_panel`: the
+  server refuses `no such column`, and the second attempt answers.
+- Public SEC data only; every person in the scenario is fictional.

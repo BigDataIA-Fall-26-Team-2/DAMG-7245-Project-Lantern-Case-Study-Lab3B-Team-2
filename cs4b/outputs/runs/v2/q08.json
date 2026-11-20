@@ -1,0 +1,91 @@
+{
+  "answer": "1 row(s)\nbdc | prior_fair_value | current_fair_value | fair_value_change | prior_holding_count | current_holding_count | holding_count_change\nAPOLLO DEBT SOLUTIONS BDC | 1,013,671,210.00 | 25,367,235,000.00 | 24,353,563,790.00 | 395 | 834 | 439",
+  "attempts": 0,
+  "category": "over_time",
+  "decline": null,
+  "error": null,
+  "explanation": "Calculates the total fair value and number of holdings for Apollo Debt Solutions BDC for both prior and current schedules using the holdings and filings tables, and computes the change for each.",
+  "follows": null,
+  "history": [
+    {
+      "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+      "sql": "SELECT cur.name AS bdc, prior_fv.total_fair_value AS prior_fair_value, cur_fv.total_fair_value AS current_fair_value, cur_fv.total_fair_value - prior_fv.total_fair_value AS fair_value_change, prior_fv.holding_count AS prior_holding_count, cur_fv.holding_count AS current_holding_count, cur_fv.holding_count - prior_fv.holding_count AS holding_count_change FROM filings cur JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'prior' GROUP BY adsh) prior_fv ON 1=1 JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'current' GROUP BY adsh) cur_fv ON cur.adsh = cur_fv.adsh WHERE cur.name = 'APOLLO DEBT SOLUTIONS BDC' LIMIT 1"
+    }
+  ],
+  "id": "q08",
+  "model_calls": 1,
+  "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+  "result": {
+    "columns": [
+      "bdc",
+      "prior_fair_value",
+      "current_fair_value",
+      "fair_value_change",
+      "prior_holding_count",
+      "current_holding_count",
+      "holding_count_change"
+    ],
+    "row_count": 1,
+    "rows": [
+      [
+        "APOLLO DEBT SOLUTIONS BDC",
+        1013671210.0,
+        25367235000.0,
+        24353563790.0,
+        395,
+        834,
+        439
+      ]
+    ],
+    "sql": "SELECT cur.name AS bdc, prior_fv.total_fair_value AS prior_fair_value, cur_fv.total_fair_value AS current_fair_value, cur_fv.total_fair_value - prior_fv.total_fair_value AS fair_value_change, prior_fv.holding_count AS prior_holding_count, cur_fv.holding_count AS current_holding_count, cur_fv.holding_count - prior_fv.holding_count AS holding_count_change FROM filings cur JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'prior' GROUP BY adsh) prior_fv ON 1=1 JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'current' GROUP BY adsh) cur_fv ON cur.adsh = cur_fv.adsh WHERE cur.name = 'APOLLO DEBT SOLUTIONS BDC' LIMIT 1",
+    "truncated": false
+  },
+  "sql": "SELECT cur.name AS bdc, prior_fv.total_fair_value AS prior_fair_value, cur_fv.total_fair_value AS current_fair_value, cur_fv.total_fair_value - prior_fv.total_fair_value AS fair_value_change, prior_fv.holding_count AS prior_holding_count, cur_fv.holding_count AS current_holding_count, cur_fv.holding_count - prior_fv.holding_count AS holding_count_change FROM filings cur JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'prior' GROUP BY adsh) prior_fv ON 1=1 JOIN (SELECT adsh, SUM(fair_value) AS total_fair_value, COUNT(*) AS holding_count FROM holdings WHERE period_role = 'current' GROUP BY adsh) cur_fv ON cur.adsh = cur_fv.adsh WHERE cur.name = 'APOLLO DEBT SOLUTIONS BDC' LIMIT 1",
+  "stop": null,
+  "tokens": 2093,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q08",
+      "schema_hash": "5692c5a2415b",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "e7d7571a7d6a60aaaf42e66e0a10c0a9e2ec2a477a08d9cca2d8471a73ff6f68",
+      "run_id": "q08",
+      "sql_hash": "7bdac32fd07e",
+      "step": 2,
+      "tokens_in": 1808,
+      "tokens_out": 285,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0012549
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q08",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "14e71a7fc2b2",
+      "rows": 1,
+      "run_id": "q08",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q08",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0012549
+}

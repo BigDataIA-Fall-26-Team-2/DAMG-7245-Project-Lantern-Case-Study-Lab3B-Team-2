@@ -1,0 +1,88 @@
+{
+  "answer": "2 row(s)\nschedule_period | number_of_holdings | total_fair_value\nprior | 815 | 24,515,628,000.00\ncurrent | 834 | 25,367,235,000.00",
+  "attempts": 0,
+  "category": "over_time",
+  "decline": null,
+  "error": null,
+  "explanation": "To compare the total fair value and number of holdings from the prior schedule to the current one for Apollo Debt Solutions BDC, we query the 'holdings' table joined with 'filings' on 'adsh', filtering by the BDC name and grouping by period_role ('current' vs 'prior').",
+  "follows": null,
+  "history": [
+    {
+      "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+      "sql": "SELECT h.period_role AS schedule_period, COUNT(*) AS number_of_holdings, SUM(h.fair_value) AS total_fair_value FROM holdings h JOIN filings f ON h.adsh = f.adsh WHERE UPPER(f.name) LIKE '%APOLLO DEBT SOLUTIONS%' GROUP BY h.period_role ORDER BY h.period_role DESC"
+    }
+  ],
+  "id": "q08",
+  "model_calls": 1,
+  "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+  "result": {
+    "columns": [
+      "schedule_period",
+      "number_of_holdings",
+      "total_fair_value"
+    ],
+    "row_count": 2,
+    "rows": [
+      [
+        "prior",
+        815,
+        24515628000.0
+      ],
+      [
+        "current",
+        834,
+        25367235000.0
+      ]
+    ],
+    "sql": "SELECT h.period_role AS schedule_period, COUNT(*) AS number_of_holdings, SUM(h.fair_value) AS total_fair_value FROM holdings h JOIN filings f ON h.adsh = f.adsh WHERE UPPER(f.name) LIKE '%APOLLO DEBT SOLUTIONS%' GROUP BY h.period_role ORDER BY h.period_role DESC",
+    "truncated": false
+  },
+  "sql": "SELECT h.period_role AS schedule_period, COUNT(*) AS number_of_holdings, SUM(h.fair_value) AS total_fair_value FROM holdings h JOIN filings f ON h.adsh = f.adsh WHERE UPPER(f.name) LIKE '%APOLLO DEBT SOLUTIONS%' GROUP BY h.period_role ORDER BY h.period_role DESC",
+  "stop": null,
+  "tokens": 1091,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q08",
+      "schema_hash": "73b90a7a2750",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "7aa665b42aa6ccb51c7a600cc61d55710b991405341d6ba2db4fbfa9e410b8f6",
+      "run_id": "q08",
+      "sql_hash": "e14fa7209104",
+      "step": 2,
+      "tokens_in": 929,
+      "tokens_out": 162,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0006837
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q08",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "020d0d0f5920",
+      "rows": 2,
+      "run_id": "q08",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q08",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0006837
+}

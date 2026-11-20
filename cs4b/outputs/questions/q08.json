@@ -1,0 +1,89 @@
+{
+  "answer": "1 row(s)\nprior_fair_value | current_fair_value | change_fair_value | prior_num_holdings | current_num_holdings | change_num_holdings\n24,515,628,000.00 | 25,367,235,000.00 | 851,607,000.00 | 815 | 834 | 19",
+  "attempts": 0,
+  "category": "over_time",
+  "decline": null,
+  "error": null,
+  "explanation": "Calculates the total fair value and number of holdings for Apollo Debt Solutions BDC for both the prior and current schedules, along with the net change between them, by joining holdings and filings and using conditional aggregation.",
+  "follows": null,
+  "history": [
+    {
+      "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+      "sql": "SELECT SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS prior_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) AS current_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) - SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS change_fair_value, SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS change_num_holdings FROM holdings h JOIN filings f ON f.adsh = h.adsh WHERE f.name = 'APOLLO DEBT SOLUTIONS BDC'"
+    }
+  ],
+  "id": "q08",
+  "model_calls": 1,
+  "question": "How did Apollo Debt Solutions BDC's total fair value and number of holdings change from the prior schedule to the current one?",
+  "result": {
+    "columns": [
+      "prior_fair_value",
+      "current_fair_value",
+      "change_fair_value",
+      "prior_num_holdings",
+      "current_num_holdings",
+      "change_num_holdings"
+    ],
+    "row_count": 1,
+    "rows": [
+      [
+        24515628000.0,
+        25367235000.0,
+        851607000.0,
+        815,
+        834,
+        19
+      ]
+    ],
+    "sql": "SELECT SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS prior_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) AS current_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) - SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS change_fair_value, SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS change_num_holdings FROM holdings h JOIN filings f ON f.adsh = h.adsh WHERE f.name = 'APOLLO DEBT SOLUTIONS BDC'",
+    "truncated": false
+  },
+  "sql": "SELECT SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS prior_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) AS current_fair_value, SUM(CASE WHEN h.period_role = 'current' THEN h.fair_value END) - SUM(CASE WHEN h.period_role = 'prior' THEN h.fair_value END) AS change_fair_value, SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS prior_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) AS current_num_holdings, SUM(CASE WHEN h.period_role = 'current' THEN 1 END) - SUM(CASE WHEN h.period_role = 'prior' THEN 1 END) AS change_num_holdings FROM holdings h JOIN filings f ON f.adsh = h.adsh WHERE f.name = 'APOLLO DEBT SOLUTIONS BDC'",
+  "stop": null,
+  "tokens": 2212,
+  "trace": [
+    {
+      "node": "load_schema",
+      "run_id": "q08",
+      "schema_hash": "016528308472",
+      "step": 1,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "attempt": 0,
+      "node": "generate",
+      "request_key": "4ebc41471e711b980ca1864320cf1295d5992722a265c14af83bc7ab353aabaf",
+      "run_id": "q08",
+      "sql_hash": "ca82305d09fc",
+      "step": 2,
+      "tokens_in": 1927,
+      "tokens_out": 285,
+      "ts": "2026-11-16T09:00:00-05:00",
+      "usd": 0.0012906
+    },
+    {
+      "node": "check",
+      "outcome": "ok",
+      "run_id": "q08",
+      "step": 3,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "execute",
+      "outcome": "ok",
+      "result_hash": "80d0ba6608cf",
+      "rows": 1,
+      "run_id": "q08",
+      "step": 4,
+      "ts": "2026-11-16T09:00:00-05:00"
+    },
+    {
+      "node": "summarize",
+      "run_id": "q08",
+      "step": 5,
+      "stop": null,
+      "ts": "2026-11-16T09:00:00-05:00"
+    }
+  ],
+  "usd": 0.0012906
+}
