@@ -27,32 +27,34 @@ then `python agent/run.py --mode record`. Two replays are byte-identical:
 The MCP Inspector: `mcp dev services/mcp/server.py` (needs Node.js), then call each tool once.
 
 ## Architecture
+```mermaid
+flowchart TD
+    analyst(["Analyst"]) --> app["Streamlit app<br/>app/streamlit_app.py"]
+    runner["agent/run.py<br/>the ten questions, record or replay"] --> load
+    app -->|question| load
+
+    subgraph agent ["LangGraph agent: agent/graph.py, one checkpointer thread per conversation"]
+        load["load_schema<br/>catalog + exact BDC names and investment types"] --> gen["generate"]
+        gen --> chk{"check<br/>Pydantic contract, agent/contract.py"}
+        chk -->|ok| exe["execute"]
+        chk -->|decline| sum["summarize"]
+        chk -->|"repair: error code"| gen
+        exe -->|ok| sum
+        exe -->|"repair: server error"| gen
+    end
+
+    gen <-->|"prompt / JSON reply"| llm["Gemini gemini-3.5-flash-lite<br/>behind ReplayClient, agent/model.py<br/>replay from outputs/cache/"]
+    load --> client["MCP client<br/>agent/mcp_client.py, one SDK v2 session"]
+    exe --> client
+    client -->|"MCP protocol, in memory"| server["MCP server: services/mcp/server.py<br/>list_tables, describe_table, sample_values, run_query<br/>all READ"]
+    server --> ledger[("ledger<br/>logs/server_ledger.jsonl")]
+    server --> gate["gate.run_query<br/>one SELECT, authorizer, 200 rows, 5 s timeout"]
+    gate --> db[("SQLite, read-only via gate.connect_ro<br/>filings, holdings, holdings_v")]
+    sum -->|"answer + SQL + rows"| app
 ```
- Streamlit app (app/streamlit_app.py)             agent/run.py (batch, the ten questions)
-          |                                                |
-          +----------------------+-------------------------+
-                                 v
-   LangGraph agent (agent/graph.py): StateGraph, InMemorySaver checkpointer (one thread per conversation)
-      load_schema -> generate -> check --ok--> execute --ok--> summarize
-                        ^          |   \--decline--------------^
-                        +--repair--+------repair---+        (capped at 3 model calls)
-          |                  |                 |
-          |     Gemini behind ReplayClient     Pydantic contract (agent/contract.py):
-          |     (agent/model.py; outputs/cache)  SQLQuery = exactly one of sql | decline,
-          |                                      sql through gate.static_check + cross_join rule
-          v
-   MCP client (agent/mcp_client.py): synchronous calls over one SDK v2 Client session
-          |  MCP protocol (in memory)
-          v
-   MCP server (services/mcp/server.py): exactly 4 READ tools
-      list_tables | describe_table | sample_values | run_query      -> ledger event per call/refusal
-          |
-          v
-   gate (src/askpanel/gate.py): one statement, SELECT/WITH only, authorizer, row cap 200, 5 s timeout
-          |
-          v
-   SQLite, read-only (gate.connect_ro: mode=ro + authorizer): filings, holdings, holdings_v
-```
+The repair edge is capped at 3 model calls per question, and the budget guard stops at $0.10
+or 30,000 tokens (`params.yaml`).
+
 Rules that hold by construction:
 - Nothing in `agent/` or `app/` imports `sqlite3` or opens the database; the self-check verifies it.
 - The server opens the database with `gate.connect_ro` and runs every query through `gate.run_query`.
