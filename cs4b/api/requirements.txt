@@ -1,0 +1,6 @@
+# API extras, on top of cs4b/requirements.txt (install that first).
+#   pip install -r requirements.txt -r api/requirements.txt
+-c ../constraints.txt     # keeps starlette, pydantic, uvicorn, httpx at the tested pins
+fastapi==0.165.0
+uvicorn==0.54.0
+httpx==0.28.1             # FastAPI TestClient
